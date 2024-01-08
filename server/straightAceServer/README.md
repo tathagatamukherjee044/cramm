@@ -1,4 +1,4 @@
-# Project straight-Ace
+# Project StraightAceServer
 
 One Paragraph of project description goes here
 

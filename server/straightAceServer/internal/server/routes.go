@@ -1,37 +1,22 @@
 package server
 
 import (
-	"encoding/json"
-	"log"
-	"net/http"
+	"github.com/gofiber/fiber/v2"
 )
 
-func (s *Server) RegisterRoutes() http.Handler {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", s.HelloWorldHandler)
-	mux.HandleFunc("/health", s.healthHandler)
+func (s *FiberServer) RegisterFiberRoutes() {
+	s.App.Get("/", s.HelloWorldHandler)
+	s.App.Get("/health", s.healthHandler)
 
-	return mux
 }
 
-func (s *Server) HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
-	resp := make(map[string]string)
-	resp["message"] = "Hello World"
-
-	jsonResp, err := json.Marshal(resp)
-	if err != nil {
-		log.Fatalf("error handling JSON marshal. Err: %v", err)
+func (s *FiberServer) HelloWorldHandler(c *fiber.Ctx) error {
+	resp := map[string]string{
+		"message": "Hello World",
 	}
-
-	_, _ = w.Write(jsonResp)
+	return c.JSON(resp)
 }
 
-func (s *Server) healthHandler(w http.ResponseWriter, r *http.Request) {
-	jsonResp, err := json.Marshal(s.db.Health())
-
-	if err != nil {
-		log.Fatalf("error handling JSON marshal. Err: %v", err)
-	}
-
-	_, _ = w.Write(jsonResp)
+func (s *FiberServer) healthHandler(c *fiber.Ctx) error {
+	return c.JSON(s.db.Health())
 }

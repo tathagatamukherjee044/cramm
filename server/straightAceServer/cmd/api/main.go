@@ -1,18 +1,25 @@
 package main
 
 import (
+	"StraightAceServer/internal/server"
 	"fmt"
-	"straight-Ace/internal/server"
+	"log"
+	"os"
+	"strconv"
 
 	"github.com/joho/godotenv"
+	_ "github.com/joho/godotenv/autoload"
 )
 
 func main() {
 
 	godotenv.Load("../../.env")
-	server := server.NewServer()
+	log.Println(os.Getenv("PORT"))
+	server := server.New()
 
-	err := server.ListenAndServe()
+	server.RegisterFiberRoutes()
+	port, _ := strconv.Atoi(os.Getenv("PORT"))
+	err := server.Listen(fmt.Sprintf(":%d", port))
 	if err != nil {
 		panic(fmt.Sprintf("cannot start server: %s", err))
 	}
