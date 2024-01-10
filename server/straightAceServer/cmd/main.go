@@ -1,6 +1,7 @@
 package main
 
 import (
+	"StraightAceServer/api/route"
 	"StraightAceServer/internal/server"
 	"fmt"
 	"log"
@@ -13,11 +14,11 @@ import (
 
 func main() {
 
-	godotenv.Load("../../.env")
+	godotenv.Load("../.env")
 	log.Println(os.Getenv("PORT"))
 	server := server.New()
 
-	server.RegisterFiberRoutes()
+	route.RegisterFiberRoutes(server)
 	port, _ := strconv.Atoi(os.Getenv("PORT"))
 	err := server.Listen(fmt.Sprintf(":%d", port))
 	if err != nil {
