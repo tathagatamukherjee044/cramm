@@ -2,6 +2,7 @@ package server
 
 import (
 	"StraightAceServer/internal/database"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -15,6 +16,6 @@ func New() *FiberServer {
 		App: fiber.New(),
 		db:  database.New(),
 	}
-
+	//service.GetGoogleConfig()
 	return server
 }

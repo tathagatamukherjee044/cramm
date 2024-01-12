@@ -8,4 +8,5 @@ import (
 
 func NewAuthRouter(group fiber.Router) {
 	group.Get("/login", controller.HelloWorldHandler)
+	group.Get("/auth/oauth/google", controller.GoogleOAuthHandler)
 }
