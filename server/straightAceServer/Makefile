@@ -1,4 +1,9 @@
 # Simple Makefile for a Go project
+dev:
+	air
+
+swagger:
+	swag init --dir ./cmd/main.go , ./api/handler
 
 # Build the application
 all: build

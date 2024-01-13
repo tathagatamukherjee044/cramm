@@ -5,6 +5,8 @@ import "StraightAceServer/internal/server"
 func RegisterFiberRoutes(s *server.FiberServer) {
 
 	publicRouter := s.App.Group("")
-	NewAuthRouter(publicRouter)
+	AddAuthRouter(publicRouter)
+	AddQuizRouter(publicRouter)
+	AddSwaggerRoutes(publicRouter)
 
 }

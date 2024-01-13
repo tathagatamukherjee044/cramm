@@ -1,12 +1,13 @@
 package route
 
 import (
-	"StraightAceServer/api/controller"
+	"StraightAceServer/api/handler"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-func NewAuthRouter(group fiber.Router) {
-	group.Get("/login", controller.HelloWorldHandler)
-	group.Get("/auth/oauth/google", controller.GoogleOAuthHandler)
+func AddAuthRouter(group fiber.Router) {
+	authRoute := group.Group("/auth")
+	authRoute.Get("/login", handler.HelloWorldHandler)
+	authRoute.Get("/oauth/google", handler.GoogleOAuthHandler)
 }

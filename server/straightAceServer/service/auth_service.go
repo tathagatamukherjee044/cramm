@@ -1,6 +1,7 @@
 package service
 
 import (
+	model "StraightAceServer/models"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -21,13 +22,6 @@ const (
 )
 
 // User struct to store user information
-type User struct {
-	ID            string `json:"id"`
-	Email         string `json:"email"`
-	Name          string `json:"name"`
-	Picture       string `json:"picture"`
-	VerifiedEmail bool   `json:"verified_email"`
-}
 
 func GetGoogleConfig() {
 	log.Println("making google config")
@@ -52,7 +46,7 @@ func GetGoogleToken(code string) (*oauth2.Token, error) {
 	return token, err
 }
 
-func GetGoogleUser(token *oauth2.Token) (User, error) {
+func GetGoogleUser(token *oauth2.Token) (model.GoogleUser, error) {
 	GetGoogleConfig()
 	client := googleOauthConfig.Client(context.Background(), token)
 	response, err := client.Get(googleAPIURL)
@@ -60,7 +54,7 @@ func GetGoogleUser(token *oauth2.Token) (User, error) {
 		fmt.Printf("Failed to get user info: %v\n", err)
 	}
 
-	var user User
+	var user model.GoogleUser
 	err = json.NewDecoder(response.Body).Decode(&user)
 	if err != nil {
 		fmt.Printf("Failed to decode user info: %v\n", err)

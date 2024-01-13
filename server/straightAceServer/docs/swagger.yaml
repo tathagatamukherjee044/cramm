@@ -1,0 +1,25 @@
+basePath: /
+host: localhost:8080
+info:
+  contact:
+    name: Ben Davis
+  description: An example template of a Golang backend API using Fiber and MongoDB
+  license:
+    name: MIT
+  title: The Better Backend Template
+  version: "0.1"
+paths:
+  /health:
+    get:
+      consumes:
+      - '*/*'
+      description: get the status of server.
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+      summary: Show the status of server.
+      tags:
+      - health
+swagger: "2.0"

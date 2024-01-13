@@ -1,0 +1,85 @@
+{
+    "prompt": "the apple",
+    "choices": [
+        {
+            "image": "https://d2pur3iezf4d1j.cloudfront.net/images/b40a713e2c973cb54c3c5bb67ef19af4",
+            "phrase": "el hombre",
+            "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/b40a713e2c973cb54c3c5bb67ef19af4",
+            "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/621c96193c41d304991fdff353b5e4a9",
+            "hint": "the man"
+        },
+        {
+            "image": "https://d2pur3iezf4d1j.cloudfront.net/images/cd1ecb710774af3d4904673137972ef3",
+            "phrase": "la manzana",
+            "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/cd1ecb710774af3d4904673137972ef3",
+            "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/5665feb95b54156dbf6a7ddace765d46",
+            "hint": "the apple"
+        },
+        {
+            "image": "https://d2pur3iezf4d1j.cloudfront.net/images/52275a140b3fb918b49449a08283ec80",
+            "phrase": "la mujer",
+            "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/52275a140b3fb918b49449a08283ec80",
+            "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/dc3151b8f2117d222e9181a11ceeb5d5",
+            "hint": "the woman"
+        }
+    ],
+    "correctIndex": 1,
+    "type": "select",
+    "id": "3785110fcabd48deb2438f9d258b1329",
+    "challengeResponseTrackingProperties": {
+        "level_session_index": 1,
+        "cefr_subsection": "A1.0",
+        "is_v2": true,
+        "predicted_time_taken": 6755.405840210599,
+        "path_uses_unit_vision": false,
+        "cefr_level": "CEFR_A1",
+        "is_adaptive": false,
+        "birdbrain_source": "birdbrain_v2",
+        "generation_timestamp": 1704481629099,
+        "session_type": "lesson",
+        "birdbrain_probability": 0.9090139,
+        "content_length": 7,
+        "tagged_kc_ids": [
+            "58f8237ef41fa6929e86d4133ba8dbbc"
+        ]
+    },
+    "metadata": {
+        "challenge_construction_insights": {
+            "birdbrain_probability": 0.9090139,
+            "birdbrain_source": "birdbrain_v2",
+            "content_length": 7,
+            "is_adaptive": false,
+            "predicted_time_taken": 6755.405840210599,
+            "cefr_level": "CEFR_A1",
+            "cefr_subsection": "A1.0"
+        },
+        "highlight": [
+            "manzana"
+        ],
+        "hint": "the apple",
+        "phrase": "la manzana",
+        "solution_key": "58f8237ef41fa6929e86d4133ba8dbbc",
+        "source_language": "es",
+        "specific_type": "name_example",
+        "language": "es",
+        "lexeme_ids_to_update": [
+            "58f8237ef41fa6929e86d4133ba8dbbc"
+        ],
+        "type": "select",
+        "lexemes_to_update": [
+            "58f8237ef41fa6929e86d4133ba8dbbc"
+        ],
+        "generic_lexeme_map": {},
+        "num_comments": 0,
+        "learning_language": "es",
+        "from_language": "en"
+    },
+    "newWords": [
+        "manzana"
+    ],
+    "progressUpdates": [],
+    "challengeGeneratorIdentifier": {
+        "specificType": "name_example",
+        "generatorId": "58f8237ef41fa6929e86d4133ba8dbbc"
+    }
+}
