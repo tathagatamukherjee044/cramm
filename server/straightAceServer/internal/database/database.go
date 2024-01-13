@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"time"
 
 	_ "github.com/joho/godotenv/autoload"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -16,9 +15,8 @@ type Service interface {
 	Health() map[string]string
 }
 
-type service struct {
-	db *mongo.Client
-}
+var client *mongo.Client
+var db *mongo.Database
 
 var (
 	host = os.Getenv("DB_HOST")
@@ -26,28 +24,31 @@ var (
 	//database = os.Getenv("DB_DATABASE")
 )
 
-func New() Service {
+func New() {
 	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(fmt.Sprintf("mongodb://%s:%s", host, port)))
 
 	if err != nil {
 		log.Fatal(err)
 
 	}
-	return &service{
-		db: client,
-	}
+	db = client.Database("straightAceDev")
+
 }
 
-func (s *service) Health() map[string]string {
-	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
-	defer cancel()
-
-	err := s.db.Ping(ctx, nil)
-	if err != nil {
-		log.Fatalf(fmt.Sprintf("db down: %v", err))
-	}
-
-	return map[string]string{
-		"message": "It's healthy",
-	}
+func GetDBCollection(col string) *mongo.Collection {
+	return db.Collection(col)
 }
+
+// func (s *service) Health() map[string]string {
+// 	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+// 	defer cancel()
+
+// 	err := s.client.Ping(ctx, nil)
+// 	if err != nil {
+// 		log.Fatalf(fmt.Sprintf("client down: %v", err))
+// 	}
+
+// 	return map[string]string{
+// 		"message": "It's healthy",
+// 	}
+// }

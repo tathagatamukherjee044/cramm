@@ -9,7 +9,7 @@ services:
     ports:
       - "${DB_PORT}:27017"
     volumes:
-      - mongo_volume:/data/db
+      - mongo_volume:/data/client
 
 volumes:
   mongo_volume:

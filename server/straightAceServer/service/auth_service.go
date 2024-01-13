@@ -1,7 +1,7 @@
 package service
 
 import (
-	model "StraightAceServer/models"
+	model "StraightAceServer/model"
 	"context"
 	"encoding/json"
 	"fmt"

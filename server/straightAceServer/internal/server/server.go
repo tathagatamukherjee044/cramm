@@ -8,14 +8,14 @@ import (
 
 type FiberServer struct {
 	*fiber.App
-	db database.Service
+	client database.Service
 }
 
 func New() *FiberServer {
 	server := &FiberServer{
 		App: fiber.New(),
-		db:  database.New(),
 	}
+	database.New()
 	//service.GetGoogleConfig()
 	return server
 }
