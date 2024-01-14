@@ -1,0 +1,7 @@
+{
+  "name": "straightAceClient",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

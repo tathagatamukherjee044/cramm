@@ -1,9 +1,9 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.chipwreck.straightace',
-  appName: 'straight-ace-client',
-  webDir: 'dist/straight-ace-client',
+  appId: 'io.ionic.starter',
+  appName: 'straightAceClient',
+  webDir: 'www/browser',
   server: {
     androidScheme: 'https'
   }
