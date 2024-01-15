@@ -2,5 +2,5 @@
   quiz-page works!
 </p>
 @for (item of quiz; track $index) {
-  <app-quiz-item></app-quiz-item>
+  <app-quiz-item [question]="item"></app-quiz-item>
 }

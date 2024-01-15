@@ -1,3 +1,9 @@
-<p>
-  quiz-item works!
-</p>
+<div>
+  Question : {{question.prompt}}
+  <ion-col>
+    @for (choice of question.choices; track $index) {
+      {{choice}}
+      <input type="radio" id="{{choice}}" name="fav_language" value="{{choice}}">
+    }
+  </ion-col>
+</div>

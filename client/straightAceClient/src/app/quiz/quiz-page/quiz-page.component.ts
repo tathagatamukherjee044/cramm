@@ -10,7 +10,22 @@ import { QuizItemComponent } from '../quiz-item/quiz-item.component';
 })
 export class QuizPageComponent  implements OnInit {
 
-  quiz = [1,2,3,3,3,3,3,3,3,3,3,3,3]
+  quiz = [
+    {
+      "prompt" : "When did India gain Independence",
+      "choices" : [
+        "1947","1947","1947","1947",
+      ]
+
+    },
+    {
+      "prompt" : "When did India gain Independence",
+      "choices" : [
+        "1947","1947","1947","1947",
+      ]
+
+    }
+  ]
 
   constructor() { }
 
