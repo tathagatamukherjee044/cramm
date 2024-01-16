@@ -1,4 +1,4 @@
-import { Component, Input, NgModule, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, NgModule, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup } from '@ionic/angular/standalone';
 
@@ -12,6 +12,9 @@ import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup } from '@ionic/angu
 export class QuizItemComponent  implements OnInit {
 
   @Input() question: any ;
+
+  @Output() questionComplete = new EventEmitter<boolean>();  
+  
   answer : any = "";
 
   constructor() { }
@@ -26,6 +29,7 @@ export class QuizItemComponent  implements OnInit {
     } else {
       alert("Moye Moye")
     }
+    this.questionComplete.emit(true);
   }
 
 }

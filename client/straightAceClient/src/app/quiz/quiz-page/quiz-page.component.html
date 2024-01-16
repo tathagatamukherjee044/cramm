@@ -2,8 +2,8 @@
   quiz-page works!
 </p>
 <div class="reelsContainer">
-  @for (item of quiz; track $index) {
-    <app-quiz-item [question]="item" class="reel"></app-quiz-item>
-  }
+  <!-- @for (item of quiz; track $index) { -->
+    <app-quiz-item [question]="currentQuiz" class="reel" (questionComplete)="onQuestionComplete($event)"></app-quiz-item>
+  <!-- } -->
 </div>
 

@@ -28,8 +28,19 @@ export class QuizPageComponent  implements OnInit {
     }
   ]
 
+  currentQuiz = {}
+  currentIndex: number = 0;
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentIndex = 0
+    this.currentQuiz = this.quiz[this.currentIndex]
+  }
+
+  onQuestionComplete(success : boolean){
+    this.currentIndex++
+    this.currentQuiz = this.quiz[this.currentIndex]
+  }
 
 }
