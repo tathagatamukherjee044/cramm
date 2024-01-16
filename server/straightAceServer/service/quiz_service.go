@@ -10,7 +10,6 @@ import (
 	"log"
 
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 )
 
 func GetAllQuiz() ([]model.Quiz, error) {
@@ -34,15 +33,15 @@ func GetAllQuiz() ([]model.Quiz, error) {
 	return results, nil
 }
 
-func CreateQuiz(quiz *model.Quiz) (*mongo.InsertOneResult, error) {
+func CreateQuiz(quiz *model.Quiz) (interface{}, error) {
 
 	coll := database.GetDBCollection("quiz")
 	result, err := coll.InsertOne(context.TODO(), quiz)
 	if err != nil {
-		return &mongo.InsertOneResult{}, errors.New("Cannot Insert Quiz")
+		return nil, errors.New("Cannot Insert Quiz")
 	}
 
 	log.Println(result)
 	// return the book
-	return result, nil
+	return result.InsertedID, nil
 }

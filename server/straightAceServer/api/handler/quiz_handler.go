@@ -39,7 +39,7 @@ func CreateQuiz(c *fiber.Ctx) error {
 	}
 
 	// create the book
-	result, err := service.CreateQuiz(quiz)
+	id, err := service.CreateQuiz(quiz)
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{
 			"error":   "Failed to create book",
@@ -49,6 +49,6 @@ func CreateQuiz(c *fiber.Ctx) error {
 
 	// return the book
 	return c.Status(201).JSON(fiber.Map{
-		"result": result,
+		"result": id,
 	})
 }
