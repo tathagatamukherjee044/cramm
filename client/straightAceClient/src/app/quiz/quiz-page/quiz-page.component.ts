@@ -14,16 +14,17 @@ export class QuizPageComponent  implements OnInit {
     {
       "prompt" : "When did India gain Independence",
       "choices" : [
-        "1947","1947","1947","1947",
-      ]
+        "1947","1943","1946","1957",
+      ],
+      answer : "1947"
 
     },
     {
-      "prompt" : "When did India gain Independence",
+      "prompt" : "What is the Capital od India",
       "choices" : [
-        "1947","1947","1947","1947",
-      ]
-
+        "CCU","DEL","MAA","BOM",
+      ],
+      answer : "DEL"
     }
   ]
 

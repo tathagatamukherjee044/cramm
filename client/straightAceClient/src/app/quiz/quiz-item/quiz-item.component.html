@@ -1,9 +1,15 @@
 <div>
   Question : {{question.prompt}}
-  <ion-col>
-    @for (choice of question.choices; track $index) {
-      {{choice}}
-      <input type="radio" id="{{choice}}" name="fav_language" value="{{choice}}">
-    }
-  </ion-col>
+  <!-- <form #f> -->
+    <ion-radio-group [(ngModel)]="answer">
+      @for (choice of question.choices; track $index) {
+        <ion-item>
+          
+          <ion-radio name="{{choice}}" [value]="choice" >{{choice}}</ion-radio>
+        </ion-item>
+        
+      }
+    </ion-radio-group>
+  <!-- </form> -->
+  <ion-button (click)="checkAnswer()">Check</ion-button>
 </div>
