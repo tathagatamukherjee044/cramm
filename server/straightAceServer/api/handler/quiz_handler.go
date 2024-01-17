@@ -1,8 +1,10 @@
 package handler
 
 import (
+	"StraightAceServer/internal/store"
 	model "StraightAceServer/model"
 	"StraightAceServer/service"
+	"fmt"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
@@ -16,8 +18,13 @@ type Question struct {
 }
 
 func GetQuiz(c *fiber.Ctx) error {
+	course := c.Params("course")
+	subject := c.Params("sub")
+	seed := c.Params("seed")
+	fmt.Println(course, subject, seed)
+	courseStructure := store.CoursesMap[course]
+	fmt.Println(courseStructure.Subjects)
 	quiz := &model.Quiz{
-		ID:       "1",
 		Question: "When did India gain Independence",
 		Options:  []string{"1947", "1950"},
 	}
