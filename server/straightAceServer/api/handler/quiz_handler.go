@@ -24,11 +24,22 @@ func GetQuiz(c *fiber.Ctx) error {
 	fmt.Println(course, subject, seed)
 	courseStructure := store.CoursesMap[course]
 	fmt.Println(courseStructure.Subjects)
-	quiz := &model.Quiz{
-		Question: "When did India gain Independence",
-		Options:  []string{"1947", "1950"},
+	var result []model.Quiz
+	for i := 0; i < len(courseStructure.Subjects); i++ {
+		quiz, err := service.GetQuiz(courseStructure.Subjects[i])
+		if err != nil {
+			return c.Status(400).JSON(fiber.Map{
+				"error": "Invalid body",
+			})
+		}
+
+		result = append(result, quiz...)
 	}
-	return c.JSON(quiz)
+	// quiz := &model.Quiz{
+	// 	Question: "When did India gain Independence",
+	// 	Options:  []string{"1947", "1950"},
+	// }
+	return c.JSON(result)
 }
 
 func GetAllQuiz(c *fiber.Ctx) error {

@@ -9,8 +9,9 @@ type GoogleUser struct {
 }
 
 type Quiz struct {
-	Question string   `json:"question"`
-	Options  []string `json:"options"`
+	Question      string   `json:"question"`
+	Options       []string `json:"options"`
+	CorrectOption int      `json:"correctOption,omitempty"`
 }
 
 type Course struct {
