@@ -1,8 +1,10 @@
 package handler
 
 import (
+	"StraightAceServer/internal/serverutils"
 	"StraightAceServer/service"
 	"fmt"
+	"log"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -36,6 +38,14 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 		fmt.Printf("Failed to upsert user: %v\n", err)
 		return nil
 	}
+
+	tokenString, err := serverutils.GenerateJWT(user.ID)
+	if err != nil {
+		fmt.Printf("Failed to generate JWT token: %v\n", err)
+		return c.Status(401).SendString(err.Error())
+	}
+
+	log.Println(tokenString)
 
 	return c.JSON(user)
 

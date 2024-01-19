@@ -12,8 +12,9 @@ type FiberServer struct {
 }
 
 func New() *FiberServer {
+	app := fiber.New()
 	server := &FiberServer{
-		App: fiber.New(),
+		App: app,
 	}
 	database.New()
 	//service.GetGoogleConfig()

@@ -6,7 +6,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"sync"
+	"time"
 
+	"github.com/dgrijalva/jwt-go"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -19,6 +22,8 @@ var (
 	oauthStateString  = "random" // Replace with a random string for security
 	client            *mongo.Client
 	db                *mongo.Database
+	mu                sync.RWMutex
+	secretKey         = []byte("your-secret-key") // Replace with a strong and secure secret key
 )
 
 const (
@@ -32,6 +37,12 @@ type User struct {
 	Name          string `json:"name"`
 	Picture       string `json:"picture"`
 	VerifiedEmail bool   `json:"verified_email"`
+}
+
+// JWTClaims represents the claims of the JWT token
+type JWTClaims struct {
+	UserID string `json:"user_id"`
+	jwt.StandardClaims
 }
 
 func init() {
@@ -119,6 +130,22 @@ func handleGoogleCallback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Generate a JWT token
+	tokenString, err := generateJWT(user.ID)
+	if err != nil {
+		fmt.Printf("Failed to generate JWT token: %v\n", err)
+		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+		return
+	}
+
+	// Set the JWT token as a cookie
+	http.SetCookie(w, &http.Cookie{
+		Name:    "token",
+		Value:   tokenString,
+		Expires: time.Now().Add(24 * time.Hour), // Adjust expiration as needed
+		Path:    "/",
+	})
+
 	// Now you have user information in the 'user' variable.
 	fmt.Printf("User ID: %s\n", user.ID)
 	fmt.Printf("User Email: %s\n", user.Email)
@@ -126,7 +153,7 @@ func handleGoogleCallback(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("User Picture: %s\n", user.Picture)
 	fmt.Printf("Is Verified Email: %v\n", user.VerifiedEmail)
 
-	// TODO: Use the user information in your application as needed.
+	// TODO: Use the user information and JWT token in your application as needed.
 
 	fmt.Println("Successfully authenticated with Google")
 
@@ -146,6 +173,23 @@ func upsertUser(user User) error {
 	return err
 }
 
+func generateJWT(userID string) (string, error) {
+	claims := JWTClaims{
+		UserID: userID,
+		StandardClaims: jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(24 * time.Hour).Unix(), // Adjust expiration as needed
+		},
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	tokenString, err := token.SignedString(secretKey)
+	if err != nil {
+		return "", err
+	}
+
+	return tokenString, nil
+}
+
 func handleLogin(w http.ResponseWriter, r *http.Request) {
 	// Implement login logic using the MongoDB collection
 	email := r.FormValue("email")
@@ -162,6 +206,22 @@ func handleLogin(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// You can add password validation logic here
+
+	// Generate a new JWT token
+	tokenString, err := generateJWT(user.ID)
+	if err != nil {
+		fmt.Printf("Failed to generate JWT token: %v\n", err)
+		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+		return
+	}
+
+	// Set the JWT token as a cookie
+	http.SetCookie(w, &http.Cookie{
+		Name:    "token",
+		Value:   tokenString,
+		Expires: time.Now().Add(24 * time.Hour), // Adjust expiration as needed
+		Path:    "/",
+	})
 
 	fmt.Fprintf(w, "Login successful!\nUser ID: %s\nUser Email: %s\n", user.ID, user.Email)
 }
@@ -194,6 +254,22 @@ func handleSignIn(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Failed to create a new user.")
 		return
 	}
+
+	// Generate a new JWT token
+	tokenString, err := generateJWT(newUser.ID)
+	if err != nil {
+		fmt.Printf("Failed to generate JWT token: %v\n", err)
+		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+		return
+	}
+
+	// Set the JWT token as a cookie
+	http.SetCookie(w, &http.Cookie{
+		Name:    "token",
+		Value:   tokenString,
+		Expires: time.Now().Add(24 * time.Hour), // Adjust expiration as needed
+		Path:    "/",
+	})
 
 	fmt.Fprintf(w, "Sign-up successful!\nUser ID: %s\nUser Email: %s\n", newUser.ID, newUser.Email)
 }

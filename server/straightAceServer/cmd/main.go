@@ -26,6 +26,7 @@ func main() {
 	log.Println(os.Getenv("PORT"))
 	server := server.New()
 
+	//custommiddleware.SetupMiddlewares(server)
 	route.RegisterFiberRoutes(server)
 	port, _ := strconv.Atoi(os.Getenv("PORT"))
 	err := server.Listen(fmt.Sprintf(":%d", port))
