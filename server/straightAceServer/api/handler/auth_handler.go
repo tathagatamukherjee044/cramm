@@ -31,6 +31,12 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 	}
 
 	user, _ := service.GetGoogleUser(token)
+
+	if err := service.UpsertUser(user); err != nil {
+		fmt.Printf("Failed to upsert user: %v\n", err)
+		return nil
+	}
+
 	return c.JSON(user)
 
 }
