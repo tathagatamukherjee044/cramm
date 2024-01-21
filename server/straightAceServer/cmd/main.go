@@ -9,6 +9,7 @@ package main
 // @BasePath /
 
 import (
+	"StraightAceServer/api/custommiddleware"
 	"StraightAceServer/api/route"
 	"StraightAceServer/internal/server"
 	"fmt"
@@ -18,6 +19,7 @@ import (
 
 	"github.com/joho/godotenv"
 	_ "github.com/joho/godotenv/autoload"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func main() {
@@ -26,7 +28,15 @@ func main() {
 	log.Println(os.Getenv("PORT"))
 	server := server.New()
 
-	//custommiddleware.SetupMiddlewares(server)
+	objectID := primitive.NewObjectID()
+
+	// Convert ObjectID to string
+	objectIDString := objectID.Hex()
+
+	fmt.Printf("Original ObjectID: %s\n", objectID)
+	fmt.Printf("ObjectID as string: %s\n", objectIDString)
+
+	custommiddleware.SetupMiddlewares(server)
 	route.RegisterFiberRoutes(server)
 	port, _ := strconv.Atoi(os.Getenv("PORT"))
 	err := server.Listen(fmt.Sprintf(":%d", port))

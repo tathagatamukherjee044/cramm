@@ -7,6 +7,7 @@ import (
 	"log"
 
 	"github.com/gofiber/fiber/v2"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 // @Summary Show the status of server.
@@ -32,18 +33,43 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 		return c.Status(401).SendString("Error getting token from code.")
 	}
 
-	user, _ := service.GetGoogleUser(token)
+	googleUser, _ := service.GetGoogleUser(token)
 
-	if err := service.UpsertUser(user); err != nil {
+	fmt.Println("google user", googleUser)
+
+	upsertedID, rerr := service.UpsertUser(googleUser)
+	if rerr != nil {
 		fmt.Printf("Failed to upsert user: %v\n", err)
 		return nil
 	}
+	fmt.Print("here")
 
-	tokenString, err := serverutils.GenerateJWT(user.ID)
+	//fmt.Println(upsertedID)
+
+	//log.Panicln(upsertedID)
+
+	// upsertedIDString, ok := upsertedID.(string)
+	// if !ok {
+	// 	fmt.Println("Failed to assert upsertedID to string")
+	// }
+
+	// Convert the string to primitive.ObjectID
+	objectID, err := primitive.ObjectIDFromHex(upsertedID)
+	if err != nil {
+		fmt.Println("Error converting string to ObjectID:", err)
+	}
+
+	googleUser.ID = objectID
+
+	user := service.ConvertGoogleUserToUser(googleUser)
+
+	tokenString, err := serverutils.GenerateJWT(user)
 	if err != nil {
 		fmt.Printf("Failed to generate JWT token: %v\n", err)
 		return c.Status(401).SendString(err.Error())
 	}
+	log.Println("Here is user")
+	log.Println(user)
 
 	log.Println(tokenString)
 

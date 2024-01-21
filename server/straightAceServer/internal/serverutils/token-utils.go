@@ -1,6 +1,7 @@
 package serverutils
 
 import (
+	"StraightAceServer/model"
 	"fmt"
 	"time"
 
@@ -8,7 +9,7 @@ import (
 )
 
 type JWTClaims struct {
-	UserID string `json:"user_id"`
+	User model.User `json:"user"`
 	jwt.StandardClaims
 }
 
@@ -16,9 +17,9 @@ var (
 	secretKey = []byte("your-secret-key")
 )
 
-func GenerateJWT(userID string) (string, error) {
+func GenerateJWT(user model.User) (string, error) {
 	claims := JWTClaims{
-		UserID: userID,
+		User: user,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(24 * time.Hour).Unix(), // Adjust expiration as needed
 		},

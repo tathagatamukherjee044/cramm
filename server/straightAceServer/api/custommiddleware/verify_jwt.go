@@ -6,7 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func validateJWT(c *fiber.Ctx) error {
+func ValidateJWT(c *fiber.Ctx) error {
 	log.Println("in jwt")
 	// Extract the JWT token from the request cookie
 	// cookie := c.Cookies("token")

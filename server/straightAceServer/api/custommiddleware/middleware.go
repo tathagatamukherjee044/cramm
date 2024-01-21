@@ -24,5 +24,5 @@ func SetupMiddlewares(s *server.FiberServer) {
 	//s.App.Use(timeout.New())
 
 	// Custom JWT middleware
-	s.App.Use(validateJWT)
+	//s.App.Use(validateJWT)
 }
