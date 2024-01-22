@@ -17,6 +17,7 @@ type User struct {
 	//Picture       string `json:"picture"`
 	VerifiedEmail bool   `json:"verified_email"`
 	Role          string `json:"role"`
+	Token         string `json:"token,omitempty"`
 }
 
 type Quiz struct {

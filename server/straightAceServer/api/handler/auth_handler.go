@@ -73,6 +73,8 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 
 	log.Println(tokenString)
 
+	user.Token = tokenString
+
 	return c.JSON(user)
 
 }

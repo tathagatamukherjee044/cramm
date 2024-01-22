@@ -58,9 +58,12 @@ func UpsertUser(googleUser model.GoogleUser) (upsertedID string, err error) {
 func ConvertGoogleUserToUser(googleUser model.GoogleUser) model.User {
 	fmt.Println(googleUser)
 	User := &model.User{
-		ID:    googleUser.ID,
-		Email: googleUser.Email,
-		Role:  "student", // Set the default role or fetch it from somewhere else
+		ID:            googleUser.ID,
+		Email:         googleUser.Email,
+		Role:          "student",
+		VerifiedEmail: googleUser.VerifiedEmail,
+		Name:          googleUser.Name,
+		// Set the default role or fetch it from somewhere else
 		// map other fields as needed
 	}
 	fmt.Println(User)
