@@ -63,6 +63,8 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 
 	user := service.ConvertGoogleUserToUser(googleUser)
 
+	tokenUser := service.ConvertUserToTokenUser(user)
+
 	tokenString, err := serverutils.GenerateJWT(user)
 	if err != nil {
 		fmt.Printf("Failed to generate JWT token: %v\n", err)
@@ -73,8 +75,8 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 
 	log.Println(tokenString)
 
-	user.Token = tokenString
+	tokenUser.Token = tokenString
 
-	return c.JSON(user)
+	return c.JSON(tokenUser)
 
 }

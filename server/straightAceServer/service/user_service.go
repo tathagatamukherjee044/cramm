@@ -69,3 +69,18 @@ func ConvertGoogleUserToUser(googleUser model.GoogleUser) model.User {
 	fmt.Println(User)
 	return *User
 }
+
+func ConvertUserToTokenUser(googleUser model.User) model.TokenUser {
+	fmt.Println(googleUser)
+	User := &model.TokenUser{
+		ID:            googleUser.ID,
+		Email:         googleUser.Email,
+		Role:          "student",
+		VerifiedEmail: googleUser.VerifiedEmail,
+		Name:          googleUser.Name,
+		// Set the default role or fetch it from somewhere else
+		// map other fields as needed
+	}
+	fmt.Println(User)
+	return *User
+}

@@ -46,3 +46,22 @@ func VerifyJWT(tokenString string) (*JWTClaims, error) {
 
 	return claims, nil
 }
+
+func DecodeJWT(c interface{}) (*model.User, error) {
+	fmt.Println("here in deocde")
+	fmt.Println(c)
+	userClaims, ok := c.(*JWTClaims)
+	if !ok {
+		fmt.Println(userClaims)
+		var userPointer *model.User
+		userPointer = nil
+		return userPointer, fmt.Errorf("Cant Decode JWT")
+	}
+
+	// Access user ID from claims
+	userID := userClaims.User.Name
+
+	fmt.Println(userID)
+
+	return &userClaims.User, nil
+}

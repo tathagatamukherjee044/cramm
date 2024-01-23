@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"StraightAceServer/internal/serverutils"
 	"StraightAceServer/internal/store"
 	model "StraightAceServer/model"
 	"StraightAceServer/service"
@@ -18,6 +19,24 @@ type Question struct {
 }
 
 func GetQuiz(c *fiber.Ctx) error {
+
+	// var userClaims serverutils.JWTClaims
+	fmt.Println("now printing from locals")
+	fmt.Println(c.Locals("user"))
+	localClaims := c.Locals("user")
+	fmt.Println("here in route")
+	fmt.Println(localClaims)
+	user, err := serverutils.DecodeJWT(localClaims)
+	if err != nil {
+
+		fmt.Println(err)
+		return c.Status(400).JSON(fiber.Map{
+			"error": "cant decode token",
+		})
+	}
+
+	fmt.Println(user.Role)
+
 	course := c.Params("course")
 	subject := c.Params("sub")
 	seed := c.Params("seed")

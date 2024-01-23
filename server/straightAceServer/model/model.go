@@ -10,7 +10,7 @@ type GoogleUser struct {
 	VerifiedEmail bool `json:"verified_email"`
 }
 
-type User struct {
+type TokenUser struct {
 	ID    primitive.ObjectID `json:"_id" bson:"_id"`
 	Email string             `json:"email"`
 	Name  string             `json:"name"`
@@ -18,6 +18,15 @@ type User struct {
 	VerifiedEmail bool   `json:"verified_email"`
 	Role          string `json:"role"`
 	Token         string `json:"token,omitempty"`
+}
+
+type User struct {
+	ID    primitive.ObjectID `json:"_id" bson:"_id"`
+	Email string             `json:"email"`
+	Name  string             `json:"name"`
+	//Picture       string `json:"picture"`
+	VerifiedEmail bool   `json:"verified_email"`
+	Role          string `json:"role"`
 }
 
 type Quiz struct {
