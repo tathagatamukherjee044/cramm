@@ -1,0 +1,24 @@
+<p>login works!</p>
+<form #sellerForm="ngForm" (ngSubmit)="onSubmit()" >
+    <div class="col-12 col-lg-6 col-xl-6 mb-2 d-flex">
+         <label>phone</label>
+         <div class="col-8 col-lg-8 col-xl-8 mb-2 d-flex">
+              <input type="text" class="col-12" [(ngModel)]="user.phone" name="phone" #phone="ngModel">
+              <span [hidden]="phone.valid">
+                   Error
+              </span>
+         </div>
+    </div>
+    <div class="col-12 col-lg-6 col-xl-6 mb-2 d-flex">
+         <label>password</label>
+         <div class="col-8 col-lg-8 col-xl-8 mb-2 d-flex">
+              <input type="text" class="col-12" [(ngModel)]="user.password" name="password" #password="ngModel">
+              <span [hidden]="password.valid">
+                   Error
+              </span>
+         </div>
+    </div>
+    <ion-button type="ngSubmit"> Button here</ion-button>
+ </form>
+ <button (click)="loginWithGoogle()">Login wiht google</button>
+ <a (click)="goTo('/auth/signup')">No Account?</a>

@@ -1,0 +1,32 @@
+<p>signup works!</p>
+<form #sellerForm="ngForm" (ngSubmit)="onSubmit()" >
+    <div class="col-12 col-lg-6 col-xl-6 mb-2 d-flex">
+        <label>name</label>
+        <div class="col-8 col-lg-8 col-xl-8 mb-2 d-flex">
+             <input type="text" class="col-12" [(ngModel)]="newUser.userName" name="userName" #userName="ngModel">
+             <span [hidden]="userName.valid">
+                  Error
+             </span>
+        </div>
+   </div>
+    <div class="col-12 col-lg-6 col-xl-6 mb-2 d-flex">
+         <label>phone</label>
+         <div class="col-8 col-lg-8 col-xl-8 mb-2 d-flex">
+              <input type="text" class="col-12" [(ngModel)]="newUser.phone" name="phone" #phone="ngModel">
+              <span [hidden]="phone.valid">
+                   Error
+              </span>
+         </div>
+    </div>
+    <div class="col-12 col-lg-6 col-xl-6 mb-2 d-flex">
+         <label>password</label>
+         <div class="col-8 col-lg-8 col-xl-8 mb-2 d-flex">
+              <input type="text" class="col-12" [(ngModel)]="newUser.password" name="password" #password="ngModel">
+              <span [hidden]="password.valid">
+                   Error
+              </span>
+         </div>
+    </div>
+    <ion-button type="ngSubmit"> Button here</ion-button>
+ </form>
+ <a (click)="goTo('/auth/login')">Already Have account?</a>

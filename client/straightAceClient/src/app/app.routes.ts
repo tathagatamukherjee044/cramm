@@ -10,6 +10,10 @@ export const routes: Routes = [
     loadChildren: () => import('./quiz/quiz.module').then((m) => m.QuizModule),
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./login/login.module').then((m) => m.LoginModule),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
