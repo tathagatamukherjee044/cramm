@@ -16,7 +16,7 @@ export class QuizPageComponent  implements OnInit {
       "choices" : [
         "1947","1943","1946","1957",
       ],
-      answer : "1947"
+      "answer" : "1947"
 
     },
     {
@@ -24,19 +24,21 @@ export class QuizPageComponent  implements OnInit {
       "choices" : [
         "CCU","DEL","MAA","BOM",
       ],
-      answer : "DEL"
+      "answer" : "DEL"
     }
   ]
 
-  currentQuiz = {}
+  mistakeList : any = []
+
+  currentQuiz : any = {}
   currentIndex: number = 0;
-  quizLength: number = 0;
+  evaluated: boolean = false;
+  score: Number = 0;
 
   constructor() { }
 
   ngOnInit() {
     this.currentIndex = 0
-    this.quizLength = this.quizList.length
     this.currentQuiz = this.quizList[this.currentIndex]
   }
 
@@ -48,15 +50,47 @@ export class QuizPageComponent  implements OnInit {
   onQuestionComplete(success : boolean){
     console.log(success);
     if (!success) {
-      this.quizList.push(JSON.parse(JSON.stringify(this.currentQuiz)))
-      this.quizLength++
+      this.mistakeList.push(JSON.parse(JSON.stringify(this.currentQuiz)))
+    } else {
+    this.currentQuiz['correct'] = true
+
     }
-    if (this.currentIndex == this.quizLength-1) {
-      alert("all question scomplete")
+    if (this.currentIndex == this.quizList.length-1) {
+      if (!this.evaluated) {
+        this.score = this.evaluateResults(this.quizList)
+        this.evaluated = true
+      }
+
+      if(this.mistakeList.length>0){
+        this.quizList = this.mistakeList;
+        this.mistakeList=[]
+        this.currentIndex=0
+        this.currentQuiz = this.quizList[this.currentIndex]
+        alert(`lets go over your mistakes again`)
+
+        return
+      }
+      alert(`all question scomplete ${this.score}`)
       return
     }
     this.currentIndex++
     this.currentQuiz = this.quizList[this.currentIndex]
+    console.log("current quiz");
+    console.log(this.currentQuiz);
+    
+    
+  }
+
+  evaluateResults( quizList : any[] = []){
+    var score = 0
+    quizList.forEach(quiz => {
+      if(quiz.correct){
+        score++
+      }
+    });
+    console.log(score);
+    
+    return (score/quizList.length) * 100
   }
 
 }

@@ -32,6 +32,7 @@ export class QuizItemComponent  implements OnInit {
       console.log("question has changes");
       
       console.log(this.question);
+      this.answer = ''
       // Do something when data changes
     }
   }
