@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, NgModule, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, NgModule, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup } from '@ionic/angular/standalone';
 
@@ -19,17 +19,36 @@ export class QuizItemComponent  implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("init");
+    
+    console.log(this.question);
+    
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // Handle data changes here
+    if (changes['question']) {
+      console.log("question has changes");
+      
+      console.log(this.question);
+      // Do something when data changes
+    }
+  }
 
   checkAnswer(){
     console.log(this.question);
     console.log(this.answer);
     if(this.answer == this.question.answer){
-      alert("Yaay")
+      console.log("correct");
+      this.questionComplete.emit(true);
+      //alert("Yaay")
     } else {
-      alert("Moye Moye")
+      console.log("wrong");
+      //alert("Moye Moye")
+      this.questionComplete.emit(false);
     }
-    this.questionComplete.emit(true);
+    
   }
 
 }

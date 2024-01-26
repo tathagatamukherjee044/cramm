@@ -10,7 +10,7 @@ import { QuizItemComponent } from '../quiz-item/quiz-item.component';
 })
 export class QuizPageComponent  implements OnInit {
 
-  quiz = [
+  quizList : any = [
     {
       "prompt" : "When did India gain Independence",
       "choices" : [
@@ -30,17 +30,33 @@ export class QuizPageComponent  implements OnInit {
 
   currentQuiz = {}
   currentIndex: number = 0;
+  quizLength: number = 0;
 
   constructor() { }
 
   ngOnInit() {
     this.currentIndex = 0
-    this.currentQuiz = this.quiz[this.currentIndex]
+    this.quizLength = this.quizList.length
+    this.currentQuiz = this.quizList[this.currentIndex]
+  }
+
+  showQuiz(){
+    console.log(this.quizList);
+    
   }
 
   onQuestionComplete(success : boolean){
+    console.log(success);
+    if (!success) {
+      this.quizList.push(JSON.parse(JSON.stringify(this.currentQuiz)))
+      this.quizLength++
+    }
+    if (this.currentIndex == this.quizLength-1) {
+      alert("all question scomplete")
+      return
+    }
     this.currentIndex++
-    this.currentQuiz = this.quiz[this.currentIndex]
+    this.currentQuiz = this.quizList[this.currentIndex]
   }
 
 }
