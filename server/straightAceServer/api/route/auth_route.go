@@ -8,7 +8,8 @@ import (
 
 func AddAuthRouter(group fiber.Router) {
 	authRoute := group.Group("/auth")
-	authRoute.Get("/login", handler.HelloWorldHandler)
+	authRoute.Get("/login", handler.Login)
+	authRoute.Get("/signup", handler.Signup)
 	authRoute.Get("/oauth/google", handler.GoogleOAuthHandler)
 	authRoute.Get("test", func(c *fiber.Ctx) error {
 		return c.SendString("Hello World programmed to work and not to feel")

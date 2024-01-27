@@ -2,12 +2,15 @@ package handler
 
 import (
 	"StraightAceServer/internal/serverutils"
+	"StraightAceServer/model"
 	"StraightAceServer/service"
 	"fmt"
 	"log"
+	"net/http"
 
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"golang.org/x/crypto/bcrypt"
 )
 
 // @Summary Show the status of server.
@@ -37,7 +40,9 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 
 	fmt.Println("google user", googleUser)
 
-	upsertedID, rerr := service.UpsertUser(googleUser)
+	user := service.ConvertGoogleUserToUser(googleUser)
+
+	upsertedID, rerr := service.UpsertUser(user)
 	if rerr != nil {
 		fmt.Printf("Failed to upsert user: %v\n", err)
 		return nil
@@ -61,8 +66,6 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 
 	googleUser.ID = objectID
 
-	user := service.ConvertGoogleUserToUser(googleUser)
-
 	tokenUser := service.ConvertUserToTokenUser(user)
 
 	tokenString, err := serverutils.GenerateJWT(user)
@@ -79,4 +82,55 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 
 	return c.JSON(tokenUser)
 
+}
+
+func Signup(c *fiber.Ctx) error {
+	var user model.User
+
+	if err := c.BodyParser(&user); err != nil {
+		return c.Status(http.StatusBadRequest).JSON(fiber.Map{"error": "Invalid request payload"})
+	}
+
+	// Check if the phone number already exists
+	existingUser := service.FindUserByPhoneNumber(user.PhoneNumber)
+	if existingUser != nil {
+		return c.Status(http.StatusConflict).JSON(fiber.Map{"error": "User with this phone number already exists"})
+	}
+
+	// Hash the password with bcrypt before storing
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
+	if err != nil {
+		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": "Error hashing the password"})
+	}
+	user.Password = string(hashedPassword)
+
+	// Insert the user into the database
+	err = service.InsertUser(user)
+	if err != nil {
+		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": "Error creating user"})
+	}
+
+	return c.Status(http.StatusCreated).JSON(fiber.Map{"message": "User created successfully"})
+}
+
+func Login(c *fiber.Ctx) error {
+	var user model.User
+
+	if err := c.BodyParser(&user); err != nil {
+		return c.Status(http.StatusBadRequest).JSON(fiber.Map{"error": "Invalid request payload"})
+	}
+
+	// Check if the phone number exists
+	existingUser := service.FindUserByPhoneNumber(user.PhoneNumber)
+	if existingUser == nil {
+		return c.Status(http.StatusNotFound).JSON(fiber.Map{"error": "User not registered"})
+	}
+
+	// Compare the hashed password
+	err := bcrypt.CompareHashAndPassword([]byte(existingUser.Password), []byte(user.Password))
+	if err != nil {
+		return c.Status(http.StatusUnauthorized).JSON(fiber.Map{"error": "Wrong password"})
+	}
+
+	return c.Status(http.StatusOK).JSON(fiber.Map{"message": "Login successful"})
 }

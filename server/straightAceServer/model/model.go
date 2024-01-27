@@ -4,29 +4,31 @@ import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type GoogleUser struct {
 	ID    primitive.ObjectID `json:"_id,omitempty" bson:"_id"`
-	Email string             `json:"email"`
-	Name  string             `json:"name"`
+	Email string             `json:"email" bson:"email"`
+	Name  string             `json:"name" bson:"name"`
 	//Picture       string `json:"picture"`
-	VerifiedEmail bool `json:"verified_email"`
+	VerifiedEmail bool `json:"verifiedEmail" bson:"verifiedEmail"`
 }
 
 type TokenUser struct {
-	ID    primitive.ObjectID `json:"_id" bson:"_id"`
-	Email string             `json:"email"`
-	Name  string             `json:"name"`
+	ID    primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
+	Email string             `json:"email" bson:"email"`
+	Name  string             `json:"name" bson:"name"`
 	//Picture       string `json:"picture"`
-	VerifiedEmail bool   `json:"verified_email"`
-	Role          string `json:"role"`
-	Token         string `json:"token,omitempty"`
+	VerifiedEmail bool   `json:"verifiedEmail" bson:"verifiedEmail"`
+	Role          string `json:"role" bson:"role"`
+	Token         string `json:"token,omitempty" bson:"token,omitempty"`
 }
 
 type User struct {
-	ID    primitive.ObjectID `json:"_id" bson:"_id"`
-	Email string             `json:"email"`
-	Name  string             `json:"name"`
+	ID    primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
+	Email string             `json:"email" bson:"email"`
+	Name  string             `json:"name" bson:"name"`
 	//Picture       string `json:"picture"`
-	VerifiedEmail bool   `json:"verified_email"`
-	Role          string `json:"role"`
+	VerifiedEmail bool   `json:"verifiedEmail" bson:"verifiedEmail"`
+	Role          string `json:"role" bson:"role"`
+	PhoneNumber   string `json:"phoneNumber,omitempty" bson:"phoneNumber,omitempty"`
+	Password      string `json:"password,omitempty" bson:"password,omitempty"`
 }
 
 type Quiz struct {

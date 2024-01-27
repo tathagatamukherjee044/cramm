@@ -11,19 +11,12 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func UpsertUser(googleUser model.GoogleUser) (upsertedID string, err error) {
+func UpsertUser(googleUser model.User) (upsertedID string, err error) {
 	collection := database.GetDBCollection("user")
 
-	jsonObject := map[string]interface{}{
-		"name":  "John Doe",
-		"age":   30,
-		"email": googleUser.Email,
-	}
-
 	// Check if the user already exists in the collection
-
 	filter := bson.M{"email": googleUser.Email}
-	update := bson.M{"$set": jsonObject}
+	update := bson.M{"$set": googleUser}
 
 	opts := options.Update().SetUpsert(true)
 	result, err := collection.UpdateOne(context.Background(), filter, update, opts)
@@ -53,6 +46,25 @@ func UpsertUser(googleUser model.GoogleUser) (upsertedID string, err error) {
 	// fmt.Println("Upserted ID:", upsertedID)
 
 	return upsertedID, nil
+}
+
+func InsertUser(user model.User) error {
+	collection := database.GetDBCollection("user")
+	_, err := collection.InsertOne(context.Background(), user)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func FindUserByPhoneNumber(phoneNumber string) *model.User {
+	collection := database.GetDBCollection("user")
+	var user model.User
+	err := collection.FindOne(context.Background(), bson.M{"phoneNumber": phoneNumber}).Decode(&user)
+	if err != nil {
+		return nil
+	}
+	return &user
 }
 
 func ConvertGoogleUserToUser(googleUser model.GoogleUser) model.User {
