@@ -4,8 +4,9 @@ import (
 	"StraightAceServer/internal/serverutils"
 	"StraightAceServer/model"
 	"StraightAceServer/service"
+	"encoding/base64"
+	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
@@ -64,7 +65,7 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 		fmt.Println("Error converting string to ObjectID:", err)
 	}
 
-	googleUser.ID = objectID
+	user.ID = objectID
 
 	tokenUser := service.ConvertUserToTokenUser(user)
 
@@ -73,14 +74,19 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 		fmt.Printf("Failed to generate JWT token: %v\n", err)
 		return c.Status(401).SendString(err.Error())
 	}
-	log.Println("Here is user")
-	log.Println(user)
-
-	log.Println(tokenString)
 
 	tokenUser.Token = tokenString
 
-	return c.JSON(tokenUser)
+	jsonData, err := json.Marshal(tokenUser)
+	if err != nil {
+		fmt.Printf("Failed to marshal JSON %v\n", err)
+		return c.Status(401).SendString(err.Error())
+	}
+
+	encodedData := base64.StdEncoding.EncodeToString(jsonData)
+
+	redirectURL := fmt.Sprintf("http://localhost:4200/auth/oauth?data=%s", encodedData)
+	return c.Redirect(redirectURL)
 
 }
 
@@ -132,5 +138,14 @@ func Login(c *fiber.Ctx) error {
 		return c.Status(http.StatusUnauthorized).JSON(fiber.Map{"error": "Wrong password"})
 	}
 
-	return c.Status(http.StatusOK).JSON(fiber.Map{"message": "Login successful"})
+	tokenUser := service.ConvertUserToTokenUser(*existingUser)
+
+	tokenString, err := serverutils.GenerateJWT(user)
+	if err != nil {
+		fmt.Printf("Failed to generate JWT token: %v\n", err)
+		return c.Status(401).SendString(err.Error())
+	}
+	tokenUser.Token = tokenString
+
+	return c.Status(http.StatusOK).JSON(tokenUser)
 }

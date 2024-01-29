@@ -32,7 +32,7 @@ export class AuthService {
 
   setUser(userData : any){
     this.storageService.setStorage('token',userData.token)
-    this.storageService.setStorage('user',userData.user)
+    this.storageService.setStorage('user',userData)
   }
 
   getGoogleOAuthURL() {

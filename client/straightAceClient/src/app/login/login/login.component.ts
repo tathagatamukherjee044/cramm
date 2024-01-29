@@ -24,12 +24,10 @@ export class LoginComponent {
     console.log(this.user);
     this.authService.authenticateUser(this.user).subscribe(res =>{
       console.log(res);
-      if(res.success == true){
+
         localStorage.setItem('token',res.token)
-        this.nav.navigateRoot("/create")
-      }else {
-        alert("wrong password") 
-      }
+        localStorage.setItem('user',res)
+        this.nav.navigateRoot("/quiz")
       
 
     });

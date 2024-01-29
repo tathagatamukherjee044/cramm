@@ -3,7 +3,7 @@ package model
 import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type GoogleUser struct {
-	ID    primitive.ObjectID `json:"_id,omitempty" bson:"_id"`
+	ID    primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
 	Email string             `json:"email" bson:"email"`
 	Name  string             `json:"name" bson:"name"`
 	//Picture       string `json:"picture"`

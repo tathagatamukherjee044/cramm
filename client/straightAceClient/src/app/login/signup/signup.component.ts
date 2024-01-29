@@ -26,7 +26,7 @@ export class SignupComponent {
     this.authService.createUser(this.newUser).subscribe(res =>{
       console.log(res);
       // if(res.success == true){
-      //   this.newUser.navigateRoot("/create")
+      //   this.newUser.navigateRoot("/quiz")
       // }
       // alert("wrong password")
 

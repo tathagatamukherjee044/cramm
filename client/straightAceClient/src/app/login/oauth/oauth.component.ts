@@ -28,7 +28,7 @@ export class OauthComponent {
         console.log(userData);
         
         this.authService.setUser(userData)
-        this.nav.navigateRoot("/create")
+        this.nav.navigateRoot("/quiz")
       }
     })
     console.log();
