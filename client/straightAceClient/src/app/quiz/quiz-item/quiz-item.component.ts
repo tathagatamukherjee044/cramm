@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, NgModule, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup } from '@ionic/angular/standalone';
+import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-quiz-item',
@@ -17,7 +17,9 @@ export class QuizItemComponent  implements OnInit {
   
   answer : any = "";
 
-  constructor() { }
+  constructor(
+    private toastController : ToastController
+  ) { }
 
   ngOnInit() {
     console.log("init");
@@ -43,13 +45,25 @@ export class QuizItemComponent  implements OnInit {
     if(this.answer == this.question.answer){
       console.log("correct");
       this.questionComplete.emit(true);
+      this.presentToast('bottom','Correct')
       //alert("Yaay")
     } else {
       console.log("wrong");
       //alert("Moye Moye")
       this.questionComplete.emit(false);
+      this.presentToast('bottom','Wrong')
     }
     
+  }
+
+  async presentToast(position: 'top' | 'middle' | 'bottom', message = '') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500,
+      position: position,
+    });
+
+    await toast.present();
   }
 
 }
