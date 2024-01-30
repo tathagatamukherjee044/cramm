@@ -58,7 +58,7 @@ export class QuizItemComponent  implements OnInit {
 
   async presentToast(position: 'top' | 'middle' | 'bottom', message = '') {
     const toast = await this.toastController.create({
-      message: message,
+      message,
       duration: 1500,
       position: position,
     });

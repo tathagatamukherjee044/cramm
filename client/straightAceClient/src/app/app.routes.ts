@@ -1,10 +1,25 @@
 import { Routes } from '@angular/router';
+import { HomePage } from './home/home.page';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    path: '',
+    children: [
+      {
+        path: '',
+        component: HomePage,
+      },
+      {
+        path: 'learn',
+        component: HomePage,
+        loadChildren: () =>
+          import('./learn/learn.module').then(
+            (m) => m.LearnModule
+          ),
+      },
+    ],
   },
+  
   {
     path: 'quiz',
     loadChildren: () => import('./quiz/quiz.module').then((m) => m.QuizModule),
@@ -14,8 +29,7 @@ export const routes: Routes = [
     loadChildren: () => import('./login/login.module').then((m) => m.LoginModule),
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
+    path: 'main-layout',
+    loadComponent: () => import('./layouts/main-layout/main-layout.page').then( m => m.MainLayoutPage)
   },
 ];
