@@ -4,14 +4,16 @@ import { HomePage } from './home/home.page';
 export const routes: Routes = [
   {
     path: '',
+    component : HomePage,
     children: [
-      {
-        path: '',
-        component: HomePage,
-      },
+      // {
+      //   path: '',
+      //   redirectTo: 'learn',
+      //   pathMatch: 'full',
+      // },
       {
         path: 'learn',
-        component: HomePage,
+        // component: HomePage,
         loadChildren: () =>
           import('./learn/learn.module').then(
             (m) => m.LearnModule

@@ -16,7 +16,6 @@ const routes : Routes = [
   ],
   imports: [
     CommonModule,
-    LearnPage,
     RouterModule.forChild(routes),
   ]
 })
