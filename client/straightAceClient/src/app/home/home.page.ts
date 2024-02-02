@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { IonHeader, IonToolbar, IonTitle, IonContent ,IonRouterOutlet ,IonFooter, IonApp } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent ,IonRouterOutlet ,IonFooter, IonApp, IonTabBar, IonTabs, IonIcon, IonTabButton } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonFooter, IonRouterOutlet, IonHeader, IonToolbar, IonTitle, IonContent,RouterOutlet, IonApp],
+  imports: [IonFooter, IonRouterOutlet, IonHeader, IonToolbar, IonTitle, IonContent,RouterOutlet, IonApp,IonTabBar,IonTabs,IonIcon,IonTabButton],
 })
 export class HomePage {
   constructor() {}

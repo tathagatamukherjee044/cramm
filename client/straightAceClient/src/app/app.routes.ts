@@ -34,4 +34,8 @@ export const routes: Routes = [
     path: 'main-layout',
     loadComponent: () => import('./layouts/main-layout/main-layout.page').then( m => m.MainLayoutPage)
   },
+  {
+    path: 'learn-more',
+    loadComponent: () => import('./learn/learn-more/learn-more.page').then( m => m.LearnMorePage)
+  },
 ];
