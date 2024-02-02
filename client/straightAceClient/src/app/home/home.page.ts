@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { IonHeader, IonToolbar, IonTitle, IonContent ,IonRouterOutlet ,IonFooter, IonApp, IonTabBar, IonTabs, IonIcon, IonTabButton } from '@ionic/angular/standalone';
 
 @Component({
@@ -7,7 +7,7 @@ import { IonHeader, IonToolbar, IonTitle, IonContent ,IonRouterOutlet ,IonFooter
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonFooter, IonRouterOutlet, IonHeader, IonToolbar, IonTitle, IonContent,RouterOutlet, IonApp,IonTabBar,IonTabs,IonIcon,IonTabButton],
+  imports: [IonFooter, IonRouterOutlet, IonHeader, IonToolbar, IonTitle, IonContent,RouterOutlet, IonApp,IonTabBar,IonTabs,IonIcon,IonTabButton,RouterLink],
 })
 export class HomePage {
   constructor() {}

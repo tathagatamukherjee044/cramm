@@ -1,16 +1,18 @@
 import { Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
+import { ProfilePage } from './user/profile/profile.page';
+import { UserModule } from './user/user.module';
 
 export const routes: Routes = [
   {
     path: '',
     component : HomePage,
     children: [
-      // {
-      //   path: '',
-      //   redirectTo: 'learn',
-      //   pathMatch: 'full',
-      // },
+      {
+        path: '',
+        redirectTo: 'learn',
+        pathMatch: 'full',
+      },
       {
         path: 'learn',
         // component: HomePage,
@@ -18,6 +20,14 @@ export const routes: Routes = [
           import('./learn/learn.module').then(
             (m) => m.LearnModule
           ),
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./user/user.module').then(
+            (m) => m.UserModule
+          )
+        
       },
     ],
   },
@@ -37,5 +47,9 @@ export const routes: Routes = [
   {
     path: 'learn-more',
     loadComponent: () => import('./learn/learn-more/learn-more.page').then( m => m.LearnMorePage)
+  },
+  {
+    path: 'profile',
+    loadComponent: () => import('./user/profile/profile.page').then( m => m.ProfilePage)
   },
 ];
