@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizItemComponent } from '../quiz-item/quiz-item.component';
+import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
   imports:[QuizItemComponent],
@@ -35,11 +36,19 @@ export class QuizPageComponent  implements OnInit {
   evaluated: boolean = false;
   score: Number = 0;
 
-  constructor() { }
+  constructor(
+    private quizService : QuizService
+  ) { }
 
   ngOnInit() {
-    this.currentIndex = 0
-    this.currentQuiz = this.quizList[this.currentIndex]
+    this.quizService.getQuiz('school','all','seed').subscribe((data) =>{
+      console.log(data);
+      this.quizList=data
+      console.log(this.quizList);
+      this.currentIndex = 0
+      this.currentQuiz = this.quizList[this.currentIndex]
+    })
+    
   }
 
   showQuiz(){

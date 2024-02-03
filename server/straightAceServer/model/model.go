@@ -38,9 +38,9 @@ type User struct {
 }
 
 type Quiz struct {
-	Question      string   `json:"question"`
-	Options       []string `json:"options"`
-	CorrectOption int      `json:"correctOption,omitempty"`
+	Prompt  string   `json:"prompt"`
+	Choices []string `json:"choices"`
+	Answer  string   `json:"answer,omitempty"`
 }
 
 type Course struct {

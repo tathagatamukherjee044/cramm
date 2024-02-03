@@ -5,6 +5,10 @@ export const  config = {
     googleOauthRedirectUrl : 'http://localhost:8080/auth/oauth/google',
 
     api : {
-        LOGIN : `${environment.apiUrl}/auth/login`
+        //login
+        LOGIN : `${environment.apiUrl}/auth/login`,
+
+        //quiz
+        GET_QUIZ:  `${environment.apiUrl}/quiz`,
     }
 }
