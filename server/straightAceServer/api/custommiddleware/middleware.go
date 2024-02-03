@@ -21,10 +21,13 @@ func SetupMiddlewares(s *server.FiberServer) {
 	// Request ID middleware
 	s.App.Use(requestid.New())
 
-	s.App.Use(cors.New(cors.Config{
-		AllowOrigins: "*",
-		AllowHeaders: "Origin, Content-Type, Accept",
-	}))
+	// s.App.Use(cors.New(cors.Config{
+	// 	AllowOrigins: "*",
+	// 	AllowMethods: "GET, POST, PUT, DELETE, OPTIONS",
+	// 	AllowHeaders: "Origin, Content-Type, Accept",
+	// }))
+
+	s.App.Use(cors.New())
 
 	// Timeout middleware
 	//s.App.Use(timeout.New())

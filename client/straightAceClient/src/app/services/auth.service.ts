@@ -16,7 +16,8 @@ export class AuthService {
     ) { }
 
   authenticateUser(userModel: any): Observable<any> {
-    return this.http.post('http://localhost:8080/auth/login',userModel).pipe(map(res =>{
+    return this.http.post(config.api.LOGIN,userModel).pipe(map(res =>{
+    // return this.http.post('http://localhost:8080/auth/login',userModel).pipe(map(res =>{
       return res;
     }))
   }

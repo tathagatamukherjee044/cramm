@@ -13,6 +13,8 @@ export class QuizItemComponent  implements OnInit {
 
   @Input() question: any ;
 
+  // question = input()
+
   @Output() questionComplete = new EventEmitter<boolean>();  
   
   answer : any = "";
