@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
 )
@@ -65,4 +66,22 @@ func CreateQuiz(quiz *model.Quiz) (interface{}, error) {
 	log.Println(result)
 	// return the book
 	return result.InsertedID, nil
+}
+
+func CalculateStreak(lastCompletedTime *time.Time, currentStreak *int) {
+	lastCompletedDate := lastCompletedTime.Truncate(24 * time.Hour)
+	currentDate := time.Now().Truncate(24 * time.Hour)
+	// Compare the two dates
+	fmt.Println(lastCompletedDate)
+	if lastCompletedDate.Equal(currentDate) {
+		fmt.Println("lastCompleted is today!")
+	} else {
+		fmt.Println("lastCompleted is not today.")
+		*currentStreak++
+		oneDayBefore := currentDate.AddDate(0, 0, -1)
+		if lastCompletedDate.Before(oneDayBefore) {
+			*currentStreak = 1
+
+		}
+	}
 }

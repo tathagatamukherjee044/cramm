@@ -108,18 +108,9 @@ func QuizComplete(c *fiber.Ctx) error {
 	fmt.Println(dbUser)
 
 	currentStreak := dbUser.Streak
-	currentStreak++
+	lastCompletedTime := dbUser.LastCompletedTime
 
-	lastCompleted := dbUser.LastCompletedTime
-
-	t := time.Now()
-	elapsed := t.Sub(lastCompleted)
-
-	fmt.Println(elapsed)
-
-	currentTime := time.Now()
-	// formattedTime := currentTime.Format("2006-01-02 15:04:05")
-	fmt.Println("Formatted Time:", currentTime)
+	service.CalculateStreak(&lastCompletedTime, &currentStreak)
 
 	update := bson.M{
 		"$set": bson.M{
