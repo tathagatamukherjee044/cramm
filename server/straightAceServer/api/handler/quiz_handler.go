@@ -7,8 +7,10 @@ import (
 	"StraightAceServer/service"
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 type Question struct {
@@ -99,7 +101,41 @@ func QuizComplete(c *fiber.Ctx) error {
 		})
 	}
 
-	log.Println(user)
+	log.Println(user.ID)
+
+	dbUser := service.FindUserByID(user.ID.Hex())
+
+	fmt.Println(dbUser)
+
+	currentStreak := dbUser.Streak
+	currentStreak++
+
+	lastCompleted := dbUser.LastCompletedTime
+
+	t := time.Now()
+	elapsed := t.Sub(lastCompleted)
+
+	fmt.Println(elapsed)
+
+	currentTime := time.Now()
+	// formattedTime := currentTime.Format("2006-01-02 15:04:05")
+	fmt.Println("Formatted Time:", currentTime)
+
+	update := bson.M{
+		"$set": bson.M{
+			"streak":            currentStreak,
+			"lastCompletedTime": time.Now(),
+			// add other fields to update...
+		},
+	}
+
+	err = service.UpdateUserByID(user.ID.Hex(), update)
+	if err != nil {
+		fmt.Println(err)
+		return c.Status(400).JSON(fiber.Map{
+			"error": "something went wrong",
+		})
+	}
 
 	return c.Status(200).JSON(fiber.Map{
 		"error": "cant decode token",

@@ -8,11 +8,12 @@ import (
 	"log"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func UpsertUser(googleUser model.User) (upsertedID string, err error) {
-	collection := database.GetDBCollection("user")
+	collection := database.GetDBCollection("users")
 
 	// Check if the user already exists in the collection
 	filter := bson.M{"email": googleUser.Email}
@@ -49,7 +50,7 @@ func UpsertUser(googleUser model.User) (upsertedID string, err error) {
 }
 
 func InsertUser(user model.User) error {
-	collection := database.GetDBCollection("user")
+	collection := database.GetDBCollection("users")
 	_, err := collection.InsertOne(context.Background(), user)
 	if err != nil {
 		return err
@@ -57,13 +58,42 @@ func InsertUser(user model.User) error {
 	return nil
 }
 
+func UpdateUserByID(ID string, updateFields bson.M) (err error) {
+	fmt.Println(ID)
+	collection := database.GetDBCollection("users")
+	objID, _ := primitive.ObjectIDFromHex(ID)
+	fmt.Println(objID)
+	_, err = collection.UpdateOne(context.Background(), bson.M{"_id": objID}, updateFields)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+	fmt.Println("success")
+	return nil
+}
+
 func FindUserByPhoneNumber(phoneNumber string) *model.User {
-	collection := database.GetDBCollection("user")
+	collection := database.GetDBCollection("users")
 	var user model.User
 	err := collection.FindOne(context.Background(), bson.M{"phoneNumber": phoneNumber}).Decode(&user)
 	if err != nil {
 		return nil
 	}
+	return &user
+}
+
+func FindUserByID(ID string) *model.User {
+	fmt.Println(ID)
+	collection := database.GetDBCollection("users")
+	var user model.User
+	objID, _ := primitive.ObjectIDFromHex(ID)
+	fmt.Println(objID)
+	err := collection.FindOne(context.Background(), bson.M{"_id": objID}).Decode(&user)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	fmt.Println("success")
 	return &user
 }
 

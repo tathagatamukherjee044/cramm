@@ -5,7 +5,7 @@ import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController } 
 @Component({
   selector: 'app-quiz-item',
   templateUrl: './quiz-item.component.html',
-  standalone:true,
+  standalone: true,
   styleUrls: ['./quiz-item.component.scss'],
   imports:[IonCol,IonButton,FormsModule,IonRadioGroup,IonItem,IonRadio]
 })
