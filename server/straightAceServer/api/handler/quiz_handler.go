@@ -21,11 +21,8 @@ type Question struct {
 func GetQuiz(c *fiber.Ctx) error {
 
 	// var userClaims serverutils.JWTClaims
-	fmt.Println("now printing from locals")
-	fmt.Println(c.Locals("user"))
+
 	localClaims := c.Locals("user")
-	fmt.Println("here in route")
-	fmt.Println(localClaims)
 	user, err := serverutils.DecodeJWT(localClaims)
 	if err != nil {
 
@@ -87,5 +84,24 @@ func CreateQuiz(c *fiber.Ctx) error {
 	// return the book
 	return c.Status(201).JSON(fiber.Map{
 		"result": id,
+	})
+}
+
+func QuizComplete(c *fiber.Ctx) error {
+	fmt.Println("here")
+	localClaims := c.Locals("user")
+	user, err := serverutils.DecodeJWT(localClaims)
+	if err != nil {
+
+		fmt.Println(err)
+		return c.Status(400).JSON(fiber.Map{
+			"error": "cant decode token",
+		})
+	}
+
+	log.Println(user)
+
+	return c.Status(200).JSON(fiber.Map{
+		"error": "cant decode token",
 	})
 }

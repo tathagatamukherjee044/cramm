@@ -85,7 +85,7 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 
 	encodedData := base64.StdEncoding.EncodeToString(jsonData)
 
-	redirectURL := fmt.Sprintf("http://localhost:4200/auth/oauth?data=%s", encodedData)
+	redirectURL := fmt.Sprintf("http://localhost:8100/auth/oauth?data=%s", encodedData)
 	return c.Redirect(redirectURL)
 
 }

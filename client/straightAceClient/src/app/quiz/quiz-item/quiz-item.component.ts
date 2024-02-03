@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, NgModule, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, NgModule, OnInit, Output, SimpleChanges, computed, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController } from '@ionic/angular/standalone';
 
@@ -11,9 +11,15 @@ import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController } 
 })
 export class QuizItemComponent  implements OnInit {
 
-  @Input() question: any ;
+  // @Input() question: any ;
 
-  // question = input()
+  question : any  = input({})
+  questionChanged = computed(() => {
+    console.log("question has changes");
+      
+      console.log(this.question());
+      this.answer = ''
+  })
 
   @Output() questionComplete = new EventEmitter<boolean>();  
   
@@ -26,25 +32,25 @@ export class QuizItemComponent  implements OnInit {
   ngOnInit() {
     console.log("init");
     
-    console.log(this.question);
+    console.log(this.question());
     
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    // Handle data changes here
-    if (changes['question']) {
-      console.log("question has changes");
+  // ngOnChanges(changes: SimpleChanges) {
+  //   // Handle data changes here
+  //   if (changes['question']) {
+  //     console.log("question has changes");
       
-      console.log(this.question);
-      this.answer = ''
-      // Do something when data changes
-    }
-  }
+  //     console.log(this.question);
+  //     this.answer = ''
+  //     // Do something when data changes
+  //   }
+  // }
 
   checkAnswer(){
-    console.log(this.question);
+    console.log(this.question());
     console.log(this.answer);
-    if(this.answer == this.question.answer){
+    if(this.answer == this.question().answer){
       console.log("correct");
       this.questionComplete.emit(true);
       this.presentToast('bottom','Correct')

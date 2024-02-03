@@ -1,8 +1,8 @@
 <div>
-  Question : {{question?.prompt}}
+  Question : {{question()?.prompt}}
   <!-- <form #f> -->
     <ion-radio-group [(ngModel)]="answer">
-      @for (choice of question?.choices; track $index) {
+      @for (choice of question()?.choices; track $index) {
         <ion-item>
           
           <ion-radio name="{{choice}}" [value]="choice" >{{choice}}</ion-radio>
