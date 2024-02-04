@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, NgModule, OnInit, Output, SimpleChanges, computed, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController } from '@ionic/angular/standalone';
+import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController , IonContent ,IonCard, IonCardContent } from '@ionic/angular/standalone';
 import { PopupService } from 'src/app/services/popup.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { PopupService } from 'src/app/services/popup.service';
   templateUrl: './quiz-item.component.html',
   standalone: true,
   styleUrls: ['./quiz-item.component.scss'],
-  imports:[IonCol,IonButton,FormsModule,IonRadioGroup,IonItem,IonRadio]
+  imports:[IonCol,IonButton,FormsModule,IonRadioGroup,IonItem,IonRadio, IonContent, IonCardContent]
 })
 export class QuizItemComponent  implements OnInit {
 

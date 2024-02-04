@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizItemComponent } from '../quiz-item/quiz-item.component';
 import { QuizService } from 'src/app/services/quiz.service';
-import { IonContent } from '@ionic/angular/standalone';
+import { IonContent, NavController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-quiz-page',
@@ -38,7 +38,8 @@ export class QuizPageComponent  implements OnInit {
   score: Number = 0;
 
   constructor(
-    private quizService : QuizService
+    private quizService : QuizService,
+    private nav : NavController
   ) { }
 
   ngOnInit() {
@@ -95,7 +96,7 @@ export class QuizPageComponent  implements OnInit {
   quizComplete() {
     this.quizService.quizComplete().subscribe((data) =>{
       console.log(data);
-      
+      this.nav.navigateRoot("/")
     })
   }
 
