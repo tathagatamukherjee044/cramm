@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { PopupService } from '../services/popup.service';
+import { PopupService } from '../services/toast.service';
 
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
@@ -21,7 +21,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       }
 
       // You can handle or log the error here as needed
-      popupService.presentToast("bottom",errorMessage)
+      popupService.presentToast(errorMessage)
       console.log(errorMessage);
       
       // Pass the error along to be handled by the calling code

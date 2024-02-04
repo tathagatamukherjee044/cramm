@@ -10,10 +10,10 @@ export class PopupService {
     private toastController : ToastController
   ) { }
 
-  async presentToast(position: 'top' | 'middle' | 'bottom', message = '') {
+  async presentToast(message = '',  position: 'top' | 'middle' | 'bottom'= 'bottom', duration = 750) {
     const toast = await this.toastController.create({
-      message,
-      duration: 1500,
+      message : message,
+      duration: duration,
       position: position,
     });
 

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, NgModule, OnInit, Output, SimpleChanges, computed, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController , IonContent ,IonCard, IonCardContent } from '@ionic/angular/standalone';
-import { PopupService } from 'src/app/services/popup.service';
+import { PopupService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-quiz-item',
@@ -55,13 +55,13 @@ export class QuizItemComponent  implements OnInit {
     if(this.answer == this.question().answer){
       console.log("correct");
       this.questionComplete.emit(true);
-      this.popupService.presentToast('bottom','Correct')
+      this.popupService.presentToast('Correct')
       //alert("Yaay")
     } else {
       console.log("wrong");
       //alert("Moye Moye")
       this.questionComplete.emit(false);
-      this.popupService.presentToast('bottom','Wrong')
+      this.popupService.presentToast('Wrong')
     }
     
   }
