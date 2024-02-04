@@ -50,7 +50,7 @@ func main() {
 	custommiddleware.SetupMiddlewares(server)
 	route.RegisterFiberRoutes(server)
 	port, _ := strconv.Atoi(os.Getenv("PORT"))
-	err := server.Listen(fmt.Sprintf(":%d", port))
+	err := server.Listen(fmt.Sprintf("0.0.0.0:%d", port))
 	if err != nil {
 		panic(fmt.Sprintf("cannot start server: %s", err))
 	}
