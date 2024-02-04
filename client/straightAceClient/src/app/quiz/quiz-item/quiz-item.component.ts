@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, NgModule, OnInit, Output, SimpleChanges, computed, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController } from '@ionic/angular/standalone';
+import { PopupService } from 'src/app/services/popup.service';
 
 @Component({
   selector: 'app-quiz-item',
@@ -26,7 +27,8 @@ export class QuizItemComponent  implements OnInit {
   answer : any = "";
 
   constructor(
-    private toastController : ToastController
+    private toastController : ToastController,
+    private popupService : PopupService
   ) { }
 
   ngOnInit() {
@@ -53,25 +55,15 @@ export class QuizItemComponent  implements OnInit {
     if(this.answer == this.question().answer){
       console.log("correct");
       this.questionComplete.emit(true);
-      this.presentToast('bottom','Correct')
+      this.popupService.presentToast('bottom','Correct')
       //alert("Yaay")
     } else {
       console.log("wrong");
       //alert("Moye Moye")
       this.questionComplete.emit(false);
-      this.presentToast('bottom','Wrong')
+      this.popupService.presentToast('bottom','Wrong')
     }
     
-  }
-
-  async presentToast(position: 'top' | 'middle' | 'bottom', message = '') {
-    const toast = await this.toastController.create({
-      message,
-      duration: 1500,
-      position: position,
-    });
-
-    await toast.present();
   }
 
 }

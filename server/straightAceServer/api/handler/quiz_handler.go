@@ -97,7 +97,8 @@ func QuizComplete(c *fiber.Ctx) error {
 
 		fmt.Println(err)
 		return c.Status(400).JSON(fiber.Map{
-			"error": "cant decode token",
+			"error":   "cant decode token",
+			"message": err.Error(),
 		})
 	}
 
@@ -129,6 +130,6 @@ func QuizComplete(c *fiber.Ctx) error {
 	}
 
 	return c.Status(200).JSON(fiber.Map{
-		"error": "cant decode token",
+		"message": "Congratulation on completing your lesson",
 	})
 }

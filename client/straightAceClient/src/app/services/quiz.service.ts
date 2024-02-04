@@ -18,4 +18,10 @@ export class QuizService {
         return res;
       }))
   }
+
+  quizComplete(){
+    return this.http.post(config.api.QUIZ_COMPLETED,{}).pipe(map(res =>{
+        return res;
+      }))
+  }
 }

@@ -10,5 +10,6 @@ export const  config = {
 
         //quiz
         GET_QUIZ:  `${environment.apiUrl}/quiz`,
+        QUIZ_COMPLETED:  `${environment.apiUrl}/quiz/completed`,
     }
 }

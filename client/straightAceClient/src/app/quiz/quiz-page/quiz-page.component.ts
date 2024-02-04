@@ -1,32 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizItemComponent } from '../quiz-item/quiz-item.component';
 import { QuizService } from 'src/app/services/quiz.service';
+import { IonContent } from '@ionic/angular/standalone';
 
 @Component({
-  imports:[QuizItemComponent],
   selector: 'app-quiz-page',
   templateUrl: './quiz-page.component.html',
   standalone:true,
+  imports : [IonContent,QuizItemComponent],
   styleUrls: ['./quiz-page.component.scss'],
 })
 export class QuizPageComponent  implements OnInit {
 
   quizList : any = [
-    {
-      "prompt" : "When did India gain Independence",
-      "choices" : [
-        "1947","1943","1946","1957",
-      ],
-      "answer" : "1947"
+    // {
+    //   "prompt" : "When did India gain Independence",
+    //   "choices" : [
+    //     "1947","1943","1946","1957",
+    //   ],
+    //   "answer" : "1947"
 
-    },
-    {
-      "prompt" : "What is the Capital od India",
-      "choices" : [
-        "CCU","DEL","MAA","BOM",
-      ],
-      "answer" : "DEL"
-    }
+    // },
+    // {
+    //   "prompt" : "What is the Capital od India",
+    //   "choices" : [
+    //     "CCU","DEL","MAA","BOM",
+    //   ],
+    //   "answer" : "DEL"
+    // }
   ]
 
   mistakeList : any = []
@@ -79,6 +80,7 @@ export class QuizPageComponent  implements OnInit {
 
         return
       }
+      this.quizComplete()
       alert(`all question scomplete ${this.score}`)
       return
     }
@@ -88,6 +90,13 @@ export class QuizPageComponent  implements OnInit {
     console.log(this.currentQuiz);
     
     
+  }
+
+  quizComplete() {
+    this.quizService.quizComplete().subscribe((data) =>{
+      console.log(data);
+      
+    })
   }
 
   evaluateResults( quizList : any[] = []){

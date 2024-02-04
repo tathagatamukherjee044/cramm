@@ -10,7 +10,7 @@ import (
 func AddQuizRouter(group fiber.Router) {
 	quizRoute := group.Group("/quiz", custommiddleware.ValidateJWT)
 	quizRoute.Get("/:course/:sub/:seed", handler.GetQuiz)
-	quizRoute.Get("/completed", handler.QuizComplete)
+	quizRoute.Post("/completed", handler.QuizComplete)
 	quizRoute.Post("/put", handler.CreateQuiz)
 	quizRoute.Get("/all", handler.GetAllQuiz)
 }
