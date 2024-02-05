@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl : 'http://localhost:8080'
+  apiUrl : 'https://straightace-qa.up.railway.app'
 };
