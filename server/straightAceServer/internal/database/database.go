@@ -19,13 +19,14 @@ var client *mongo.Client
 var db *mongo.Database
 
 var (
-	host = os.Getenv("DB_HOST")
-	port = os.Getenv("DB_PORT")
+	dbUrl = os.Getenv("DB_URL")
+	port  = os.Getenv("DB_PORT")
 	//database = os.Getenv("DB_DATABASE")
 )
 
 func New() {
-	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(fmt.Sprintf("mongodb://%s:%s", host, port)))
+	fmt.Println("db connected at :", dbUrl)
+	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(dbUrl))
 
 	if err != nil {
 		log.Fatal(err)
