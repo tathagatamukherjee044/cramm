@@ -1,1 +1,0 @@
-import{m as o}from"./chunk-2DJVFDNR.js";var e={googleClientId:"90832106606-pqtgjjtb6bs0u290d95hbf3ndsc0h1in.apps.googleusercontent.com",googleOauthRedirectUrl:"http://localhost:8080/auth/oauth/google",api:{LOGIN:`${o.apiUrl}/auth/login`,GET_QUIZ:`${o.apiUrl}/quiz`,QUIZ_COMPLETED:`${o.apiUrl}/quiz/completed`}};export{e as a};
