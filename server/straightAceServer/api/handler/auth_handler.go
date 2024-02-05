@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -85,7 +86,9 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 
 	encodedData := base64.StdEncoding.EncodeToString(jsonData)
 
-	redirectURL := fmt.Sprintf("http://localhost:8100/auth/oauth?data=%s", encodedData)
+	uiURL := os.Getenv("UI_URL")
+
+	redirectURL := fmt.Sprintf("%s/auth/oauth?data=%s", uiURL, encodedData)
 	return c.Redirect(redirectURL)
 
 }
