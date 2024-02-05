@@ -7,9 +7,9 @@ import (
 )
 
 type GoogleUser struct {
-	ID    primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
-	Email string             `json:"email" bson:"email"`
-	Name  string             `json:"name" bson:"name"`
+	//ID    primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
+	Email string `json:"email" bson:"email"`
+	Name  string `json:"name" bson:"name"`
 	//Picture       string `json:"picture"`
 	VerifiedEmail bool `json:"verifiedEmail" bson:"verifiedEmail"`
 }

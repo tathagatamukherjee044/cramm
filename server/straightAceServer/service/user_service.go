@@ -40,7 +40,7 @@ func UpsertUser(googleUser model.User) (upsertedID string, err error) {
 		log.Println(existingDoc)
 		upsertedID = existingDoc.ID.Hex()
 	} else {
-		upsertedID = result.UpsertedID.(string)
+		upsertedID = result.UpsertedID.(primitive.ObjectID).Hex()
 	}
 
 	fmt.Println("Matched Count:", result.MatchedCount)
@@ -100,7 +100,6 @@ func FindUserByID(ID string) *model.User {
 func ConvertGoogleUserToUser(googleUser model.GoogleUser) model.User {
 	fmt.Println(googleUser)
 	User := &model.User{
-		ID:            googleUser.ID,
 		Email:         googleUser.Email,
 		Role:          "student",
 		VerifiedEmail: googleUser.VerifiedEmail,

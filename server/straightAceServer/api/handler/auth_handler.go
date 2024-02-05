@@ -35,7 +35,7 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 	fmt.Println(codeValue)
 	token, err := service.GetGoogleToken(codeValue)
 	if err != nil {
-		return c.Status(401).SendString("Error getting token from code.")
+		return c.Status(401).SendString(err.Error())
 	}
 
 	googleUser, _ := service.GetGoogleUser(token)
@@ -43,6 +43,8 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 	fmt.Println("google user", googleUser)
 
 	user := service.ConvertGoogleUserToUser(googleUser)
+
+	fmt.Println("user is converted from google user")
 
 	upsertedID, rerr := service.UpsertUser(user)
 	if rerr != nil {
