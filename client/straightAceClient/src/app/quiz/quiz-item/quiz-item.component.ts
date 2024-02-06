@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, NgModule, OnInit, Output, SimpleChanges, computed, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController , IonContent ,IonCard, IonCardContent } from '@ionic/angular/standalone';
+import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController , IonContent ,IonCard, IonCardContent ,IonSkeletonText } from '@ionic/angular/standalone';
 import { PopupService } from 'src/app/services/toast.service';
 
 @Component({
@@ -8,16 +8,18 @@ import { PopupService } from 'src/app/services/toast.service';
   templateUrl: './quiz-item.component.html',
   standalone: true,
   styleUrls: ['./quiz-item.component.scss'],
-  imports:[IonCol,IonButton,FormsModule,IonRadioGroup,IonItem,IonRadio, IonContent, IonCardContent]
+  imports:[IonCol,IonButton,FormsModule,IonRadioGroup,IonItem,IonRadio, IonContent, IonCardContent, IonSkeletonText]
 })
 export class QuizItemComponent  implements OnInit {
 
   // @Input() question: any ;
 
+  loading = true
+
   question : any  = input({})
   questionChanged = computed(() => {
     console.log("question has changes");
-      
+      this.loading = false
       console.log(this.question());
       this.answer = ''
   })

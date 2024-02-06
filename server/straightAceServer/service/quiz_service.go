@@ -37,14 +37,18 @@ func GetAllQuiz() ([]model.Quiz, error) {
 func GetQuiz(subject string) ([]model.Quiz, error) {
 
 	coll := database.GetDBCollection(subject)
+	fmt.Println(coll)
 	filter := bson.D{{}}
+	var results []model.Quiz
 	cursor, err := coll.Find(context.TODO(), filter)
 	if err != nil {
-		panic(err)
+		log.Println(err)
+		return results, err
 	}
-	var results []model.Quiz
+
 	if err = cursor.All(context.TODO(), &results); err != nil {
-		panic(err)
+		log.Println(err)
+		return results, err
 	}
 
 	for _, result := range results {

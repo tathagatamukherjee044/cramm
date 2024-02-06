@@ -1,7 +1,26 @@
 
 <ion-content class="reelsContainer">
   <!-- @for (item of quiz; track $index) { -->
+    @if (loading) {
+      <ion-card-content>
+        <h1>
+          <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+        </h1>
+          <ion-radio-group >
+              <ion-item>  
+                <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+              </ion-item>
+              <ion-item>  
+                <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+              </ion-item>
+          </ion-radio-group>
+        <ion-button >
+          <ion-skeleton-text [animated]="true" style="width: 80%;">Check</ion-skeleton-text>
+        </ion-button>
+      </ion-card-content>
+    } @else {
     <app-quiz-item [question]="currentQuiz" class="reel" (questionComplete)="onQuestionComplete($event)"></app-quiz-item>
+    }
   <!-- } -->
 </ion-content>
 

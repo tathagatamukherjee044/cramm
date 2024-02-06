@@ -38,6 +38,15 @@ func New() {
 
 func GetDBCollection(col string) *mongo.Collection {
 	return db.Collection(col)
+
+}
+
+func GetAllCollections() ([]string, error) {
+	collectionNames, err := db.ListCollectionNames(context.Background(), nil)
+	if err != nil {
+		return []string{}, err
+	}
+	return collectionNames, nil
 }
 
 // func (s *service) Health() map[string]string {

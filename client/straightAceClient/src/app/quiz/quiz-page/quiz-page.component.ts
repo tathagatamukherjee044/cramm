@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizItemComponent } from '../quiz-item/quiz-item.component';
 import { QuizService } from 'src/app/services/quiz.service';
-import { IonContent, NavController } from '@ionic/angular/standalone';
+import { IonContent, NavController ,IonCardContent , IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController  ,IonCard,  IonSkeletonText} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-quiz-page',
   templateUrl: './quiz-page.component.html',
   standalone:true,
-  imports : [IonContent,QuizItemComponent],
+  imports : [IonContent,QuizItemComponent, IonCol,IonButton,IonRadioGroup,IonItem,IonRadio, IonContent, IonCardContent, IonSkeletonText],
   styleUrls: ['./quiz-page.component.scss'],
 })
 export class QuizPageComponent  implements OnInit {
@@ -36,6 +36,7 @@ export class QuizPageComponent  implements OnInit {
   currentIndex: number = 0;
   evaluated: boolean = false;
   score: Number = 0;
+  loading = true;
 
   constructor(
     private quizService : QuizService,
@@ -49,6 +50,7 @@ export class QuizPageComponent  implements OnInit {
       console.log(this.quizList);
       this.currentIndex = 0
       this.currentQuiz = this.quizList[this.currentIndex]
+      this.loading = false
     })
     
   }

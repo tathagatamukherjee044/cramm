@@ -46,8 +46,9 @@ func GetQuiz(c *fiber.Ctx) error {
 	for i := 0; i < len(courseStructure.Subjects); i++ {
 		quiz, err := service.GetQuiz(courseStructure.Subjects[i])
 		if err != nil {
+			log.Println(err)
 			return c.Status(400).JSON(fiber.Map{
-				"error": "Invalid body",
+				"error": "Something went Wrong",
 			})
 		}
 
