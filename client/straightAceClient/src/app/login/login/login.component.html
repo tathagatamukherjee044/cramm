@@ -1,24 +1,25 @@
-<p>login works!</p>
-<form #sellerForm="ngForm" (ngSubmit)="onSubmit()" >
-    <div class="col-12 col-lg-6 col-xl-6 mb-2 d-flex">
-         <label>phoneNumber</label>
-         <div class="col-8 col-lg-8 col-xl-8 mb-2 d-flex">
-              <input type="text" class="col-12" [(ngModel)]="user.phoneNumber" name="phoneNumber" #phoneNumber="ngModel">
-              <span [hidden]="phoneNumber.valid">
-                   Error
-              </span>
-         </div>
-    </div>
-    <div class="col-12 col-lg-6 col-xl-6 mb-2 d-flex">
-         <label>password</label>
-         <div class="col-8 col-lg-8 col-xl-8 mb-2 d-flex">
-              <input type="text" class="col-12" [(ngModel)]="user.password" name="password" #password="ngModel">
-              <span [hidden]="password.valid">
-                   Error
-              </span>
-         </div>
-    </div>
-    <ion-button type="ngSubmit"> Button here</ion-button>
- </form>
- <button (click)="loginWithGoogle()">Login wiht google</button>
- <a (click)="goTo('/auth/signup')">No Account?</a>
+
+<!-- <form #sellerForm="ngForm" (ngSubmit)="onSubmit()" > -->
+<ion-content>
+         <ion-list>
+       <ion-item>
+         <ion-input label="phone" [(ngModel)]="user.phoneNumber"  placeholder="Enter phone"></ion-input>
+       </ion-item>
+   
+       <ion-item>
+         <ion-input label="Password"  [(ngModel)]="user.password" placeholder="Enter password"></ion-input>
+       </ion-item>
+       <ion-item>
+          <ion-button type="ngSubmit" (click)="onSubmit()"> Button here</ion-button>
+       </ion-item>
+       <ion-button (click)="loginWithGoogle()"><ion-icon name="logo-google" style="color: whitesmoke;"></ion-icon> Login wiht google</ion-button>
+       <ion-item>
+          <a (click)="goTo('/auth/signup')">No Account?</a>
+       </ion-item>
+       <ion-icon name="logo-google"></ion-icon>
+       <ion-icon name="add-outline"></ion-icon>
+   </ion-list>
+</ion-content>
+
+ <!-- </form> -->
+ 

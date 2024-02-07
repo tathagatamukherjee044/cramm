@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { UrlTree } from '@angular/router';
-import { NavController } from '@ionic/angular';
-import { IonButton } from '@ionic/angular/standalone';
+import {  NavController } from '@ionic/angular';
+import { IonButton,IonContent,IonIcon,IonInput,IonItem,IonList } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.component.html',
   standalone:true,
   styleUrls: ['./login.component.css'],
-  imports: [FormsModule,IonButton]
+  imports: [FormsModule,IonButton,IonList, IonItem, IonContent, IonInput, IonIcon]
 })
 export class LoginComponent {
 
