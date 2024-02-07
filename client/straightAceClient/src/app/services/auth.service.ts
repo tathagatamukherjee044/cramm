@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { config } from '../_store/config';
@@ -21,18 +21,34 @@ export class AuthService {
       return res;
     }))
   }
+
+  refreshToken(){
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${this.getRefreshToken()}`)
+    return this.http.post(config.api.REFRESH, {}, {headers}).subscribe( (data : any) =>{
+      const accessToken = data.accessToken
+      this.storageService.setStorage('accessToken',accessToken)
+    }
+    )
+  }
+
   createUser(userModel: any) {
     return this.http.post('http://localhost:8080/auth/signup',userModel).pipe(res =>{
       return res;
     })
   }
 
-  getToken(){
-    return this.storageService.getStorage('token')
+  getAccessToken(){
+    return this.storageService.getStorage('accessToken')
+  }
+
+  getRefreshToken(){
+    return this.storageService.getStorage('refreshToken')
   }
 
   setUser(userData : any){
-    this.storageService.setStorage('token',userData.token)
+    this.storageService.setStorage('accessToken',userData.accessToken)
+    this.storageService.setStorage('refreshToken',userData.refreshToken)
     this.storageService.setStorage('user',userData)
   }
 

@@ -7,6 +7,7 @@ export const  config = {
     api : {
         //login
         LOGIN : `${environment.apiUrl}/auth/login`,
+        REFRESH : `${environment.apiUrl}/auth/refresh`,
 
         //quiz
         GET_QUIZ:  `${environment.apiUrl}/quiz`,

@@ -30,7 +30,7 @@ func GetQuiz(c *fiber.Ctx) error {
 
 		fmt.Println(err)
 		return c.Status(400).JSON(fiber.Map{
-			"error": "cant decode token",
+			"error": "cant decode accessToken",
 		})
 	}
 
@@ -98,7 +98,7 @@ func QuizComplete(c *fiber.Ctx) error {
 
 		fmt.Println(err)
 		return c.Status(400).JSON(fiber.Map{
-			"error":   "cant decode token",
+			"error":   "cant decode accessToken",
 			"message": err.Error(),
 		})
 	}

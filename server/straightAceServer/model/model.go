@@ -21,7 +21,8 @@ type TokenUser struct {
 	//Picture       string `json:"picture"`
 	VerifiedEmail bool   `json:"verifiedEmail" bson:"verifiedEmail"`
 	Role          string `json:"role" bson:"role"`
-	Token         string `json:"token,omitempty" bson:"token,omitempty"`
+	AccessToken   string `json:"accessToken,omitempty" bson:"accessToken,omitempty"`
+	RefreshToken  string `json:"refreshToken,omitempty" bson:"refreshToken,omitempty"`
 }
 
 type User struct {

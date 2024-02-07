@@ -25,7 +25,7 @@ export class LoginComponent {
     this.authService.authenticateUser(this.user).subscribe(res =>{
       console.log(res);
 
-        localStorage.setItem('token',res.token)
+        localStorage.setItem('accessToken',res.accessToken)
         localStorage.setItem('user',res)
         this.nav.navigateRoot("/quiz")
       

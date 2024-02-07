@@ -33,12 +33,12 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 	fmt.Println("here")
 	codeValue := c.FormValue("code")
 	fmt.Println(codeValue)
-	token, err := service.GetGoogleToken(codeValue)
+	googleAccessToken, err := service.GetGoogleToken(codeValue)
 	if err != nil {
 		return c.Status(401).SendString(err.Error())
 	}
 
-	googleUser, _ := service.GetGoogleUser(token)
+	googleUser, _ := service.GetGoogleUser(googleAccessToken)
 
 	fmt.Println("google user", googleUser)
 
@@ -72,13 +72,20 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 
 	tokenUser := service.ConvertUserToTokenUser(user)
 
-	tokenString, err := serverutils.GenerateJWT(user)
+	accessToken, err := serverutils.GenerateJWT(user, 1)
 	if err != nil {
-		fmt.Printf("Failed to generate JWT token: %v\n", err)
+		fmt.Printf("Failed to generate JWT accessToken: %v\n", err)
 		return c.Status(401).SendString(err.Error())
 	}
 
-	tokenUser.Token = tokenString
+	refreshToken, err := serverutils.GenerateREF(user, 365)
+	if err != nil {
+		fmt.Printf("Failed to generate JWT accessToken: %v\n", err)
+		return c.Status(401).SendString(err.Error())
+	}
+
+	tokenUser.AccessToken = accessToken
+	tokenUser.RefreshToken = refreshToken
 
 	jsonData, err := json.Marshal(tokenUser)
 	if err != nil {
@@ -145,12 +152,42 @@ func Login(c *fiber.Ctx) error {
 
 	tokenUser := service.ConvertUserToTokenUser(*existingUser)
 
-	tokenString, err := serverutils.GenerateJWT(user)
+	tokenString, err := serverutils.GenerateJWT(user, 1)
 	if err != nil {
-		fmt.Printf("Failed to generate JWT token: %v\n", err)
+		fmt.Printf("Failed to generate JWT accessToken: %v\n", err)
 		return c.Status(401).SendString(err.Error())
 	}
-	tokenUser.Token = tokenString
+	tokenUser.AccessToken = tokenString
 
 	return c.Status(http.StatusOK).JSON(tokenUser)
+}
+
+func Refresh(c *fiber.Ctx) error {
+
+	localClaims := c.Locals("user")
+	user, err := serverutils.DecodeJWT(localClaims)
+	userPtr := *user
+	if err != nil {
+
+		fmt.Println(err)
+		return c.Status(400).JSON(fiber.Map{
+			"error": "cant decode accessToken",
+		})
+	}
+
+	// Validate the refresh accessToken (in a real application, this would involve database lookup)
+	// For simplicity, let's assume any non-empty refresh accessToken is considered valid
+
+	// Generate a new access accessToken
+	newAccessToken, err := serverutils.GenerateJWT(userPtr, 1)
+	if err != nil {
+		return err
+	}
+
+	// Return the new access accessToken
+	return c.JSON(fiber.Map{
+		"accessToken": newAccessToken,
+	})
+
+	// Invalid refresh accessToken
 }

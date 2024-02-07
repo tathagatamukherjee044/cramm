@@ -39,16 +39,16 @@ func GetGoogleToken(code string) (*oauth2.Token, error) {
 	log.Println(code)
 	log.Println("here in service")
 	log.Println(string(googleOauthConfig.ClientID))
-	token, err := googleOauthConfig.Exchange(context.Background(), code)
+	accessToken, err := googleOauthConfig.Exchange(context.Background(), code)
 	if err != nil {
 		fmt.Printf("Code exchange failed: %v\n", err)
 	}
-	return token, err
+	return accessToken, err
 }
 
-func GetGoogleUser(token *oauth2.Token) (model.GoogleUser, error) {
+func GetGoogleUser(accessToken *oauth2.Token) (model.GoogleUser, error) {
 	GetGoogleConfig()
-	client := googleOauthConfig.Client(context.Background(), token)
+	client := googleOauthConfig.Client(context.Background(), accessToken)
 	response, err := client.Get(googleAPIURL)
 	if err != nil {
 		fmt.Printf("Failed to get user info: %v\n", err)

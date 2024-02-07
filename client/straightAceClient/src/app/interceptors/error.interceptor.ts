@@ -9,10 +9,12 @@ import { NavController } from '@ionic/angular';
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const popupService = inject(PopupService)
   const nav = inject(NavController)
+  const authService = inject(AuthService)
   return next(req).pipe(
     catchError((error) => {
       let errorMessage = 'An unknown error occurred';
       console.log("error cought");
+      console.log(error);
       
       if (error.error instanceof ErrorEvent) {
         // Client-side error
@@ -22,7 +24,13 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
 
         if(error.status === 401){
+          console.log(error.error.message);
+          
+          if(error.error.message == "Unauthorized"){
+            authService.refreshToken()
+          } else {
           nav.navigateRoot('/auth/login')
+          }
         }
       }
 

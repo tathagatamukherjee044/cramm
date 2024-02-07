@@ -39,7 +39,7 @@ type User struct {
 	VerifiedEmail bool   `json:"verifiedEmail"`
 }
 
-// JWTClaims represents the claims of the JWT token
+// JWTClaims represents the claims of the JWT accessToken
 type JWTClaims struct {
 	UserID string `json:"user_id"`
 	jwt.StandardClaims
@@ -99,14 +99,14 @@ func handleGoogleCallback(w http.ResponseWriter, r *http.Request) {
 	}
 
 	code := r.FormValue("code")
-	token, err := googleOauthConfig.Exchange(context.Background(), code)
+	accessToken, err := googleOauthConfig.Exchange(context.Background(), code)
 	if err != nil {
 		fmt.Printf("Code exchange failed: %v\n", err)
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
 	}
 
-	client := googleOauthConfig.Client(context.Background(), token)
+	client := googleOauthConfig.Client(context.Background(), accessToken)
 	response, err := client.Get(googleAPIURL)
 	if err != nil {
 		fmt.Printf("Failed to get user info: %v\n", err)
@@ -130,17 +130,17 @@ func handleGoogleCallback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Generate a JWT token
+	// Generate a JWT accessToken
 	tokenString, err := generateJWT(user.ID)
 	if err != nil {
-		fmt.Printf("Failed to generate JWT token: %v\n", err)
+		fmt.Printf("Failed to generate JWT accessToken: %v\n", err)
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
 	}
 
-	// Set the JWT token as a cookie
+	// Set the JWT accessToken as a cookie
 	http.SetCookie(w, &http.Cookie{
-		Name:    "token",
+		Name:    "accessToken",
 		Value:   tokenString,
 		Expires: time.Now().Add(24 * time.Hour), // Adjust expiration as needed
 		Path:    "/",
@@ -153,7 +153,7 @@ func handleGoogleCallback(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("User Picture: %s\n", user.Picture)
 	fmt.Printf("Is Verified Email: %v\n", user.VerifiedEmail)
 
-	// TODO: Use the user information and JWT token in your application as needed.
+	// TODO: Use the user information and JWT accessToken in your application as needed.
 
 	fmt.Println("Successfully authenticated with Google")
 
@@ -181,8 +181,8 @@ func generateJWT(userID string) (string, error) {
 		},
 	}
 
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenString, err := token.SignedString(secretKey)
+	accessToken := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	tokenString, err := accessToken.SignedString(secretKey)
 	if err != nil {
 		return "", err
 	}
@@ -207,17 +207,17 @@ func handleLogin(w http.ResponseWriter, r *http.Request) {
 
 	// You can add password validation logic here
 
-	// Generate a new JWT token
+	// Generate a new JWT accessToken
 	tokenString, err := generateJWT(user.ID)
 	if err != nil {
-		fmt.Printf("Failed to generate JWT token: %v\n", err)
+		fmt.Printf("Failed to generate JWT accessToken: %v\n", err)
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
 	}
 
-	// Set the JWT token as a cookie
+	// Set the JWT accessToken as a cookie
 	http.SetCookie(w, &http.Cookie{
-		Name:    "token",
+		Name:    "accessToken",
 		Value:   tokenString,
 		Expires: time.Now().Add(24 * time.Hour), // Adjust expiration as needed
 		Path:    "/",
@@ -255,17 +255,17 @@ func handleSignIn(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Generate a new JWT token
+	// Generate a new JWT accessToken
 	tokenString, err := generateJWT(newUser.ID)
 	if err != nil {
-		fmt.Printf("Failed to generate JWT token: %v\n", err)
+		fmt.Printf("Failed to generate JWT accessToken: %v\n", err)
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
 	}
 
-	// Set the JWT token as a cookie
+	// Set the JWT accessToken as a cookie
 	http.SetCookie(w, &http.Cookie{
-		Name:    "token",
+		Name:    "accessToken",
 		Value:   tokenString,
 		Expires: time.Now().Add(24 * time.Hour), // Adjust expiration as needed
 		Path:    "/",

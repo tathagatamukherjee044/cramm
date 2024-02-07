@@ -1,6 +1,7 @@
 package route
 
 import (
+	"StraightAceServer/api/custommiddleware"
 	"StraightAceServer/api/handler"
 
 	"github.com/gofiber/fiber/v2"
@@ -9,6 +10,7 @@ import (
 func AddAuthRouter(group fiber.Router) {
 	authRoute := group.Group("/auth")
 	authRoute.Post("/login", handler.Login)
+	authRoute.Post("/refresh", custommiddleware.ValidateRefresh, handler.Refresh)
 	authRoute.Post("/signup", handler.Signup)
 	authRoute.Get("/oauth/google", handler.GoogleOAuthHandler)
 	authRoute.Get("test", func(c *fiber.Ctx) error {

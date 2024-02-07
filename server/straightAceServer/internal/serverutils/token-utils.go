@@ -17,7 +17,26 @@ var (
 	secretKey = []byte("your-secret-key")
 )
 
-func GenerateJWT(user model.User) (string, error) {
+func GenerateJWT(user model.User, days time.Duration) (string, error) {
+	fmt.Println(days)
+	claims := JWTClaims{
+		User: user,
+		StandardClaims: jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(days * time.Minute).Unix(), // Adjust expiration as needed
+		},
+	}
+
+	accessToken := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	tokenString, err := accessToken.SignedString(secretKey)
+	if err != nil {
+		return "", err
+	}
+
+	return tokenString, nil
+}
+
+func GenerateREF(user model.User, days time.Duration) (string, error) {
+	fmt.Println(days)
 	claims := JWTClaims{
 		User: user,
 		StandardClaims: jwt.StandardClaims{
@@ -25,8 +44,8 @@ func GenerateJWT(user model.User) (string, error) {
 		},
 	}
 
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenString, err := token.SignedString(secretKey)
+	accessToken := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	tokenString, err := accessToken.SignedString(secretKey)
 	if err != nil {
 		return "", err
 	}
@@ -36,12 +55,12 @@ func GenerateJWT(user model.User) (string, error) {
 
 func VerifyJWT(tokenString string) (*JWTClaims, error) {
 	claims := &JWTClaims{}
-	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
+	accessToken, err := jwt.ParseWithClaims(tokenString, claims, func(accessToken *jwt.Token) (interface{}, error) {
 		return secretKey, nil
 	})
 
-	if err != nil || !token.Valid {
-		return nil, fmt.Errorf("Invalid token")
+	if err != nil || !accessToken.Valid {
+		return nil, fmt.Errorf("Invalid accessToken")
 	}
 
 	return claims, nil
