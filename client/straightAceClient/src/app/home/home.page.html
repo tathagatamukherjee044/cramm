@@ -14,9 +14,18 @@
     <ion-router-outlet></ion-router-outlet>
   </ion-content>
   <ion-footer>
-    <ion-toolbar>
-      <a [routerLink]="['/profile']" routerLinkActive="router-link-active" > profile</a>
-      <a [routerLink]="['/learn']" routerLinkActive="router-link-active" > learn</a>
+    <ion-toolbar >
+        <ion-row>
+          @for (item of menuItems; track $index) {
+            <ion-col class="align-center">
+              <ion-icon [name]="item.icon" (click)="route(item.link)"></ion-icon>
+            </ion-col>
+          }
+        </ion-row>
+      
+      
+       <!-- <ion-icon name="person-circle-outline" (click)="show()"> </ion-icon> profile
+      <a [routerLink]="['/learn']" routerLinkActive="router-link-active" > learn</a> -->
     </ion-toolbar>
   </ion-footer>
 

@@ -35,7 +35,7 @@
 // }
 
 ion-footer {
-
+    color: pink;
     position:absolute;
     bottom:0px;
     width:100%;
@@ -43,3 +43,26 @@ ion-footer {
     // background-color:rgba(0,0,0,0.8);
     color:#fff;
 }
+
+// .flex-container {
+
+//     display: inline-flex;
+//   }
+
+  .justify-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  .align-center {
+    text-align: center
+  }
+  
+//   .initial {
+//     flex: initial;
+//   }
+  
+//   .auto {
+//     flex: auto;
+//   }
+  

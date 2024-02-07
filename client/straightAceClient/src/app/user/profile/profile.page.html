@@ -4,11 +4,17 @@
   </ion-toolbar>
 </ion-header>
 <ion-content >
-  <div  class="ion-hide-md-down">
-    <!-- Content to show on medium screens and larger -->
-
-    HELLO WORLD 
-  </div>
-  profile worj
-  {{userDetail.email}}
+  <div class="profile-container">
+    <h1>User Profile</h1>
+    <div class="profile-info">
+        <!-- <div class="profile-picture">
+            <img src="profile-picture.jpg" alt="Profile Picture">
+        </div> -->
+        <div class="profile-details">
+            <p><strong>Name:</strong>{{userDetail.name}}</p>
+            <p><strong>Email:</strong>{{userDetail.email}}</p>
+            <p><strong>Role:</strong>{{userDetail.role}}</p>
+        </div>
+    </div>
+</div>
 </ion-content>

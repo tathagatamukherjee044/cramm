@@ -22,3 +22,12 @@
     background-color: red;
     scroll-snap-align: start;
 }
+
+.justify-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  .align-center {
+    text-align: center
+  }
