@@ -22,7 +22,7 @@ func GenerateJWT(user model.User, days time.Duration) (string, error) {
 	claims := JWTClaims{
 		User: user,
 		StandardClaims: jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(days * time.Minute).Unix(), // Adjust expiration as needed
+			ExpiresAt: time.Now().Add(days * time.Hour).Unix(), // Adjust expiration as needed
 		},
 	}
 

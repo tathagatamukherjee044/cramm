@@ -72,13 +72,15 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 
 	tokenUser := service.ConvertUserToTokenUser(user)
 
+	//access token lasts for 1 day
 	accessToken, err := serverutils.GenerateJWT(user, 1)
 	if err != nil {
 		fmt.Printf("Failed to generate JWT accessToken: %v\n", err)
 		return c.Status(401).SendString(err.Error())
 	}
 
-	refreshToken, err := serverutils.GenerateREF(user, 365)
+	// refresh token lasts for 365 days
+	refreshToken, err := serverutils.GenerateJWT(user, 365)
 	if err != nil {
 		fmt.Printf("Failed to generate JWT accessToken: %v\n", err)
 		return c.Status(401).SendString(err.Error())
