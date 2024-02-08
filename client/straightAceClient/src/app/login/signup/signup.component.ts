@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UrlTree } from '@angular/router';
+import { Router, UrlTree } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { IonButton } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/services/auth.service';
@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignupComponent {
 
   constructor(private authService : AuthService,
-    private nav : NavController
+    private router : Router
     ){}
 
 
@@ -35,7 +35,7 @@ export class SignupComponent {
   }
 
   goTo(page: string | any[] | UrlTree){
-    this.nav.navigateRoot(page)
+    this.router.navigate([page])
   }
 
 }

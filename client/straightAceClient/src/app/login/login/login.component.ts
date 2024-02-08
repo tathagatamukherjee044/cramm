@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UrlTree } from '@angular/router';
+import { Router, UrlTree } from '@angular/router';
 import {  NavController } from '@ionic/angular';
 import { IonButton,IonContent,IonIcon,IonInput,IonItem,IonList } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/services/auth.service';
@@ -18,7 +18,7 @@ export class LoginComponent {
 
   constructor(
     private authService : AuthService,
-    private nav :NavController,
+    private router : Router
     ){}
   onSubmit(){
     console.log(this.user);
@@ -27,14 +27,14 @@ export class LoginComponent {
 
         localStorage.setItem('accessToken',res.accessToken)
         localStorage.setItem('user',res)
-        this.nav.navigateRoot("/quiz")
+        this.router.navigate(["/quiz"])
       
 
     });
   }
 
   goTo(page: string | any[] | UrlTree){
-    this.nav.navigateRoot(page)
+    this.router.navigate([page])
   }
 
   loginWithGoogle(){

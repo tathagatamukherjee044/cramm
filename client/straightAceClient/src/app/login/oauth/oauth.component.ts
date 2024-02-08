@@ -17,7 +17,7 @@ export class OauthComponent {
     private route : ActivatedRoute,
     private router : Router,
     private authService : AuthService,
-    private nav :NavController,
+    // private nav :NavController,
   ){}
 
   ngOnInit(){
@@ -28,7 +28,7 @@ export class OauthComponent {
         console.log(userData);
         
         this.authService.setUser(userData)
-        this.nav.navigateRoot("/quiz")
+        this.router.navigate(["/quiz"])
       }
     })
     console.log();

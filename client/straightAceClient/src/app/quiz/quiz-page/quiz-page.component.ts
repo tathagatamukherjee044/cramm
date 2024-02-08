@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuizItemComponent } from '../quiz-item/quiz-item.component';
 import { QuizService } from 'src/app/services/quiz.service';
 import { IonContent, NavController ,IonCardContent , IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController  ,IonCard,  IonSkeletonText} from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-page',
@@ -40,7 +41,7 @@ export class QuizPageComponent  implements OnInit {
 
   constructor(
     private quizService : QuizService,
-    private nav : NavController
+    private router : Router,
   ) { }
 
   ngOnInit() {
@@ -98,7 +99,7 @@ export class QuizPageComponent  implements OnInit {
   quizComplete() {
     this.quizService.quizComplete().subscribe((data) =>{
       console.log(data);
-      this.nav.navigateRoot("/")
+      this.router.navigate(["/"])
     })
   }
 

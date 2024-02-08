@@ -4,11 +4,13 @@ import { catchError, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { PopupService } from '../services/toast.service';
 import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const popupService = inject(PopupService)
   const nav = inject(NavController)
+  const router = inject(Router)
   const authService = inject(AuthService)
   return next(req).pipe(
     catchError((error) => {
@@ -29,7 +31,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           if(error.error.message == "Unauthorized"){
             authService.refreshToken()
           } else {
-          nav.navigateRoot('/auth/login')
+          router.navigate(['/auth/login'])
           }
         }
       }

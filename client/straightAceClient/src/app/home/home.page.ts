@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { IonHeader, IonToolbar, IonTitle, IonContent ,IonRouterOutlet ,IonFooter, IonApp, IonTabBar, IonTabs, IonIcon, IonTabButton, NavController, IonCol, IonRow } from '@ionic/angular/standalone';
 import { environment } from 'src/environments/environment';
@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 })
 export class HomePage {
   constructor(
-    private nav : NavController
+    private router : Router
   ) {}
 
   array = [1,2,3,4,5,7,3,4,4,4455,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]
@@ -41,6 +41,6 @@ export class HomePage {
   }
 
   route(route : string) {
-    this.nav.navigateRoot(route)
+    this.router.navigate([route])
   }
 }
