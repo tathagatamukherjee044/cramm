@@ -10,7 +10,7 @@ export const  config = {
         REFRESH : `${environment.apiUrl}/auth/refresh`,
 
         //user
-        GET_USER : `${environment.apiUrl}/auth/refresh`,
+        GET_USER : `${environment.apiUrl}/user/me`,
 
         //quiz
         GET_QUIZ:  `${environment.apiUrl}/quiz`,

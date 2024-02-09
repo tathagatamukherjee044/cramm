@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, UrlTree } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { IonButton } from '@ionic/angular/standalone';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-signup',

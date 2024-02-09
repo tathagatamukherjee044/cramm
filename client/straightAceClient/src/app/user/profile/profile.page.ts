@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { StorageService } from 'src/app/services/storage.service';
+import { StorageService } from 'src/app/_services/storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +12,7 @@ import { StorageService } from 'src/app/services/storage.service';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class ProfilePage implements OnInit {
+  streak: any;
 
   constructor(
     private storageService : StorageService
@@ -21,6 +22,7 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
     this.userDetail = this.storageService.getStorage('user')
+    this.streak = this.storageService.getStorage('streak')
     console.log(this.userDetail);
     
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizItemComponent } from '../quiz-item/quiz-item.component';
-import { QuizService } from 'src/app/services/quiz.service';
+import { QuizService } from 'src/app/_services/quiz.service';
 import { IonContent, NavController ,IonCardContent , IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController  ,IonCard,  IonSkeletonText} from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 

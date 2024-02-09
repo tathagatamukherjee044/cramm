@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, NgModule, OnInit, Output, SimpleChanges, computed, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController , IonContent ,IonCard, IonCardContent ,IonSkeletonText } from '@ionic/angular/standalone';
-import { PopupService } from 'src/app/services/toast.service';
+import { PopupService } from 'src/app/_services/toast.service';
 
 @Component({
   selector: 'app-quiz-item',

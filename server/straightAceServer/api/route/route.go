@@ -7,6 +7,7 @@ func RegisterFiberRoutes(s *server.FiberServer) {
 	publicRouter := s.App.Group("")
 	AddAuthRouter(publicRouter)
 	AddQuizRouter(publicRouter)
+	AddUserRouter(publicRouter)
 	AddSwaggerRoutes(publicRouter)
 
 }

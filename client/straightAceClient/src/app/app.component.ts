@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { IonApp, IonContent, IonFooter, IonHeader, IonRouterOutlet, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { AuthService } from './_services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,12 @@ import { IonApp, IonContent, IonFooter, IonHeader, IonRouterOutlet, IonTitle, Io
   standalone: true,
   imports: [IonApp, IonRouterOutlet,RouterOutlet,IonHeader,IonToolbar,IonTitle,IonFooter,IonContent],
 })
-export class AppComponent {
-  constructor() {}
+export class AppComponent implements OnInit {
+  constructor(
+    private auth : AuthService
+  ) {}
+
+  ngOnInit(): void {
+    this.auth.getData().subscribe()
+  }
 }

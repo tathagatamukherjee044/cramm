@@ -9,11 +9,9 @@ import { environment } from './environments/environment';
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './app/interceptors/auth.interceptor';
 import { errorInterceptor } from './app/interceptors/error.interceptor';
-import { AuthService } from './app/services/auth.service';
+import { AuthService } from './app/_services/auth.service';
 
-// export function initializeApp(dataService: AuthService) {
-//   return () => dataService.fetchData();
-// }
+
 
 if (environment.production) {
   enableProdMode();

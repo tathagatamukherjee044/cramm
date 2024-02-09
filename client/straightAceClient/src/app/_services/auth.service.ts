@@ -23,7 +23,13 @@ export class AuthService {
   }
 
   getData() {
-    
+    return this.http.post(config.api.GET_USER,{}).pipe(map((res : any) =>{
+      // return this.http.post('http://localhost:8080/auth/login',userModel).pipe(map(res =>{
+        console.log(res);
+        this.storageService.setStorage('streak',res.streak)
+        return res;
+        
+      }))
   }
 
   refreshToken(){
