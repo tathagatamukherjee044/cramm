@@ -30,6 +30,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           
           if(error.error.message == "Unauthorized"){
             authService.refreshToken()
+            window.location.reload();
           } else {
           router.navigate(['/auth/login'])
           }

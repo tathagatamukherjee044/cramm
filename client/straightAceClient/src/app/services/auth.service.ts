@@ -22,6 +22,10 @@ export class AuthService {
     }))
   }
 
+  getData() {
+    
+  }
+
   refreshToken(){
     const headers = new HttpHeaders()
     .set('Authorization', `Bearer ${this.getRefreshToken()}`)
