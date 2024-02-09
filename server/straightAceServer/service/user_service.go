@@ -17,7 +17,10 @@ func UpsertUser(googleUser model.User) (upsertedID string, err error) {
 
 	// Check if the user already exists in the collection
 	filter := bson.M{"email": googleUser.Email}
-	update := bson.M{"$set": googleUser}
+	update := bson.M{"$set": bson.M{
+		"name":          googleUser.Name,
+		"verifiedEmail": googleUser.VerifiedEmail,
+	}}
 
 	opts := options.Update().SetUpsert(true)
 	result, err := collection.UpdateOne(context.Background(), filter, update, opts)
