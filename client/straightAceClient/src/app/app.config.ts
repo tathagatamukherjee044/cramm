@@ -5,8 +5,8 @@ import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { IonicRouteStrategy } from '@ionic/angular';
 import { provideIonicAngular } from '@ionic/angular/standalone';
-import { authInterceptor } from './interceptors/auth.interceptor';
-import { errorInterceptor } from './interceptors/error.interceptor';
+import { authInterceptor } from './_shared/_interceptors/auth.interceptor';
+import { errorInterceptor } from './_shared/_interceptors/error.interceptor';
 
 // usually this is imported in main.ts but its not needed here, but this is here for future
 export const appConfig: ApplicationConfig = {

@@ -7,8 +7,8 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
-import { authInterceptor } from './app/interceptors/auth.interceptor';
-import { errorInterceptor } from './app/interceptors/error.interceptor';
+import { authInterceptor } from './app/_shared/_interceptors/auth.interceptor';
+import { errorInterceptor } from './app/_shared/_interceptors/error.interceptor';
 import { AuthService } from './app/_services/auth.service';
 
 

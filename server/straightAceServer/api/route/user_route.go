@@ -8,6 +8,6 @@ import (
 )
 
 func AddUserRouter(group fiber.Router) {
-	authRoute := group.Group("/user", custommiddleware.ValidateJWT)
-	authRoute.Post("/me", handler.GetUser)
+	authRoute := group.Group("/user", custommiddleware.DecodeJWT)
+	authRoute.Get("/me", handler.GetUser)
 }

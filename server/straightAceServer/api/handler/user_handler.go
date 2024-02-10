@@ -10,7 +10,17 @@ import (
 )
 
 func GetUser(c *fiber.Ctx) error {
+	// return c.Status(200).JSON(fiber.Map{
+	// 	"streak":  1,
+	// 	"message": "Congratulation on completing your lesson",
+	// })
+
 	localClaims := c.Locals("user")
+	if localClaims == false {
+		return c.Status(200).JSON(fiber.Map{
+			"message": "No User found",
+		})
+	}
 	user, err := serverutils.DecodeJWT(localClaims)
 	if err != nil {
 

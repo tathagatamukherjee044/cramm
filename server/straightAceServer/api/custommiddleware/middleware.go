@@ -7,7 +7,6 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
-	"github.com/gofiber/fiber/v2/middleware/requestid"
 )
 
 func SetupMiddlewares(s *server.FiberServer) {
@@ -19,7 +18,7 @@ func SetupMiddlewares(s *server.FiberServer) {
 	s.App.Use(logger.New())
 
 	// Request ID middleware
-	s.App.Use(requestid.New())
+	// s.App.Use(requestid.New())
 
 	// s.App.Use(cors.New(cors.Config{
 	// 	AllowOrigins: "*",

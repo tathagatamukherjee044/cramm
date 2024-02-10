@@ -1,8 +1,8 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { AuthService } from '../_services/auth.service';
-import { PopupService } from '../_services/toast.service';
+import { AuthService } from '../../_services/auth.service';
+import { PopupService } from '../../_services/toast.service';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 

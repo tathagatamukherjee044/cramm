@@ -46,11 +46,20 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 
 	fmt.Println("user is converted from google user")
 
-	upsertedID, rerr := service.UpsertUser(user)
-	if rerr != nil {
-		fmt.Printf("Failed to upsert user: %v\n", err)
-		return nil
+	userFound := service.FindUserByEmail(user.Email)
+	var upsertedID string
+	if userFound == nil {
+		fmt.Printf("Failed to find user: %v\n", err)
+		upsertedID, _ = service.InsertUser(user)
+
+	} else {
+		upsertedID, err = service.UpsertUser(user)
+		if err != nil {
+			fmt.Printf("Failed to upsert user: %v\n", err)
+			return nil
+		}
 	}
+
 	fmt.Print("here")
 
 	//fmt.Println(upsertedID)
@@ -125,7 +134,7 @@ func Signup(c *fiber.Ctx) error {
 	user.Password = string(hashedPassword)
 
 	// Insert the user into the database
-	err = service.InsertUser(user)
+	_, err = service.InsertUser(user)
 	if err != nil {
 		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": "Error creating user"})
 	}

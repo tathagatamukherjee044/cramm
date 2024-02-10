@@ -24,17 +24,17 @@ func GetQuiz(c *fiber.Ctx) error {
 
 	// var userClaims serverutils.JWTClaims
 
-	localClaims := c.Locals("user")
-	user, err := serverutils.DecodeJWT(localClaims)
-	if err != nil {
+	// localClaims := c.Locals("user")
+	// user, err := serverutils.DecodeJWT(localClaims)
+	// if err != nil {
 
-		fmt.Println(err)
-		return c.Status(400).JSON(fiber.Map{
-			"error": "cant decode accessToken",
-		})
-	}
+	// 	fmt.Println(err)
+	// 	return c.Status(400).JSON(fiber.Map{
+	// 		"error": "cant decode accessToken",
+	// 	})
+	// }
 
-	fmt.Println(user.Role)
+	// fmt.Println(user.Role)
 
 	course := c.Params("course")
 	subject := c.Params("sub")
@@ -54,11 +54,12 @@ func GetQuiz(c *fiber.Ctx) error {
 
 		result = append(result, quiz...)
 	}
+	fmt.Println("reached here")
 	// quiz := &model.Quiz{
 	// 	Question: "When did India gain Independence",
 	// 	Options:  []string{"1947", "1950"},
 	// }
-	return c.JSON(result)
+	return c.Status(200).JSON(result)
 }
 
 func GetAllQuiz(c *fiber.Ctx) error {

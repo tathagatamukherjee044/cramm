@@ -52,13 +52,14 @@ func UpsertUser(googleUser model.User) (upsertedID string, err error) {
 	return upsertedID, nil
 }
 
-func InsertUser(user model.User) error {
+func InsertUser(user model.User) (string, error) {
 	collection := database.GetDBCollection("users")
-	_, err := collection.InsertOne(context.Background(), user)
+	inseredtUser, err := collection.InsertOne(context.Background(), user)
 	if err != nil {
-		return err
+		return "", err
 	}
-	return nil
+	upsertedID := inseredtUser.InsertedID.(primitive.ObjectID).Hex()
+	return upsertedID, nil
 }
 
 func UpdateUserByID(ID string, updateFields bson.M) (err error) {
@@ -79,6 +80,16 @@ func FindUserByPhoneNumber(phoneNumber string) *model.User {
 	collection := database.GetDBCollection("users")
 	var user model.User
 	err := collection.FindOne(context.Background(), bson.M{"phoneNumber": phoneNumber}).Decode(&user)
+	if err != nil {
+		return nil
+	}
+	return &user
+}
+
+func FindUserByEmail(email string) *model.User {
+	collection := database.GetDBCollection("users")
+	var user model.User
+	err := collection.FindOne(context.Background(), bson.M{"email": email}).Decode(&user)
 	if err != nil {
 		return nil
 	}

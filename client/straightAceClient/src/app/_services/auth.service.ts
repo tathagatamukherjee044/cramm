@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { config } from '../_store/config';
 import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { StorageService } from './storage.service';
+import { HttpUtilityService } from './http-utility.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ import { StorageService } from './storage.service';
 export class AuthService {
 
   constructor(
-    private http : HttpClient,
-    private storageService : StorageService
+    private storageService : StorageService,
+    private http : HttpUtilityService
     ) { }
 
   authenticateUser(userModel: any): Observable<any> {
@@ -23,7 +24,7 @@ export class AuthService {
   }
 
   getData() {
-    return this.http.post(config.api.GET_USER,{}).pipe(map((res : any) =>{
+    return this.http.get(config.api.GET_USER,{}).pipe(map((res : any) =>{
       // return this.http.post('http://localhost:8080/auth/login',userModel).pipe(map(res =>{
         console.log(res);
         this.storageService.setStorage('streak',res.streak)

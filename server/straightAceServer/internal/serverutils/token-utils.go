@@ -35,24 +35,6 @@ func GenerateJWT(user model.User, days time.Duration) (string, error) {
 	return tokenString, nil
 }
 
-func GenerateREF(user model.User, days time.Duration) (string, error) {
-	fmt.Println(days)
-	claims := JWTClaims{
-		User: user,
-		StandardClaims: jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(24 * time.Hour).Unix(), // Adjust expiration as needed
-		},
-	}
-
-	accessToken := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenString, err := accessToken.SignedString(secretKey)
-	if err != nil {
-		return "", err
-	}
-
-	return tokenString, nil
-}
-
 func VerifyJWT(tokenString string) (*JWTClaims, error) {
 	claims := &JWTClaims{}
 	accessToken, err := jwt.ParseWithClaims(tokenString, claims, func(accessToken *jwt.Token) (interface{}, error) {
