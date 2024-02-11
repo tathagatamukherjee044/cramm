@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizItemComponent } from '../quiz-item/quiz-item.component';
 import { QuizService } from 'src/app/_services/quiz.service';
-import { IonContent, NavController ,IonCardContent , IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController  ,IonCard,  IonSkeletonText} from '@ionic/angular/standalone';
+import { IonContent, NavController ,IonCardContent , IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController  ,IonCard,  IonSkeletonText, IonIcon} from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+import { DialogService } from 'src/app/_services/dialog.service';
 
 @Component({
   selector: 'app-quiz-page',
   templateUrl: './quiz-page.component.html',
   standalone:true,
-  imports : [IonContent,QuizItemComponent, IonCol,IonButton,IonRadioGroup,IonItem,IonRadio, IonContent, IonCardContent, IonSkeletonText],
+  imports : [IonContent,QuizItemComponent, IonCol,IonButton,IonRadioGroup,IonItem,IonRadio, IonContent, IonCardContent, IonSkeletonText, IonIcon],
   styleUrls: ['./quiz-page.component.scss'],
 })
 export class QuizPageComponent  implements OnInit {
@@ -42,6 +43,7 @@ export class QuizPageComponent  implements OnInit {
   constructor(
     private quizService : QuizService,
     private router : Router,
+    private dialogService : DialogService
   ) { }
 
   ngOnInit() {
@@ -85,7 +87,13 @@ export class QuizPageComponent  implements OnInit {
         return
       }
       this.quizComplete()
-      alert(`all question scomplete ${this.score}`)
+
+      // alert(`all question scomplete ${this.score}`)
+      this.dialogService.showInfoDialog().afterClosed().subscribe( data =>{
+        console.log("hello World");
+
+      } 
+      )
       return
     }
     this.currentIndex++

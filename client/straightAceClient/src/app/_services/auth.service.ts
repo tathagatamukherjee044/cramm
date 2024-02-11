@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { config } from '../_store/config';
+import { config } from '../_shared/_store/config';
 import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { StorageService } from './storage.service';
 import { HttpUtilityService } from './http-utility.service';

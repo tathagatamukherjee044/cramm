@@ -10,6 +10,7 @@ import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common
 import { authInterceptor } from './app/_shared/_interceptors/auth.interceptor';
 import { errorInterceptor } from './app/_shared/_interceptors/error.interceptor';
 import { AuthService } from './app/_services/auth.service';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 
@@ -22,6 +23,6 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor,errorInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor,errorInterceptor])), provideAnimationsAsync(),
   ],
 });
