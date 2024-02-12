@@ -89,11 +89,12 @@ export class QuizPageComponent  implements OnInit {
       this.quizComplete()
 
       // alert(`all question scomplete ${this.score}`)
-      this.dialogService.showInfoDialog().afterClosed().subscribe( data =>{
-        console.log("hello World");
+      // this.dialogService.showInfoDialog().afterClosed().subscribe( data =>{
+      //   console.log("hello World");
 
-      } 
-      )
+      // })
+      this.callInfoModal()
+      
       return
     }
     this.currentIndex++
@@ -101,6 +102,13 @@ export class QuizPageComponent  implements OnInit {
     console.log("current quiz");
     console.log(this.currentQuiz);
     
+    
+  }
+
+  async callInfoModal () {
+    const modal = await this.dialogService.showResultsModal()
+    const {data,role} = await  modal.onWillDismiss()
+    console.log(data,role);
     
   }
 
