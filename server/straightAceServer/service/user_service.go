@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -54,6 +55,7 @@ func UpsertUser(googleUser model.User) (upsertedID string, err error) {
 
 func InsertUser(user model.User) (string, error) {
 	collection := database.GetDBCollection("users")
+	user.CreatedAt = time.Now()
 	inseredtUser, err := collection.InsertOne(context.Background(), user)
 	if err != nil {
 		return "", err

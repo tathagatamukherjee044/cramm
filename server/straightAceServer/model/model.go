@@ -36,6 +36,7 @@ type User struct {
 	Password          string    `json:"password,omitempty" bson:"password,omitempty"`
 	Streak            int       `json:"streak" bson:"streak"`
 	LastCompletedTime time.Time `json:"lastCompletedTime" bson:"lastCompletedTime"`
+	CreatedAt         time.Time `json:"createdAt" bson:"createdAt"`
 }
 
 type Quiz struct {
