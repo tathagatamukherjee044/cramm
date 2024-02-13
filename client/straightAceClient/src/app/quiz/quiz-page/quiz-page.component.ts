@@ -3,7 +3,7 @@ import { QuizItemComponent } from '../quiz-item/quiz-item.component';
 import { QuizService } from 'src/app/_services/quiz.service';
 import { IonContent, NavController ,IonCardContent , IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController  ,IonCard,  IonSkeletonText, IonIcon} from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
-import { DialogService } from 'src/app/_services/dialog.service';
+import { ModalService } from 'src/app/_services/modal.service';
 
 @Component({
   selector: 'app-quiz-page',
@@ -43,7 +43,7 @@ export class QuizPageComponent  implements OnInit {
   constructor(
     private quizService : QuizService,
     private router : Router,
-    private dialogService : DialogService
+    private modalService : ModalService
   ) { }
 
   ngOnInit() {
@@ -63,7 +63,7 @@ export class QuizPageComponent  implements OnInit {
     
   }
 
-  onQuestionComplete(success : boolean){
+  async onQuestionComplete(success : boolean){
     console.log(success);
     if (!success) {
       this.mistakeList.push(JSON.parse(JSON.stringify(this.currentQuiz)))
@@ -93,7 +93,7 @@ export class QuizPageComponent  implements OnInit {
       //   console.log("hello World");
 
       // })
-      this.callInfoModal()
+      this.callInfoModal() 
       
       return
     }
@@ -105,8 +105,8 @@ export class QuizPageComponent  implements OnInit {
     
   }
 
-  async callInfoModal () {
-    const modal = await this.dialogService.showResultsModal()
+  async callInfoModal() {
+    const modal = await this.modalService.showResultsModal()
     const {data,role} = await  modal.onWillDismiss()
     console.log(data,role);
     

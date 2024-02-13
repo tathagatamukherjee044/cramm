@@ -1,5 +1,5 @@
 
-<ion-content class="reelsContainer">
+<ion-content>
   <!-- @for (item of quiz; track $index) { -->
     <ion-icon name="arrow-back-outline" style="margin-top: 1em;"></ion-icon>
     <ion-button (click)="callInfoModal()">
@@ -23,7 +23,7 @@
         </ion-button>
       </ion-card-content>
     } @else {
-    <app-quiz-item [question]="currentQuiz" class="reel" (questionComplete)="onQuestionComplete($event)"></app-quiz-item>
+    <app-quiz-item [question]="currentQuiz"  (questionComplete)="onQuestionComplete($event)"></app-quiz-item>
     }
   <!-- } -->
 </ion-content>
