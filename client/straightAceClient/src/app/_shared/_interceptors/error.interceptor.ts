@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 import { AuthService } from '../../_services/auth.service';
 import { PopupService } from '../../_services/toast.service';
 import { NavController } from '@ionic/angular';
@@ -17,8 +17,8 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((error) => {
       let errorMessage = 'An unknown error occurred';
-      console.log("error cought");
-      console.log(error);
+      // console.log("error cought");
+      // console.log(error);
       
       if (error.error instanceof ErrorEvent) {
         // Client-side error
@@ -32,42 +32,53 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           console.log(error.error.message);
 
 
+          // it works apparantly
           if(error.error.message !== "invalidRefresh"){
-            authService.refreshToken()
-            alertService.presentReloadAlert()
+            authService.refreshToken().subscribe( ref => {
+              if (ref) {
+                // alertService.presentReloadAlert
+                setTimeout(() => {
+                  // we make the failed request again, 
+                  const reqClone = req.clone({
+                    headers : req.headers.set('Authorization', `Bearer ${authService.getAccessToken()}`)
+                  });
+                  return next(reqClone);
+
+                // window.location.reload()
+                }, 1000);
+              } else {
+                alertService.presentLoginAlert()
+
+              }
+            })
           } else {
             alertService.presentLoginAlert()
           }
         }
+
+        // if (error.status === 401) {
+        //     return authService.refreshToken().pipe(
+        //       map((newAccessToken) => {
+        //         req = req.clone({
+        //           setHeaders: { Authorization: `Bearer ${newAccessToken}` },
+        //         });
+        //         return next(req);
+        //       }),
+        //       catchError(() => {
+        //         // Refresh failed or no refresh token, redirect to login
+        //         alertService.presentLoginAlert()
+        //         return throwError(() => error);
+        //       })
+        //     );
+          
+        // }
       }
 
-      //implement this
-      // if (error.status === 401) {
-      //   const refreshToken = this.tokenService.getRefreshToken();
-      //   if (refreshToken) {
-      //     return authService.refreshToken(refreshToken).pipe(
-      //       switchMap((newAccessToken) => {
-      //         this.tokenService.storeAccessToken(newAccessToken);
-      //         request = request.clone({
-      //           setHeaders: { Authorization: `Bearer ${newAccessToken}` },
-      //         });
-      //         return next.handle(request);
-      //       }),
-      //       catchError(() => {
-      //         // Refresh failed or no refresh token, redirect to login
-      //         this.authService.logout();
-      //         return throwError(error);
-      //       })
-      //     );
-      //   } else {
-      //     // No refresh token, redirect to login
-      //     this.authService.logout();
-      //   }
-      // }
+      
 
       // You can handle or log the error here as needed
       popupService.presentToast(errorMessage)
-      console.log(errorMessage);
+
       
       // Pass the error along to be handled by the calling code
       return throwError(() => error);

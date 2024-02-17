@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, retry } from 'rxjs';
 import { config } from '../_shared/_store/config';
 import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { StorageService } from './storage.service';
@@ -36,11 +36,18 @@ export class AuthService {
   refreshToken(){
     const headers = new HttpHeaders()
     .set('Authorization', `Bearer ${this.getRefreshToken()}`)
-    return this.http.post(config.api.REFRESH, {}, {headers}).subscribe( (data : any) =>{
-      const accessToken = data.accessToken
+    return this.http.post(config.api.REFRESH, {}, {headers}).pipe(map ((data : any) =>{
+      const accessToken = data?.accessToken
+      console.log("nor showing acc token");
+      
+      console.log(accessToken);
+      
       this.storageService.setStorage('accessToken',accessToken)
-    }
-    )
+      if(accessToken) {
+        return true
+      }
+      return false
+    }))
   }
 
   createUser(userModel: any) {

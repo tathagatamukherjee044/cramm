@@ -15,6 +15,9 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.auth.getData().subscribe()
+    setTimeout(() => {
+      
+      this.auth.getData().subscribe()
+    }, 1000);
   }
 }
