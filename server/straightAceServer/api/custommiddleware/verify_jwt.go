@@ -82,7 +82,8 @@ func ValidateRefresh(c *fiber.Ctx) error {
 	claims, err := serverutils.VerifyJWT(jwtToken)
 	if err != nil {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
-			"you": "Pussy",
+			"message": "invalidRefresh",
+			"you":     "Pussy",
 		})
 	}
 

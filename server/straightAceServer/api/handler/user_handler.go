@@ -15,9 +15,16 @@ func GetUser(c *fiber.Ctx) error {
 	// 	"message": "Congratulation on completing your lesson",
 	// })
 
+	authFailed := c.Locals("authFailed")
+	if authFailed == true {
+		return c.Status(401).JSON(fiber.Map{
+			"message": c.Locals("authFailReason"),
+		})
+	}
+
 	localClaims := c.Locals("user")
 	if localClaims == false {
-		return c.Status(200).JSON(fiber.Map{
+		return c.Status(401).JSON(fiber.Map{
 			"message": "No User found",
 		})
 	}
@@ -25,7 +32,7 @@ func GetUser(c *fiber.Ctx) error {
 	if err != nil {
 
 		fmt.Println(err)
-		return c.Status(400).JSON(fiber.Map{
+		return c.Status(401).JSON(fiber.Map{
 			"error": "cant decode accessToken",
 		})
 	}
