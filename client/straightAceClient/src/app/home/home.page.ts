@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
-import { IonHeader, IonToolbar, IonTitle, IonContent ,IonRouterOutlet ,IonFooter, IonApp, IonTabBar, IonTabs, IonIcon, IonTabButton, NavController, IonCol, IonRow } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent ,IonRouterOutlet ,IonFooter, IonApp, IonTabBar, IonTabs, IonIcon, IonTabButton, IonCol, IonRow } from '@ionic/angular/standalone';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -9,7 +8,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [RouterOutlet,RouterLink, IonicModule],
+  imports: [RouterOutlet,RouterLink,IonHeader, IonToolbar, IonTitle, IonContent ,IonRouterOutlet ,IonFooter, IonApp, IonTabBar, IonTabs, IonIcon, IonTabButton, IonCol, IonRow],
 })
 export class HomePage {
   constructor(

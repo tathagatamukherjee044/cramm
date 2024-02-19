@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, UrlTree } from '@angular/router';
-import {  NavController } from '@ionic/angular';
 import { IonButton,IonContent,IonIcon,IonInput,IonItem,IonList } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/_services/auth.service';
 
