@@ -1,26 +1,58 @@
 # Binaries for programs and plugins
 *.exe
-*.exe~
 *.dll
 *.so
 *.dylib
-
-# Test binary, built with "go test -c"
 *.test
-
-# Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-# Dependency directories (remove the comment below to include it)
-# vendor/
+# Output of `go build`, `go install`, or `go test`
+/bin/
+/obj/
+/build/
+*.exe
+*.out
+*.a
 
-# Go workspace file
-go.work
-tmp/
+# Dependency directories (for vendored dependencies)
+vendor/
 
-# IDE specific files
-.vscode
-.idea
+# Logs
+*.log
 
-# .env file
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*.bak
+
+# IDE and editor files
+.idea/
+.vscode/
+*.suo
+*.njsproj
+*.sln
+*.db
+*.class
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Coverage files
+*.coverprofile
+coverage.out
+
+# Config files (if sensitive or specific to environment)
 .env
+.env.*
+
+# Go module files (optional, if you want to exclude them)
+# Uncomment the following lines if you prefer not to commit them:
+go.sum
+# go.mod
+
+# Miscellaneous
+*.patch
+*.orig
+*.rej
