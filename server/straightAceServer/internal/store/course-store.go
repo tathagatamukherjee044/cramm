@@ -10,7 +10,12 @@ var College = model.Course{
 	Subjects: []string{"fax", "weed"},
 }
 
+var Test = model.Course{
+	Subjects: []string{"maths"},
+}
+
 var CoursesMap = map[string]model.Course{
 	"college": College,
 	"school":  School,
+	"test":    Test,
 }

@@ -25,11 +25,170 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-.justify-center {
-    display: flex;
-    justify-content: center;
-  }
+// Variables
+$primary-color: #17984d; // Duolingo's green
+$secondary-color: #FFFFFF; // White background
+$text-color: #3C3C3C; // Neutral text color
+$border-radius: 12px;
+$font-family: 'Arial, sans-serif';
 
-  .align-center {
-    text-align: center
+// Mixin for responsive design
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == tablet {
+    @media (max-width: 1024px) {
+      @content;
+    }
   }
+}
+
+// Base styles
+body {
+  margin: 0;
+  font-family: $font-family;
+  background-color: $secondary-color;
+  color: $text-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.main-container {
+  background-color: $secondary-color;
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  @include respond-to(mobile) {
+    width: 95%;
+    padding: 15px;
+  }
+}
+
+.question {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+
+  @include respond-to(mobile) {
+    font-size: 1.25rem;
+  }
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .option {
+    background-color: $primary-color;
+    color: $secondary-color;
+    padding: 15px;
+    border: none;
+    border-radius: $border-radius;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      background-color: darken($primary-color, 10%);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    @include respond-to(mobile) {
+      padding: 12px;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: lighten($primary-color, 30%);
+  border-radius: $border-radius;
+  overflow: hidden;
+  margin: 20px 0;
+
+  .progress {
+    width: 50%; // Example progress
+    height: 100%;
+    background-color: $primary-color;
+    transition: width 0.3s ease;
+  }
+}
+
+.button-container {
+  margin-top: 20px;
+
+  .continue-button {
+    background-color: $primary-color;
+    color: $secondary-color;
+    padding: 12px 20px;
+    border: none;
+    border-radius: $border-radius;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+
+    &:active {
+      background-color: darken($primary-color, 20%);
+    }
+
+    @include respond-to(mobile) {
+      padding: 10px 18px;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+
+.justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.align-center {
+  text-align: center
+}
+
+// ion-button.continue-button {
+//   --background: $primary-color;
+//   --background-hover: darken($primary-color, 10%);
+//   --background-activated: darken($primary-color, 20%);
+//   --color: $secondary-color;
+//   --border-radius: $border-radius;
+//   --padding-start: 12px;
+//   --padding-end: 12px;
+//   --padding-top: 10px;
+//   --padding-bottom: 10px;
+//   font-size: 1rem;
+//   font-weight: bold;
+//   text-transform: uppercase;
+//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+//   transition: transform 0.2s ease;
+
+//   &:hover {
+//     transform: scale(1.05);
+//   }
+
+//   &:active {
+//     transform: scale(0.95);
+//   }
+// }
+

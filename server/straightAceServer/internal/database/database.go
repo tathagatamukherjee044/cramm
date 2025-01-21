@@ -32,7 +32,7 @@ func New() {
 		log.Fatal(err)
 
 	}
-	db = client.Database("straightAceDev")
+	db = client.Database("cramm")
 
 }
 

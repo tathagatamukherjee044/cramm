@@ -44,6 +44,7 @@ func GetQuiz(c *fiber.Ctx) error {
 	fmt.Println(courseStructure.Subjects)
 	var result []model.Quiz
 	for i := 0; i < len(courseStructure.Subjects); i++ {
+		fmt.Println(courseStructure.Subjects[i])
 		quiz, err := service.GetQuiz(courseStructure.Subjects[i])
 		if err != nil {
 			log.Println(err)

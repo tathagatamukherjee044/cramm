@@ -41,18 +41,25 @@ func GetQuiz(subject string) ([]model.Quiz, error) {
 	filter := bson.D{{}}
 	var results []model.Quiz
 	cursor, err := coll.Find(context.TODO(), filter)
+	log.Println("here")
+	log.Println(cursor)
 	if err != nil {
+		log.Println("0error")
 		log.Println(err)
 		return results, err
 	}
 
 	if err = cursor.All(context.TODO(), &results); err != nil {
+		log.Println("1error")
 		log.Println(err)
 		return results, err
 	}
 
+	log.Println(results)
+
 	for _, result := range results {
 		res, _ := json.Marshal(result)
+		log.Println("no error")
 		fmt.Println(string(res))
 	}
 	// return the book
