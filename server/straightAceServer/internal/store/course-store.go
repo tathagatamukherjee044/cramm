@@ -11,7 +11,7 @@ var College = model.Course{
 }
 
 var Test = model.Course{
-	Subjects: []string{"maths"},
+	Subjects: []string{"neetQuestions"},
 }
 
 var CoursesMap = map[string]model.Course{

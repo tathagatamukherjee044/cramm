@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Navigation, Route, Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({

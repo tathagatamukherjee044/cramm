@@ -1,5 +1,5 @@
 <div class="main-container">
-  <h2 class="question">{{ question.prompt }}</h2>
+  <h2 class="question">{{ question().prompt }}</h2>
   <form>
     <div class="options">
       <div class="radio-group">
@@ -18,38 +18,4 @@
   </div>
 </div>
 
-<style>
-  .main-container {
-    padding: 1em;
-  }
 
-  .question {
-    font-size: 1.5em;
-    margin-bottom: 1em;
-  }
-
-  .options {
-    margin-bottom: 1em;
-  }
-
-  .radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-  }
-
-  .radio-item {
-    display: flex;
-    align-items: center;
-  }
-
-  .button-container {
-    text-align: center;
-  }
-
-  .continue-button {
-    padding: 0.5em 1em;
-    font-size: 1em;
-    cursor: pointer;
-  }
-</style>

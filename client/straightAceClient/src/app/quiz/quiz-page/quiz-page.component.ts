@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizItemComponent } from '../quiz-item/quiz-item.component';
 import { QuizService } from 'src/app/_services/quiz.service';
-import { IonContent, NavController ,IonCardContent , IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController  ,IonCard,  IonSkeletonText, IonIcon} from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { ModalService } from 'src/app/_services/modal.service';
 import { NavigationService } from 'src/app/_services/navigation.service';
@@ -11,7 +10,7 @@ import { AlertService } from 'src/app/_services/alert.service';
   selector: 'app-quiz-page',
   templateUrl: './quiz-page.component.html',
   standalone:true,
-  imports : [IonContent,QuizItemComponent, IonCol,IonButton,IonRadioGroup,IonItem,IonRadio, IonContent, IonCardContent, IonSkeletonText, IonIcon],
+  imports : [QuizItemComponent],
   styleUrls: ['./quiz-page.component.scss'],
 })
 export class QuizPageComponent  implements OnInit {
@@ -51,7 +50,7 @@ export class QuizPageComponent  implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.quizService.getQuiz('school','all','seed').subscribe((data) =>{
+    this.quizService.getQuiz('test','all','seed').subscribe((data) =>{
       console.log(data);
       this.quizList=data
       console.log(this.quizList);
@@ -68,7 +67,7 @@ export class QuizPageComponent  implements OnInit {
   }
 
   goBack() {
-    this.navigationService.goBack()
+    this.router.navigate(["/learn"])
   }
 
   async onQuestionComplete(success : boolean){
@@ -90,13 +89,13 @@ export class QuizPageComponent  implements OnInit {
         this.mistakeList=[]
         this.currentIndex=0
         this.currentQuiz = this.quizList[this.currentIndex]
-        alert(`lets go over your mistakes again`)
+        console.log(`lets go over your mistakes again`)
 
         return
       }
       this.quizComplete()
 
-      // alert(`all question scomplete ${this.score}`)
+      // console.log(`all question scomplete ${this.score}`)
       // this.dialogService.showInfoDialog().afterClosed().subscribe( data =>{
       //   console.log("hello World");
 
@@ -114,9 +113,7 @@ export class QuizPageComponent  implements OnInit {
   }
 
   async showQuizCompleteModal() {
-    const modal = await this.modalService.showResultsModal()
-    const {data,role} = await  modal.onWillDismiss()
-    console.log(data,role);
+    this.modalService.showResultsModal()
     
   }
 

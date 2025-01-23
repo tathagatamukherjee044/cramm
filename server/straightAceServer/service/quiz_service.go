@@ -11,13 +11,14 @@ import (
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func GetAllQuiz() ([]model.Quiz, error) {
 
 	coll := database.GetDBCollection("quiz")
 	filter := bson.D{{}}
-	cursor, err := coll.Find(context.TODO(), filter)
+	cursor, err := coll.Find(context.TODO(), filter, options.Find().SetLimit(10))
 	if err != nil {
 		panic(err)
 	}
@@ -40,7 +41,7 @@ func GetQuiz(subject string) ([]model.Quiz, error) {
 	fmt.Println(coll)
 	filter := bson.D{{}}
 	var results []model.Quiz
-	cursor, err := coll.Find(context.TODO(), filter)
+	cursor, err := coll.Find(context.TODO(), filter, options.Find().SetLimit(10))
 	log.Println("here")
 	log.Println(cursor)
 	if err != nil {

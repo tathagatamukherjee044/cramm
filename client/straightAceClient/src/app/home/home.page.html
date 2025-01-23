@@ -1,58 +1,21 @@
-  jytuyf
-  <ion-content >
-    <!-- <h1>Heading 1</h1>
-    <h2>Heading 2</h2>
-    <h3>Heading 3</h3>
-    <h4>Heading 4</h4>
-    <h5>Heading 5</h5>
-    <h6>Heading 6</h6>
-  
-    @for (item of array; track $index) {
-      <div>
-        item
-      </div>
-    } -->
-    HEllo world bove router
-    <!-- <router-outlet></router-outlet> -->
-    
-    ghjjghfj
-    yiyiuy
-    <ion-router-outlet></ion-router-outlet>
-  </ion-content>
-  <ion-footer>
-    <ion-toolbar >
-        <ion-row>
-          @for (item of menuItems; track $index) {
-            <ion-col class="align-center">
-              <ion-icon [name]="item.icon" (click)="route(item.link)"></ion-icon>
-            </ion-col>
-          }
-        </ion-row>
-      
-      
-       <!-- <ion-icon name="person-circle-outline" (click)="show()"> </ion-icon> profile
-      <a [routerLink]="['/learn']" routerLinkActive="router-link-active" > learn</a> -->
-    </ion-toolbar>
-  </ion-footer>
-
-  <!--Tabs Below-->
-  <!-- <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="learn">
-        Listen Now
-      </ion-tab-button>
-      <ion-tab-button tab="learn/lm">
-        Radio
-      </ion-tab-button>
-      <ion-tab-button tab="">
-        Library
-      </ion-tab-button>
-      <ion-tab-button tab="profile">
-        PROFILE
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs> -->
 
 
+<main class="content fullscreen">
+  Hello World Hoem page
+    <router-outlet></router-outlet>
+</main>
+
+<footer class="footer">
+  <div class="toolbar">
+    <div class="row">
+      @for (item of menuItems; track $index) {
+        <div class="col align-center">
+          <a (click)="route(item.link)">{{item.display}}</a>
+          <!-- <ion-icon [name]="item.icon" (click)="route(item.link)" style="color: rebeccapurple;"></ion-icon> -->
+        </div>
+  }
+    </div>
+  </div>
+</footer>
 
 

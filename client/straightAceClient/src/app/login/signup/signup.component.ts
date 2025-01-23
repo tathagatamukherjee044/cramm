@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, UrlTree } from '@angular/router';
-import { NavController } from '@ionic/angular';
-import { IonButton } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
@@ -10,7 +8,7 @@ import { AuthService } from 'src/app/_services/auth.service';
   templateUrl: './signup.component.html',
   standalone:true,
   styleUrls: ['./signup.component.css'],
-  imports: [FormsModule,IonButton]
+  imports: [FormsModule,]
 })
 export class SignupComponent {
 
@@ -28,7 +26,7 @@ export class SignupComponent {
       // if(res.success == true){
       //   this.newUser.navigateRoot("/quiz")
       // }
-      // alert("wrong password")
+      // console.log("wrong password")
 
     });
     

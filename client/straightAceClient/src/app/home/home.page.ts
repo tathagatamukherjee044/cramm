@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { IonHeader, IonToolbar, IonTitle, IonContent ,IonRouterOutlet ,IonFooter, IonApp, IonTabBar, IonTabs, IonIcon, IonTabButton, IonCol, IonRow } from '@ionic/angular/standalone';
+import { Router, RouterOutlet} from '@angular/router';
+// import {IonIcon} from 'ionicons'
+
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,7 +9,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [RouterOutlet,RouterLink,IonHeader, IonToolbar, IonTitle, IonContent ,IonRouterOutlet ,IonFooter, IonApp, IonTabBar, IonTabs, IonIcon, IonTabButton, IonCol, IonRow],
+  imports: [RouterOutlet],
 })
 export class HomePage {
   constructor(
@@ -19,8 +20,8 @@ export class HomePage {
 
   menuItems = [
     {
-      link : '/learn',
-      display : 'Learn',
+      link : '/quiz',
+      display : 'Quiz',
       icon : "book-outline"
     },
     {
@@ -40,6 +41,8 @@ export class HomePage {
   }
 
   route(route : string) {
+    console.log(route);
+    
     this.router.navigate([route])
   }
 }

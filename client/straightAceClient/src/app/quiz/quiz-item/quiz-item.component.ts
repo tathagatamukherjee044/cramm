@@ -1,14 +1,12 @@
 import { Component, EventEmitter, Input, NgModule, OnInit, Output, SimpleChanges, computed, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonButton, IonCol, IonItem, IonRadio, IonRadioGroup, ToastController , IonContent ,IonCard, IonCardContent ,IonSkeletonText } from '@ionic/angular/standalone';
-import { PopupService } from 'src/app/_services/toast.service';
 
 @Component({
   selector: 'app-quiz-item',
   templateUrl: './quiz-item.component.html',
   standalone: true,
   styleUrls: ['./quiz-item.component.scss'],
-  imports:[IonCol,IonButton,FormsModule,IonRadioGroup,IonItem,IonRadio, IonContent, IonCardContent, IonSkeletonText]
+  imports:[FormsModule]
 })
 export class QuizItemComponent  implements OnInit {
 
@@ -29,8 +27,6 @@ export class QuizItemComponent  implements OnInit {
   answer : any = "";
 
   constructor(
-    private toastController : ToastController,
-    private popupService : PopupService
   ) { }
 
   ngOnInit() {
@@ -57,14 +53,15 @@ export class QuizItemComponent  implements OnInit {
     if(this.answer == this.question().answer){
       console.log("correct");
       this.questionComplete.emit(true);
-      this.popupService.presentToast('Correct')
-      //alert("Yaay")
+      console.log("Yaay")
+      //console.log("Yaay")
     } else {
       console.log("wrong");
-      //alert("Moye Moye")
+      //console.log("Moye Moye")
       this.questionComplete.emit(false);
-      this.popupService.presentToast('Wrong')
+      console.log("Moye Moye")
     }
+    this.answer = ''
     
   }
 

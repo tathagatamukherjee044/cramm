@@ -2,16 +2,12 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, map, throwError } from 'rxjs';
 import { AuthService } from '../../_services/auth.service';
-import { PopupService } from '../../_services/toast.service';
-import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/_services/alert.service';
 
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
-  const popupService = inject(PopupService)
   const alertService = inject(AlertService)
-  const nav = inject(NavController)
   const router = inject(Router)
   const authService = inject(AuthService)
   return next(req).pipe(
@@ -77,8 +73,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       
 
       // You can handle or log the error here as needed
-      popupService.presentToast(errorMessage)
-
+      console.log(errorMessage);
       
       // Pass the error along to be handled by the calling code
       return throwError(() => error);

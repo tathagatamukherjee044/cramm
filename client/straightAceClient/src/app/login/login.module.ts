@@ -5,7 +5,6 @@ import { SignupComponent } from './signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { OauthComponent } from './oauth/oauth.component';
-import { IonApp, IonCol, IonContent, IonFooter, IonHeader, IonIcon, IonRouterOutlet, IonRow, IonTabBar, IonTabButton, IonTabs, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 
 
 const routes : Routes = [
