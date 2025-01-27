@@ -1,21 +1,31 @@
 
 
 <main class="content fullscreen">
-  Hello World Hoem page
+  <header class="header">
+		<h1 class="header-logo">earmark.</h1>
+		<div class="header-content">
+			<button class="header-avatar">
+				<span class="header-avatar-name">Ryan Johnson</span>
+			</button>
+		</div>
+	</header>
     <router-outlet></router-outlet>
+
+  <nav class="nav">
+      <ul class="tabs">
+        @for (item of menuItems; track $index) {
+          <li class="tab">
+            <button class="tab-btn tab-btn--active" (click)="route(item.link)">
+              <i class="ph-lightbulb-bold"></i>
+              <span class="tab-btn-title" >{{item.display}}</span>
+            </button>
+          </li>
+            <!-- <ion-icon [name]="item.icon" (click)="route(item.link)" style="color: rebeccapurple;"></ion-icon> -->
+        }
+      </ul>
+    </nav>
 </main>
 
-<footer class="footer">
-  <div class="toolbar">
-    <div class="row">
-      @for (item of menuItems; track $index) {
-        <div class="col align-center">
-          <a (click)="route(item.link)">{{item.display}}</a>
-          <!-- <ion-icon [name]="item.icon" (click)="route(item.link)" style="color: rebeccapurple;"></ion-icon> -->
-        </div>
-  }
-    </div>
-  </div>
-</footer>
+
 
 

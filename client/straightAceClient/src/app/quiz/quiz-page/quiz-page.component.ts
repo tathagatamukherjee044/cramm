@@ -33,13 +33,15 @@ export class QuizPageComponent  implements OnInit {
     // }
   ]
 
-  mistakeList : any = []
+  mistakeList : any = [];
 
   currentQuiz : any = {}
   currentIndex: number = 0;
   evaluated: boolean = false;
-  score: Number = 0;
+  score: number = 0;
+  fullScore: number = 0;
   loading = true;
+  heartCount = 3
 
   constructor(
     private quizService : QuizService,
@@ -53,6 +55,7 @@ export class QuizPageComponent  implements OnInit {
     this.quizService.getQuiz('test','all','seed').subscribe((data) =>{
       console.log(data);
       this.quizList=data
+      this.fullScore = this.quizList.length;
       console.log(this.quizList);
       this.currentIndex = 0
       this.currentQuiz = this.quizList[this.currentIndex]
@@ -73,39 +76,41 @@ export class QuizPageComponent  implements OnInit {
   async onQuestionComplete(success : boolean){
     console.log(success);
     if (!success) {
-      this.mistakeList.push(JSON.parse(JSON.stringify(this.currentQuiz)))
+      this.heartCount--;
+      this.mistakeList.push(JSON.parse(JSON.stringify(this.currentQuiz)));
     } else {
-    this.currentQuiz['correct'] = true
+      this.score++;
+      this.currentQuiz['correct'] = true
 
     }
     if (this.currentIndex == this.quizList.length-1) {
-      if (!this.evaluated) {
-        this.score = this.evaluateResults(this.quizList)
-        this.evaluated = true
-      }
 
-      if(this.mistakeList.length>0){
+      if(this.score == this.fullScore) {
+        this.showQuizCompleteModal();
+        this.quizComplete();
+      } else if(this.mistakeList.length>0){
         this.quizList = this.mistakeList;
-        this.mistakeList=[]
-        this.currentIndex=0
-        this.currentQuiz = this.quizList[this.currentIndex]
-        console.log(`lets go over your mistakes again`)
+        this.mistakeList=[];
+        this.currentIndex=0;
+        this.currentQuiz = this.quizList[this.currentIndex];
+        console.log(`lets go over your mistakes again`);
 
-        return
+        return;
+      } else {
+        alert("Unencountered bug quizpagecomponent.ts ")
       }
-      this.quizComplete()
 
       // console.log(`all question scomplete ${this.score}`)
       // this.dialogService.showInfoDialog().afterClosed().subscribe( data =>{
       //   console.log("hello World");
 
       // })
-      this.showQuizCompleteModal() 
+      
       
       return
     }
-    this.currentIndex++
-    this.currentQuiz = this.quizList[this.currentIndex]
+    this.currentIndex++;
+    this.currentQuiz = this.quizList[this.currentIndex];
     console.log("current quiz");
     console.log(this.currentQuiz);
     
@@ -113,31 +118,35 @@ export class QuizPageComponent  implements OnInit {
   }
 
   async showQuizCompleteModal() {
-    this.modalService.showResultsModal()
+    this.modalService.showResultsModal();
     
   }
 
   quizComplete() {
     this.quizService.quizComplete().subscribe((data) =>{
       console.log(data);
-      this.router.navigate(["/"])
+      this.router.navigate(["/"]);
     })
   }
 
   evaluateResults( quizList : any[] = []){
-    var score = 0
+    var score = 0;
     quizList.forEach(quiz => {
       if(quiz.correct){
-        score++
+        score++;
       }
     });
     console.log(score);
     
-    return (score/quizList.length) * 100
+    return (score/quizList.length) * 100;
   }
 
   showLoginAlert() {
-    this.alertService.presentLoginAlert()
+    this.alertService.presentLoginAlert();
+  }
+
+  reloadPage(){
+    window.location.reload()
   }
 
 }

@@ -1,20 +1,18 @@
 <div class="main-container">
   <h2 class="question">{{ question().prompt }}</h2>
   <form>
-    <div class="options">
-      <div class="radio-group">
-        @for (choice of question()?.choices; track $index) {
+      <div class="radio-highlight">
+        @for (choice of question()?.choices; track index; let index = $index) {
 
-          <div class="radio-item">
-            <input type="radio" [value]="choice" [(ngModel)]="answer" name="answers"> {{ choice }}
-          </div>
+            <input type="radio" [value]="choice" [(ngModel)]="answer" [id]="index" name="answers"/> 
+            <label [for]="index">{{ choice }}</label>
+
         }
         
       </div>
-    </div>
   </form>
-  <div class="button-container">
-    <button class="continue-button" (click)="checkAnswer()">Check</button>
+  <div >
+    <button   class="tab-btn" (click)="checkAnswer()">Check</button>
   </div>
 </div>
 

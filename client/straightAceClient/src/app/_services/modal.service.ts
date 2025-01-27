@@ -8,6 +8,7 @@ export class ModalService {
   constructor() { }
 
   async showResultsModal() {
-    console.log('showResultsModal');
+    alert('showResultsModal');
+    // console.log('showResultsModal');
   }
 }

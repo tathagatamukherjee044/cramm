@@ -1,29 +1,29 @@
-<div class="content">
+<div >
   <!-- Iterate over the quiz items -->
     <!-- Back button -->
-    <button style="margin-top: 1em;" (click)="goBack()">&#8592; Back</button>
+    <button style="margin-top: 1em;" (click)="goBack()">&#8592;</button>
 
     <!-- Show login alert button -->
-    <button (click)="showLoginAlert()">CLICK</button>
+    <button (click)="showLoginAlert()" class="btn-primary">CLICK</button>
+
+    <button (click)="reloadPage()" class="btn-primary">Reload</button>
+
+    <i class="ph ph-bank"></i>
+
+
+    <i class="ph-fill ph-heart" style="color: hotpink"></i>
+    <div class="progress-bar">
+      <div class="progress" [style.width.%]="(heartCount / 3) * 100"></div>
+    </div>
+    
+
+    <div class="progress-bar">
+        <div class="progress" [style.width.%]="(score / fullScore) * 100"></div>
+    </div>
 
     <!-- Loading state -->
     @if (loading) { 
-      <div class="card-content">
-        <h1>
-          <div class="skeleton-text" style="width: 80%;"></div>
-        </h1>
-        <div class="radio-group">
-          <div class="radio-item">
-            <div class="skeleton-text" style="width: 80%;"></div>
-          </div>
-          <div class="radio-item">
-            <div class="skeleton-text" style="width: 80%;"></div>
-          </div>
-        </div>
-        <button>
-          <div class="skeleton-text" style="width: 80%;">Check</div>
-        </button>
-      </div>
+      loading...
     } @else {
       <app-quiz-item [question]="currentQuiz" (questionComplete)="onQuestionComplete($event)"></app-quiz-item>
 
