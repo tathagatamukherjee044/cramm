@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"math/rand"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -56,13 +57,15 @@ func GetQuiz(subject string) ([]model.Quiz, error) {
 		return results, err
 	}
 
-	log.Println(results)
+	// log.Println(results)
 
 	for _, result := range results {
 		res, _ := json.Marshal(result)
 		log.Println("no error")
 		fmt.Println(string(res))
 	}
+
+	ShuffleChoices(results)
 	// return the book
 	return results, nil
 }
@@ -72,7 +75,7 @@ func CreateQuiz(quiz *model.Quiz) (interface{}, error) {
 	coll := database.GetDBCollection("quiz")
 	result, err := coll.InsertOne(context.TODO(), quiz)
 	if err != nil {
-		return nil, errors.New("Cannot Insert Quiz")
+		return nil, errors.New("cannot insert quiz")
 	}
 
 	log.Println(result)
@@ -95,5 +98,20 @@ func CalculateStreak(lastCompletedTime *time.Time, currentStreak *int) {
 			*currentStreak = 1
 
 		}
+	}
+}
+
+func ShuffleChoices(questions []model.Quiz) {
+	r := rand.New(rand.NewSource(time.Now().UnixNano())) // Create a local random generator
+
+	for i := range questions {
+		choices := questions[i].Choices
+		for j := range choices {
+			// Generate a random index
+			k := r.Intn(len(choices))
+			// Swap the elements at j and k
+			choices[j], choices[k] = choices[k], choices[j]
+		}
+		questions[i].Choices = choices
 	}
 }
