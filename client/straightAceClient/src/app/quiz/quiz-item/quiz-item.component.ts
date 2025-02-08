@@ -1,12 +1,14 @@
 import { Component, EventEmitter, Input, NgModule, OnInit, Output, SimpleChanges, computed, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import katex from 'katex';
+import { LatexDirective } from 'src/app/_shared/_directive/latex.directive';
 
 @Component({
   selector: 'app-quiz-item',
   templateUrl: './quiz-item.component.html',
   standalone: true,
   styleUrls: ['./quiz-item.component.scss'],
-  imports:[FormsModule]
+  imports:[FormsModule,LatexDirective]
 })
 export class QuizItemComponent  implements OnInit {
 

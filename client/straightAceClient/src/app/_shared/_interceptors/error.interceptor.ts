@@ -1,21 +1,20 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { catchError, map, throwError } from 'rxjs';
+import { catchError, map, switchMap, throwError } from 'rxjs';
 import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
 import { DialogService } from 'src/app/dialog/dialog.service';
 
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
-  const dialogService = inject(DialogService)
-  const router = inject(Router)
-  const authService = inject(AuthService)
+  const dialogService = inject(DialogService);
+  const router = inject(Router);
+  const authService = inject(AuthService);
+
   return next(req).pipe(
     catchError((error) => {
       let errorMessage = 'An unknown error occurred';
-      // console.log("error cought");
-      // console.log(error);
-      
+
       if (error.error instanceof ErrorEvent) {
         // Client-side error
         errorMessage = `Error: ${error.error.message}`;
@@ -23,60 +22,50 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         // Server-side error
         errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.message || error.message}`;
 
-        // has to be improves we must reload automayically but not get stuck in infinite apu calls and relaods
-        if(error.status === 401){
+        // Handle Unauthorized Error (401)
+        if (error.status === 401) {
           console.log(error.error.message);
 
-
-          // it works apparantly
-          if(error.error.message !== "invalidRefresh"){
-            authService.refreshToken().subscribe( ref => {
-              if (ref) {
-                // alertService.presentReloadAlert
-                setTimeout(() => {
-                  // we make the failed request again, 
+          if (error.error.message !== "invalidRefresh") {
+            // Try to refresh the token
+            return authService.refreshToken().pipe(
+              switchMap((ref) => {
+                if (ref) {
+                  // Clone and retry the request with the new token
                   const reqClone = req.clone({
-                    headers : req.headers.set('Authorization', `Bearer ${authService.getAccessToken()}`)
+                    headers: req.headers.set('Authorization', `Bearer ${authService.getAccessToken()}`)
                   });
                   return next(reqClone);
-
-                // window.location.reload()
-                }, 1000);
-              } else {
-                dialogService.showMinimalInfo("Please Login to Continue")
-
-              }
-            })
+                } else {
+                  // No valid refresh token, ask user to log in
+                  dialogService.showMinimalInfo("Please Login to Continue");
+                  // router.navigate(['/auth/login']);
+                  return throwError(() => error);
+                }
+              }),
+              catchError(() => {
+                // Refresh failed, force login
+                dialogService.showMinimalInfo("Session expired. Please login again.");
+                // router.navigate(['/auth/login']);
+                return throwError(() => error);
+              })
+            );
           } else {
-            dialogService.showMinimalInfo("Please Login to Continue")
+            // Refresh token is invalid, force login
+            dialogService.showMinimalInfo("Session expired. Please login again.");
+            // router.navigate(['/auth/login']);
+            return throwError(() => error);
           }
         }
-
-        // if (error.status === 401) {
-        //     return authService.refreshToken().pipe(
-        //       map((newAccessToken) => {
-        //         req = req.clone({
-        //           setHeaders: { Authorization: `Bearer ${newAccessToken}` },
-        //         });
-        //         return next(req);
-        //       }),
-        //       catchError(() => {
-        //         // Refresh failed or no refresh token, redirect to login
-        //         alertService.presentLoginAlert()
-        //         return throwError(() => error);
-        //       })
-        //     );
-          
-        // }
       }
 
-      
+      // Log and display error
+      console.log("Showing error message:", errorMessage);
+      dialogService.showMinimalInfo(errorMessage);
 
-      // You can handle or log the error here as needed
-      dialogService.showMinimalInfo(errorMessage);      
-      // Pass the error along to be handled by the calling code
+      // Pass the error along
       return throwError(() => error);
     })
   );
-
 };
+

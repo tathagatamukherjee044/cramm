@@ -5,8 +5,11 @@
         @for (choice of question()?.choices; track index; let index = $index) {
 
             <input type="radio" [value]="choice.index" [(ngModel)]="answer" [id]="index" name="answers"/> 
-            <label [for]="index">{{ choice.text }}</label>
-
+            @if (choice.type == 'latex') {
+                <label  [for]="index" [latexString]="choice.text"></label>
+            } @else {
+                <label [for]="index">{{ choice.text }}</label>
+            }
         }
         
       </div>

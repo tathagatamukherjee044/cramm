@@ -134,8 +134,8 @@ export class QuizPageComponent  implements OnInit {
   quizComplete() {
     this.quizService.quizComplete().subscribe((data) =>{
       console.log(data);
-      this.router.navigate(["/"]);
     })
+    this.router.navigate(["/"]);
   }
 
   evaluateResults( quizList : any[] = []){
