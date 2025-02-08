@@ -1,12 +1,9 @@
-import { CapacitorConfig } from '@capacitor/cli';
+import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'straightAceClient',
-  webDir: 'www/browser',
-  server: {
-    androidScheme: 'https'
-  }
+  appId: 'com.cramm.app',
+  appName: 'app',
+  webDir: 'www'
 };
 
 export default config;
