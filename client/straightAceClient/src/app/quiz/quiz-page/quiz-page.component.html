@@ -6,19 +6,22 @@
     <!-- Show login alert button -->
     <button (click)="showLoginAlert()" class="btn-primary">CLICK</button>
 
+    <button (click)="showDialog()" class="btn-primary">Show Dialog</button>
+
     <button (click)="reloadPage()" class="btn-primary">Reload</button>
 
     <i class="ph ph-bank"></i>
 
 
     <i class="ph-fill ph-heart" style="color: hotpink"></i>
+
     <div class="progress-bar">
-      <div class="progress" [style.width.%]="(heartCount / 3) * 100"></div>
+      <div class="progress danger" [style.width.%]="(heartCount / 3) * 100"></div>
     </div>
     
 
     <div class="progress-bar">
-        <div class="progress" [style.width.%]="(score / fullScore) * 100"></div>
+        <div class="progress success" [style.width.%]="(score / fullScore) * 100"></div>
     </div>
 
     <!-- Loading state -->

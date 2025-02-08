@@ -3,8 +3,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-info-dialog',
-  standalone: true,
-  imports: [],
   templateUrl: './info-dialog.component.html',
   styleUrl: './info-dialog.component.css'
 })

@@ -16,8 +16,9 @@
 	--c-bg-primary: #FCFCFC;
 	--c-bg-secondary: #F7F6FC;
 	--c-bg-search: #F0F4F5;
-  --bs-progress-bar-bg: #f8f9fae5;
-  --bs-progress-bg: #1faf5b;
+	--c-color-success: #28a745;
+	--c-color-danger: #dc3545;
+	--c-color-warning: #ffc107;
 }
 
 body {
@@ -441,6 +442,19 @@ img {
 	display: flex;
 	justify-content: center;
 	padding-top: 1.25rem;
+}
+
+//styles
+.success {
+	background-color: var(--c-color-success); /* Bootstrap success green */
+}
+  
+.danger {
+background-color:  var(--c-color-danger);; /* Bootstrap danger red */
+}
+  
+.warning {
+background-color: var(--c-color-warning); /* Bootstrap warning yellow */
 }
 
 

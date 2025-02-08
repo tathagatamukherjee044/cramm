@@ -5,7 +5,7 @@ import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [InfoDialogComponent],
   imports: [
     CommonModule
   ]

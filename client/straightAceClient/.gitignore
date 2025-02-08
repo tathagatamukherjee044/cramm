@@ -21,7 +21,7 @@ src/environments/*.ts
 # Generated files by Angular CLI
 .angular
 .angular-cache
-.angular.json
+# .angular.json
 package-lock.json
 yarn.lock
 

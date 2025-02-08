@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ModalService } from 'src/app/_services/modal.service';
 import { NavigationService } from 'src/app/_services/navigation.service';
 import { AlertService } from 'src/app/_services/alert.service';
+import { DialogService } from 'src/app/dialog/dialog.service';
 
 @Component({
   selector: 'app-quiz-page',
@@ -47,6 +48,7 @@ export class QuizPageComponent  implements OnInit {
     private quizService : QuizService,
     private router : Router,
     private modalService : ModalService,
+    private dialogService : DialogService,
     private navigationService : NavigationService,
     private alertService : AlertService
   ) { }
@@ -67,6 +69,13 @@ export class QuizPageComponent  implements OnInit {
   showQuiz(){
     console.log(this.quizList);
     
+  }
+
+  showDialog(){
+    this.dialogService.showInfoDialog("Hello","World").afterClosed().subscribe( data =>{
+      console.log("hello World");
+
+    })
   }
 
   goBack() {
@@ -142,7 +151,7 @@ export class QuizPageComponent  implements OnInit {
   }
 
   showLoginAlert() {
-    this.alertService.presentLoginAlert();
+    this.dialogService.showMinimalInfo("Please Login to Continue");
   }
 
   reloadPage(){

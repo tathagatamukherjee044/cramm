@@ -3,11 +3,11 @@ import { inject } from '@angular/core';
 import { catchError, map, throwError } from 'rxjs';
 import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
-import { AlertService } from 'src/app/_services/alert.service';
+import { DialogService } from 'src/app/dialog/dialog.service';
 
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
-  const alertService = inject(AlertService)
+  const dialogService = inject(DialogService)
   const router = inject(Router)
   const authService = inject(AuthService)
   return next(req).pipe(
@@ -43,12 +43,12 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
                 // window.location.reload()
                 }, 1000);
               } else {
-                alertService.presentLoginAlert()
+                dialogService.showMinimalInfo("Please Login to Continue")
 
               }
             })
           } else {
-            alertService.presentLoginAlert()
+            dialogService.showMinimalInfo("Please Login to Continue")
           }
         }
 
@@ -73,8 +73,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       
 
       // You can handle or log the error here as needed
-      console.log(errorMessage);
-      
+      dialogService.showMinimalInfo(errorMessage);      
       // Pass the error along to be handled by the calling code
       return throwError(() => error);
     })
