@@ -95,7 +95,7 @@ func CreateQuiz(c *fiber.Ctx) error {
 func QuizComplete(c *fiber.Ctx) error {
 	localClaims := c.Locals("user")
 	if localClaims == false {
-		return c.Status(200).JSON(fiber.Map{
+		return c.Status(400).JSON(fiber.Map{
 			"message": "We could not save your progress because you are not logged in",
 		})
 	}

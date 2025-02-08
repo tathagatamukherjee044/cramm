@@ -37,8 +37,14 @@ type User struct {
 
 type Quiz struct {
 	Prompt  string   `json:"prompt"`
-	Choices []string `json:"choices"`
-	Answer  string   `json:"answer,omitempty"`
+	Choices []Choice `json:"choices"`
+	Answer  int      `json:"answer,omitempty"`
+}
+
+type Choice struct {
+	Text  string `json:"text"`
+	Type  string `json:"type,omitempty"`
+	Index int    `json:"index"`
 }
 
 type Course struct {
