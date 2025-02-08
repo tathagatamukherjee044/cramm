@@ -21,7 +21,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         errorMessage = `Error: ${error.error.message}`;
       } else {
         // Server-side error
-        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.message || error.message}`;
 
         // has to be improves we must reload automayically but not get stuck in infinite apu calls and relaods
         if(error.status === 401){

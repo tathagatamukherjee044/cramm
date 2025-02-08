@@ -13,7 +13,7 @@ export class MinimalInfoDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    setTimeout(() => this.dialogRef.close(), 3000); // Auto-close after 3 seconds
+    setTimeout(() => this.dialogRef.close(), 1000); // Auto-close after 3 seconds
   }
 
   close(): void {

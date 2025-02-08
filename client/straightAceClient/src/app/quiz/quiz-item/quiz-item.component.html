@@ -4,8 +4,8 @@
       <div class="radio-highlight">
         @for (choice of question()?.choices; track index; let index = $index) {
 
-            <input type="radio" [value]="choice" [(ngModel)]="answer" [id]="index" name="answers"/> 
-            <label [for]="index">{{ choice }}</label>
+            <input type="radio" [value]="choice.index" [(ngModel)]="answer" [id]="index" name="answers"/> 
+            <label [for]="index">{{ choice.text }}</label>
 
         }
         
