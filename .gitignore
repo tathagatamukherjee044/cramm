@@ -1,3 +1,6 @@
 documents/
 .DS_Store
 resources/
+
+support/node_modules/
+support/package-lock.json

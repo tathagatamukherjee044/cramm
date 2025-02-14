@@ -1,0 +1,71 @@
+[
+	{
+		"prompt": "A logic circuit provides the output Y as per the following truth table :The expression for the output Y is :",
+		"choices": [
+			{
+					"text" : "A.B+A",
+					"index" : 1
+			},
+			{
+					"text" : "A.B+A",
+					"index" : 2
+			},
+			{
+					"text" : "B",
+					"index" : 3
+			},
+			{
+					"text" : "B",
+					"index" : 4
+			}
+		],
+		"asnwer" : 3,
+		"images": []
+	},
+	{
+		"prompt": "A wheel of a bullock cart is rolling on a level road as shown in the figure below. If its linear speed is  in the direction shown, which one of the following options is correct (P and Q are any highest and lowest points on the wheel, respectively)?",
+		"choices": [
+			{
+					"text" : "Point P moves slower than point Q",
+					"index" : 1
+			},
+			{
+					"text" : "Point P moves faster than point Q",
+					"index" : 2
+			},
+			{
+					"text" : "Both the points P and Q move with equal speed",
+					"index" : 3
+			},
+			{
+					"text" : "Point P has zero speed",
+					"index" : 4
+			}
+		],
+		"asnwer" : 2,
+		"images": ["url/physicsNEET/2"]
+	},
+	{
+		"prompt": "In the following circuit, the equivalent capacitance between terminal A and terminal B is :",
+		"choices": [
+			{
+					"text" : "A.B+A",
+					"index" : 1
+			},
+			{
+					"text" : "A.B+A",
+					"index" : 2
+			},
+			{
+					"text" : "B",
+					"index" : 3
+			},
+			{
+					"text" : "B",
+					"index" : 4
+			}
+		],
+		"asnwer" : 3,
+		"images": []
+	}
+]
