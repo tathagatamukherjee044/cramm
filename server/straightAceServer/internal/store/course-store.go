@@ -14,8 +14,13 @@ var Test = model.Course{
 	Subjects: []string{"sample"},
 }
 
+var NEET = model.Course{
+	Subjects: []string{"neetPhysics", "neetChemistry", "neetBiology"},
+}
+
 var CoursesMap = map[string]model.Course{
 	"college": College,
 	"school":  School,
 	"test":    Test,
+	"neet":    NEET,
 }

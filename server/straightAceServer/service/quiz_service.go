@@ -31,28 +31,25 @@ func GetAllQuiz() ([]model.Quiz, error) {
 	for _, result := range results {
 		res, _ := json.Marshal(result)
 		fmt.Println(string(res))
+		fmt.Println(string(res))
 	}
 	// return the book
 	return results, nil
 }
 
-func GetQuiz(subject string) ([]model.Quiz, error) {
+func GetQuiz(subject string, limit int) ([]model.Quiz, error) {
 
 	coll := database.GetDBCollection(subject)
 	fmt.Println(coll)
 	filter := bson.D{{}}
 	var results []model.Quiz
-	cursor, err := coll.Find(context.TODO(), filter, options.Find().SetLimit(10))
-	log.Println("here")
-	log.Println(cursor)
+	cursor, err := coll.Find(context.TODO(), filter, options.Find().SetLimit(int64(limit)))
 	if err != nil {
-		log.Println("0error")
 		log.Println(err)
 		return results, err
 	}
 
 	if err = cursor.All(context.TODO(), &results); err != nil {
-		log.Println("1error")
 		log.Println(err)
 		return results, err
 	}
@@ -60,9 +57,7 @@ func GetQuiz(subject string) ([]model.Quiz, error) {
 	// log.Println(results)
 
 	for _, result := range results {
-		res, _ := json.Marshal(result)
-		log.Println("no error")
-		fmt.Println(string(res))
+		json.Marshal(result)
 	}
 
 	ShuffleChoices(results)
