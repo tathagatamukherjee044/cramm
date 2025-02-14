@@ -24,4 +24,10 @@ export class QuizService {
         return res;
       }))
   }
+
+  updateTime(){
+    return this.http.post(config.api.UPDATE_TIME_EXP,{}).pipe(map(res =>{
+        return res;
+      }))
+  }
 }

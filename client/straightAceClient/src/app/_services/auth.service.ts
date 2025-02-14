@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, retry } from 'rxjs';
+import { BehaviorSubject, Observable, map, retry } from 'rxjs';
 import { config } from '../_shared/_store/config';
 import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { StorageService } from './storage.service';
 import { HttpUtilityService } from './http-utility.service';
+import { User } from '../_shared/_interface/intreface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,12 @@ export class AuthService {
     private storageService : StorageService,
     private http : HttpUtilityService
     ) { }
+
+  userSubject = new BehaviorSubject<User>({
+      _id: "",
+      name: "",
+      email: ""
+  });
 
   authenticateUser(userModel: any): Observable<any> {
     return this.http.post(config.api.LOGIN,userModel).pipe(map(res =>{
@@ -64,10 +71,32 @@ export class AuthService {
     return this.storageService.getStorage('refreshToken')
   }
 
+  setUserSensitiveData(userData : any){
+    this.storageService.setStorage('accessToken',userData.accessToken);
+    this.storageService.setStorage('refreshToken',userData.refreshToken);
+    this.setUser(userData)
+  }
+
+
   setUser(userData : any){
-    this.storageService.setStorage('accessToken',userData.accessToken)
-    this.storageService.setStorage('refreshToken',userData.refreshToken)
-    this.storageService.setStorage('user',userData)
+    const user : User = {
+      name : userData.name,
+      email : userData.email,
+      _id : userData._id
+    }
+    this.storageService.setStorage('user',user)
+    this.userSubject.next(user);
+  }
+
+  initUser() {
+    const user = this.storageService.getStorage('user')
+    if(user) {
+      this.setUser(user)
+    }
+  }
+
+  public get userValue(): User {
+    return this.userSubject.value;
   }
 
   getGoogleOAuthURL() {

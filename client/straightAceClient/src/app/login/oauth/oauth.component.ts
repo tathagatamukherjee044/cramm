@@ -26,7 +26,7 @@ export class OauthComponent {
         const userData = JSON.parse(atob(this.userDataEncoded as string))
         console.log(userData);
         
-        this.authService.setUser(userData)
+        this.authService.setUserSensitiveData(userData)
         this.router.navigate(["/quiz"])
       }
     })

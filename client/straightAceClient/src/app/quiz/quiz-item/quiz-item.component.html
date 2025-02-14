@@ -1,5 +1,5 @@
 <div class="main-container">
-  <h2 class="question">{{ question().prompt }}</h2>
+  <div class="question" [innerHTML]="question().prompt"></div>
   <form>
       <div class="radio-highlight">
         @for (choice of question()?.choices; track index; let index = $index) {
@@ -8,7 +8,7 @@
             @if (choice.type == 'latex') {
                 <label  [for]="index" [latexString]="choice.text"></label>
             } @else {
-                <label [for]="index">{{ choice.text }}</label>
+                <label [for]="index" [innerHTML]="choice.text"></label>
             }
         }
         

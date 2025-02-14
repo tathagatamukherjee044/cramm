@@ -3,6 +3,8 @@ import { Router, RouterOutlet} from '@angular/router';
 // import {IonIcon} from 'ionicons'
 
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../_services/auth.service';
+import { User } from '../_shared/_interface/intreface';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +14,19 @@ import { environment } from 'src/environments/environment';
   imports: [RouterOutlet],
 })
 export class HomePage {
+
+  userData : User = {
+    _id: '',
+    name: '',
+    email: ''
+  }
+
   constructor(
-    private router : Router
-  ) {}
+    private router : Router,
+    private auth : AuthService
+  ) {
+    this.userData = this.auth.userValue
+  }
 
   array = [1,2,3,4,5,7,3,4,4,4455,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]
 

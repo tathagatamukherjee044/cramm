@@ -54,7 +54,7 @@ export class QuizPageComponent  implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.quizService.getQuiz('test','all','seed').subscribe((data) =>{
+    this.quizService.getQuiz('neet','all','seed').subscribe((data) =>{
       console.log(data);
       this.quizList=data
       this.fullScore = this.quizList.length;
@@ -136,6 +136,13 @@ export class QuizPageComponent  implements OnInit {
       console.log(data);
     })
     this.router.navigate(["/"]);
+  }
+
+  updateTime() {
+    this.quizService.updateTime().subscribe((data) =>{
+      console.log(data);
+    })
+    // this.router.navigate(["/"]);
   }
 
   evaluateResults( quizList : any[] = []){

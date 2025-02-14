@@ -11,7 +11,9 @@ import { AuthService } from './_services/auth.service';
 export class AppComponent implements OnInit {
   constructor(
     private auth : AuthService
-  ) {}
+  ) {
+    auth.initUser();
+  }
 
   ngOnInit(): void {
     setTimeout(() => {
