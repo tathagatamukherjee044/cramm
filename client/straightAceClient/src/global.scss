@@ -7,14 +7,14 @@
 }
 
 :root {
-	--c-text-primary: #162121;
-	--c-text-secondary: #6D7680;
-	--c-action-primary: #F29873; 
-	--c-action-primary-accent: #FAF5F1;
-	--c-action-secondary: #63C4B1;
-	--c-action-tertiary: #F9BE31;
-	--c-bg-primary: #FCFCFC;
-	--c-bg-secondary: #F7F6FC;
+    --c-text-primary: #1E293B; /* Darker text for white background */
+    --c-text-secondary: #64748B; /* Slightly lighter secondary text */
+    --c-action-primary: #2D8CF0; /* A nice, vibrant blue */
+    --c-action-secondary: #3B82F6; /* Slightly different blue for variety */
+    --c-action-tertiary: #60A5FA; /* Another blue option */
+    --c-bg-primary: #F9F9F6; /* Light gray for contrast */
+    --c-bg-secondary: #dafdf5; /* Very light gray for subtle distinction */
+	--c-box-shadow: #323232;
 	--c-bg-search: #F0F4F5;
 	--c-color-success: #28a745;
 	--c-color-danger: #dc3545;
@@ -23,10 +23,10 @@
 
 body {
   padding: 1rem;
-  font-family: "Noto Serif";
+  font-family: "Urbanist";
   line-height: 1.5;
   min-height: 100vh;
-  background-color: var(--c-action-primary-accent);
+  background-color: var(--c-bg-primary);
   color: var(--c-text-primary);
   display: flex;
   flex-direction: column;
@@ -137,7 +137,7 @@ img {
   left: 0;
   right: 0;
   background-color: var(--c-bg-primary);
-  border-top: 1px solid var(--c-bg-secondary);
+  border-top: 1px solid var(--c-bg-primary);
   padding: 1rem;
   justify-content: space-around;
   // box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
@@ -158,7 +158,7 @@ img {
 
 .tab-btn {
   color: var(--c-action-primary);
-	background-color: var(--c-action-primary-accent);
+	background-color: var(--c-bg-primary);
 	border: none;
 	padding: .75rem;
 	border-radius: 6px;
@@ -193,8 +193,10 @@ img {
     display: flex;
     align-items: center;
     padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
+  	border: 2px solid var(--c-text-primary);
+  	background-color: var(--c-bg-primary);
+  	box-shadow: 4px 4px var(--c-box-shadow);
     cursor: pointer;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 
@@ -207,9 +209,9 @@ img {
     display: none;
 
     &:checked + label {
-      background-color: #007bff;
+      background-color: var(--c-action-primary);
       color: #fff;
-      border-color: #0056b3;
+      border-color: var(--c-text-primary);
     }
   }
 }
@@ -302,7 +304,7 @@ img {
 		height: 2rem;
 		border-radius: 50%;
 		color: var(--c-text-secondary);
-		background-color: var(--c-bg-secondary);
+		background-color: var(--c-bg-primary);
 		margin-left: .5rem;
 	}
 }
@@ -321,18 +323,19 @@ img {
 }
 
 .progress-bar {
+  margin: 0.5em;
   width: 100%;
   height: 20px; /* Adjust height as needed */
-  background-color: var(--c-bg-primary); /* Light gray background for the bar */
-  border-radius: 10px; /* Rounded corners */
+  border-radius: 5px;
+  border: 2px solid var(--c-text-primary);
+  background-color: var(--c-bg-primary);
+  box-shadow: 4px 4px var(--c-box-shadow);
   overflow: hidden; /* Ensures progress stays within the bar */
   position: relative;
 }
 
 .progress {
   height: 100%; /* Fills the height of the bar */
-  background-color: var(--c-action-secondary); /* Green color for progress */
-  border-radius: 10px 0 0 10px; /* Rounds left corners */
   transition: width 0.3s ease; /* Smooth width transition */
 }
 
@@ -443,6 +446,24 @@ img {
 	justify-content: center;
 	padding-top: 1.25rem;
 }
+
+.customButton {
+	width: 120px;
+	height: 40px;
+	border-radius: 5px;
+	border: 2px solid var(--c-text-primary);
+	background-color: var(--c-bg-primary);
+	box-shadow: 4px 4px var(--c-box-shadow);
+	font-size: 17px;
+	font-weight: 600;
+	color: var(--font-color);
+	cursor: pointer;
+  }
+  
+  .customButton:active {
+	box-shadow: 0px 0px var(--c-text-primary);
+	transform: translate(3px, 3px);
+  }
 
 //styles
 .success {

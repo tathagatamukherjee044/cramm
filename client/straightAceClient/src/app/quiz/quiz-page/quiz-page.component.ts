@@ -54,7 +54,7 @@ export class QuizPageComponent  implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.quizService.getQuiz('neet','all','seed').subscribe((data) =>{
+    this.quizService.getQuiz('test','all','seed').subscribe((data) =>{
       console.log(data);
       this.quizList=data
       this.fullScore = this.quizList.length;
