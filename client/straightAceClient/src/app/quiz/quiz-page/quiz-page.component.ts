@@ -6,6 +6,7 @@ import { ModalService } from 'src/app/_services/modal.service';
 import { NavigationService } from 'src/app/_services/navigation.service';
 import { AlertService } from 'src/app/_services/alert.service';
 import { DialogService } from 'src/app/dialog/dialog.service';
+import { StorageService } from 'src/app/_services/storage.service';
 
 @Component({
   selector: 'app-quiz-page',
@@ -43,6 +44,7 @@ export class QuizPageComponent  implements OnInit {
   fullScore: number = 0;
   loading = true;
   heartCount = 3
+  subject: string = '';
 
   constructor(
     private quizService : QuizService,
@@ -50,11 +52,13 @@ export class QuizPageComponent  implements OnInit {
     private modalService : ModalService,
     private dialogService : DialogService,
     private navigationService : NavigationService,
-    private alertService : AlertService
+    private alertService : AlertService,
+    private storageService : StorageService
   ) { }
 
   ngOnInit() {
-    this.quizService.getQuiz('test','all','seed').subscribe((data) =>{
+    this.subject = this.storageService.getStorage('subject');
+    this.quizService.getQuiz(this.subject,'all','seed').subscribe((data) =>{
       console.log(data);
       this.quizList=data
       this.fullScore = this.quizList.length;
