@@ -89,9 +89,12 @@ func CalculateStreak(lastCompletedTime *time.Time, currentStreak *int) {
 		fmt.Println("lastCompleted is not today.")
 		*currentStreak++
 		oneDayBefore := currentDate.AddDate(0, 0, -1)
-		if lastCompletedDate.Before(oneDayBefore) {
+		twoDayBefore := currentDate.AddDate(0, 0, -2)
+		if lastCompletedDate.Before(oneDayBefore) && lastCompletedDate.After(twoDayBefore) {
 			*currentStreak = 1
-
+		} else if lastCompletedDate.Before(twoDayBefore) {
+			log.Println("lastCompleted is two days before")
+			*currentStreak = 0
 		}
 	}
 }

@@ -40,8 +40,10 @@ func GetUser(c *fiber.Ctx) error {
 
 	dbUser := service.FindUserByID(user.ID.Hex())
 
+	service.CalculateStreak(&dbUser.LastCompletedTime, &dbUser.Streak)
+	log.Println(dbUser)
 	return c.Status(200).JSON(fiber.Map{
 		"streak":  dbUser.Streak,
-		"message": "Congratulation on completing your lesson",
+		"message": "",
 	})
 }
