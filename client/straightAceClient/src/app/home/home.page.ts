@@ -6,13 +6,14 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from '../_services/auth.service';
 import { User } from '../_shared/_interface/intreface';
 import { UserService } from '../_services/user.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,CommonModule],
 })
 export class HomePage {
 
@@ -24,7 +25,7 @@ export class HomePage {
   }
 
   constructor(
-    private router : Router,
+    public router : Router,
     private userService : UserService
   ) {
     this.userData = this.userService.userValue

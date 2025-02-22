@@ -1,8 +1,8 @@
-<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 70vh;">
-    <select class="centerHorizontal customInput"  style="width: 30vh;" [(ngModel)]="subject" (ngModelChange)="onSubjectChanged($event)">
+<div style="flex-direction: column; align-content: center; height: 70vh; max-width: 300px;" class="centerHorizontal">
+    <select class="centerHorizontal customInput"   [(ngModel)]="subject" (ngModelChange)="onSubjectChanged($event)">
         <option value="neet">NEET</option>
         <option value="test">Test</option>
     </select>
-    <button class="centerHorizontal customInput margin1UnitVertical" style="width: 30vh;" (click)="onStart()">Start</button>
+    <button class="centerHorizontal customInput margin1UnitVertical actionButton"  (click)="onStart()">Start</button>
 </div>
 

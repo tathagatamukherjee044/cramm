@@ -12,9 +12,9 @@
       <div class="tabs">
         @for (item of menuItems; track $index) {
           <li class="tab">
-            <button class="tab-btn tab-btn--active" (click)="route(item.link)">
-              <i [class]="item.icon" style="color: rgb(18, 118, 75);"></i>
-              <span class="tab-btn-title" >{{item.display}}</span>
+            <button class="tab-btn" [ngClass]="{'tab-btn--active': router.url==item.link}" (click)="route(item.link)">
+              <i [class]="item.icon"></i>
+              <span>{{item.display}}</span>
             </button>
           </li>
             <!-- <ion-icon [name]="item.icon" (click)="route(item.link)" style="color: rebeccapurple;"></ion-icon> -->
