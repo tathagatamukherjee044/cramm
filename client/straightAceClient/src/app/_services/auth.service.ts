@@ -6,6 +6,7 @@ import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { StorageService } from './storage.service';
 import { HttpUtilityService } from './http-utility.service';
 import { User } from '../_shared/_interface/intreface';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,15 @@ export class AuthService {
 
   constructor(
     private storageService : StorageService,
-    private http : HttpUtilityService
+    private http : HttpUtilityService,
+    private userService : UserService
     ) { }
 
   userSubject = new BehaviorSubject<User>({
       _id: "",
       name: "",
-      email: ""
+      email: "",
+      streak: 0
   });
 
   authenticateUser(userModel: any): Observable<any> {
@@ -34,6 +37,9 @@ export class AuthService {
     return this.http.get(config.api.GET_USER,{}).pipe(map((res : any) =>{
       // return this.http.post('http://localhost:8080/auth/login',userModel).pipe(map(res =>{
         console.log(res);
+        const user : User = this.userService.userValue
+        user.streak = res.streak
+        this.userService.setUser(user)
         this.storageService.setStorage('streak',res.streak)
         return res;
         
@@ -79,13 +85,7 @@ export class AuthService {
 
 
   setUser(userData : any){
-    const user : User = {
-      name : userData.name,
-      email : userData.email,
-      _id : userData._id
-    }
-    this.storageService.setStorage('user',user)
-    this.userSubject.next(user);
+    this.userService.setUser(userData)
   }
 
   initUser() {
@@ -93,10 +93,6 @@ export class AuthService {
     if(user) {
       this.setUser(user)
     }
-  }
-
-  public get userValue(): User {
-    return this.userSubject.value;
   }
 
   getGoogleOAuthURL() {

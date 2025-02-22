@@ -4,26 +4,22 @@
   <header class="header">
 		<h1 class="header-logo">cramm.in</h1>
 		<div class="header-content">
-			<button class="header-avatar">
-				<span class="header-avatar-name">{{userData.name}}</span>
-			</button>
+      <i class="ph-duotone ph-fire" style="color: rgb(255, 179, 0);font-size: 2em;"></i> {{userData.streak}}
 		</div>
 	</header>
     <router-outlet></router-outlet>
 
-  <nav class="nav">
-      <ul class="tabs">
+      <div class="tabs">
         @for (item of menuItems; track $index) {
           <li class="tab">
             <button class="tab-btn tab-btn--active" (click)="route(item.link)">
-              <i class="ph-lightbulb-bold"></i>
+              <i [class]="item.icon" style="color: rgb(18, 118, 75);"></i>
               <span class="tab-btn-title" >{{item.display}}</span>
             </button>
           </li>
             <!-- <ion-icon [name]="item.icon" (click)="route(item.link)" style="color: rebeccapurple;"></ion-icon> -->
         }
-      </ul>
-    </nav>
+      </div>
 </main>
 
 

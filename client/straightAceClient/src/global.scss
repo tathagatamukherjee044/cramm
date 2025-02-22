@@ -9,9 +9,15 @@
 :root {
     --c-text-primary: #1E293B; /* Darker text for white background */
     --c-text-secondary: #64748B; /* Slightly lighter secondary text */
-    --c-action-primary: #2D8CF0; /* A nice, vibrant blue */
-    --c-action-secondary: #3B82F6; /* Slightly different blue for variety */
-    --c-action-tertiary: #60A5FA; /* Another blue option */
+	// blue
+    // --c-action-primary: #2D8CF0; /* A nice, vibrant blue */
+    // --c-action-secondary: #3B82F6; /* Slightly different blue for variety */
+    // --c-action-tertiary: #60A5FA; /* Another blue option */
+
+	//green
+	--c-action-primary: #12764B; /* Your primary green */
+	--c-action-secondary: #288C5A; /* A slightly lighter version */
+	--c-action-tertiary: #50B482; /* An even lighter, more subtle version */
     --c-bg-primary: #F9F9F6; /* Light gray for contrast */
     --c-bg-secondary: #dafdf5; /* Very light gray for subtle distinction */
 	--c-box-shadow: #323232;
@@ -46,6 +52,7 @@ body {
 }
 
 input, select, button, textarea {
+	min-width: 100%;
 	font: inherit;
 	color: inherit;
 	outline: 0;
@@ -148,6 +155,10 @@ img {
 }
 
 .tabs {
+	position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -166,8 +177,9 @@ img {
 	padding: .75rem;
 	border-radius: 6px;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-  justify-content: center;
+  	justify-content: center;
 	width: 100%;
 	font-weight: 500;
 	i {
@@ -451,10 +463,15 @@ img {
 	padding-top: 1.25rem;
 }
 
-.mediumButton {
-	width: 120px;
-	height: 40px;
-}
+.profile-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2rem;
+	max-width: 600px;
+	margin: 0 auto;
+  }
+
   
 .customInput {
   border-radius: 5px;
@@ -501,6 +518,15 @@ img {
 .margin1UnitHorizontal {
 	margin-left: 1em;
 	margin-right: 1em;
+}
+
+.mediumButton {
+	width: 120px;
+	height: 40px;
+}
+
+.actionButton {
+	background-color: var(--c-action-tertiary);
 }
 
 //styles

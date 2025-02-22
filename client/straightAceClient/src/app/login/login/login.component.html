@@ -1,7 +1,31 @@
+<form #loginForm="ngForm" class="centerHorizontal centreVetical" style="display: flex;flex-direction: column; max-width: 300px;" (ngSubmit)="onSubmit()">
+
+     <label>E-mail</label>
+     <input type="text" class="customInput" [(ngModel)]="user.email" name="email" #email="ngModel">
+     <span [hidden]="email.valid">
+          Error
+     </span>
 
 
-<button (click)="loginWithGoogle()">LOGIN WITH GOOGLE</button>
-<a (click)="goTo('/auth/signup')">No Account?</a>
 
- <!-- </form> -->
- 
+     <label>Password</label>
+
+     <input type="text" class="customInput" [(ngModel)]="user.password" name="password" #password="ngModel">
+     <span [hidden]="password.valid">
+          Error
+     </span>
+
+
+     <button class=" customInput margin1UnitVertical actionButton">Login</button>
+</form>
+<div class="centerHorizontal" style="display: flex;flex-direction: column;">
+     <p class="centerHorizontal">-- Or Login with --</p>
+     <div style="max-width: 300px;" class="centerHorizontal">
+          <button (click)="loginWithGoogle()" class="customInput" style="justify-content: center;">
+               <img src="../../../assets/icon/googleLogoG.png" style="width:20px;height:20px;">
+               &nbsp;&nbsp;Google
+          </button>
+     </div>
+     <br>
+     <a href="" (click)="goTo('/auth/signup');$event.preventDefault()" class="centerHorizontal">Register new account</a>
+</div>

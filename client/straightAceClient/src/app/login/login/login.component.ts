@@ -31,7 +31,9 @@ export class LoginComponent {
     });
   }
 
-  goTo(page: string | any[] | UrlTree){
+  goTo(page: string){
+    console.log(page);
+    
     this.router.navigate([page])
   }
 

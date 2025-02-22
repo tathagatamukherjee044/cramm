@@ -32,8 +32,12 @@ export class SignupComponent {
     
   }
 
-  goTo(page: string | any[] | UrlTree){
+  goTo(page: string){
     this.router.navigate([page])
+  }
+
+  loginWithGoogle(){
+    this.authService.getGoogleOAuthURL()
   }
 
 }

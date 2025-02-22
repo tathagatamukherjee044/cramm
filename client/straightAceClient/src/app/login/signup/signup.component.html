@@ -1,32 +1,38 @@
-<p>signup works!</p>
-<form #sellerForm="ngForm" (ngSubmit)="onSubmit()" >
-    <div class="col-12 col-lg-6 col-xl-6 mb-2 d-flex">
-        <label>name</label>
-        <div class="col-8 col-lg-8 col-xl-8 mb-2 d-flex">
-             <input type="text" class="col-12" [(ngModel)]="newUser.userName" name="userName" #userName="ngModel">
-             <span [hidden]="userName.valid">
-                  Error
-             </span>
-        </div>
-   </div>
-    <div class="col-12 col-lg-6 col-xl-6 mb-2 d-flex">
-         <label>phone</label>
-         <div class="col-8 col-lg-8 col-xl-8 mb-2 d-flex">
-              <input type="text" class="col-12" [(ngModel)]="newUser.phone" name="phone" #phone="ngModel">
-              <span [hidden]="phone.valid">
-                   Error
-              </span>
-         </div>
-    </div>
-    <div class="col-12 col-lg-6 col-xl-6 mb-2 d-flex">
-         <label>password</label>
-         <div class="col-8 col-lg-8 col-xl-8 mb-2 d-flex">
-              <input type="text" class="col-12" [(ngModel)]="newUser.password" name="password" #password="ngModel">
-              <span [hidden]="password.valid">
-                   Error
-              </span>
-         </div>
-    </div>
-    <button>Signup</button>
- </form>
- <a (click)="goTo('/auth/login')">Already Have account?</a>
+<form #loginForm="ngForm" class="centerHorizontal centreVetical" style="display: flex;flex-direction: column; max-width: 300px;" (ngSubmit)="onSubmit()">
+
+	<label style="justify-content: left;">Name</label>
+	<input type="text" class="customInput" [(ngModel)]="newUser.userName" name="userName" #userName="ngModel">
+	<span [hidden]="userName.valid">
+		Error
+	</span>
+
+
+	<label>E-mail</label>
+	<input type="text" class="customInput" [(ngModel)]="newUser.email" name="email" #email="ngModel">
+	<span [hidden]="email.valid">
+		Error
+	</span>
+
+
+
+	<label>Password</label>
+
+	<input type="text" class="customInput" [(ngModel)]="newUser.password" name="password" #password="ngModel">
+	<span [hidden]="password.valid">
+		Error
+	</span>
+
+
+	<button class=" customInput margin1UnitVertical actionButton">Signup</button>
+</form>
+<div class="centerHorizontal" style="display: flex;flex-direction: column;">
+	<p class="centerHorizontal">-- Or Login with --</p>
+	<div style="max-width: 300px;" class="centerHorizontal">
+		<button (click)="loginWithGoogle()" class="customInput" style="justify-content: center;">
+			<img src="../../../assets/icon/googleLogoG.png" style="width:20px;height:20px;">
+			&nbsp;&nbsp;Google
+		</button>
+	</div>
+	<br>
+	<a href="" (click)="goTo('/auth/login');$event.preventDefault()" class="centerHorizontal">Already have an account?</a>
+</div>

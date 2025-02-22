@@ -5,6 +5,7 @@ import { Router, RouterOutlet} from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../_services/auth.service';
 import { User } from '../_shared/_interface/intreface';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -18,14 +19,15 @@ export class HomePage {
   userData : User = {
     _id: '',
     name: '',
-    email: ''
+    email: '',
+    streak: 0,
   }
 
   constructor(
     private router : Router,
-    private auth : AuthService
+    private userService : UserService
   ) {
-    this.userData = this.auth.userValue
+    this.userData = this.userService.userValue
   }
 
   array = [1,2,3,4,5,7,3,4,4,4455,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]
@@ -34,12 +36,17 @@ export class HomePage {
     {
       link : '/quiz',
       display : 'Quiz',
-      icon : "book-outline"
+      icon : "ph-duotone ph-scroll"
+    },
+    {
+      link : '/learn',
+      display : 'Home',
+      icon : "ph-duotone ph-house-line"
     },
     {
       link : '/profile',
       display : 'Profile',
-      icon: 'person-circle-outline'
+      icon: "ph-duotone ph-user-circle"
     }
   ]
 

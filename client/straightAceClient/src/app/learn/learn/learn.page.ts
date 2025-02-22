@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { StorageService } from 'src/app/_services/storage.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class LearnPage implements OnInit {
   subject : string = ''
 
   constructor(
-    private storageService : StorageService
+    private storageService : StorageService,
+    private router : Router
   ) { }
 
   ngOnInit() {
@@ -28,8 +30,12 @@ export class LearnPage implements OnInit {
 
   onSubjectChanged($event : Event){
     console.log($event);
-    
     this.storageService.setStorage('subject', this.subject)
   }
+
+  onStart(){
+    this.router.navigate(['/quiz'])
+  }
+
 
 }

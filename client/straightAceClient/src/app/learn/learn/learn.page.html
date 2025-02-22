@@ -1,15 +1,8 @@
-
-<select class=" centerHorizontal customInput" [(ngModel)]="subject" (ngModelChange)="onSubjectChanged($event)">
-    <option value="neet">NEET</option>
-    <option value="test">Test</option>
-</select>
-<main>
-    <div class="content hide-md-down">
-        <!-- Content to show on medium screens and larger -->
-        HELLO WORLD 
-    </div>
-    <div class="align-center justify-center">
-        <a href="/quiz">Learn</a>
-    </div>
-</main>
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 70vh;">
+    <select class="centerHorizontal customInput"  style="width: 30vh;" [(ngModel)]="subject" (ngModelChange)="onSubjectChanged($event)">
+        <option value="neet">NEET</option>
+        <option value="test">Test</option>
+    </select>
+    <button class="centerHorizontal customInput margin1UnitVertical" style="width: 30vh;" (click)="onStart()">Start</button>
+</div>
 
