@@ -1,6 +1,6 @@
 package route
 
-import "StraightAceServer/internal/server"
+import "crammServer/internal/server"
 
 func RegisterFiberRoutes(s *server.FiberServer) {
 

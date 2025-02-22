@@ -1,9 +1,9 @@
 package service
 
 import (
-	"StraightAceServer/internal/database"
-	model "StraightAceServer/model"
 	"context"
+	"crammServer/internal/database"
+	model "crammServer/model"
 	"encoding/json"
 	"errors"
 	"fmt"

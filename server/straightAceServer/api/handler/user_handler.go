@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"StraightAceServer/internal/serverutils"
-	"StraightAceServer/service"
+	"crammServer/internal/serverutils"
+	"crammServer/service"
 	"fmt"
 	"log"
 

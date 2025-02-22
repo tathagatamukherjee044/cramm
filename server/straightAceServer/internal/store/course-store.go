@@ -1,6 +1,6 @@
 package store
 
-import "StraightAceServer/model"
+import "crammServer/model"
 
 var School = model.Course{
 	Subjects: []string{"english", "maths"},

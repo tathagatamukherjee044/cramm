@@ -1,8 +1,8 @@
 package route
 
 import (
-	"StraightAceServer/api/custommiddleware"
-	"StraightAceServer/api/handler"
+	"crammServer/api/custommiddleware"
+	"crammServer/api/handler"
 
 	"github.com/gofiber/fiber/v2"
 )

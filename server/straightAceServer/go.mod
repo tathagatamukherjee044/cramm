@@ -1,4 +1,4 @@
-module StraightAceServer
+module crammServer
 
 go 1.23
 

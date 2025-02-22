@@ -1,10 +1,10 @@
 package handler
 
 import (
-	"StraightAceServer/internal/serverutils"
-	"StraightAceServer/internal/store"
-	model "StraightAceServer/model"
-	"StraightAceServer/service"
+	"crammServer/internal/serverutils"
+	"crammServer/internal/store"
+	model "crammServer/model"
+	"crammServer/service"
 	"fmt"
 	"log"
 	"time"

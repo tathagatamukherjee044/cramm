@@ -1,7 +1,7 @@
 package server
 
 import (
-	"StraightAceServer/internal/database"
+	"crammServer/internal/database"
 
 	"github.com/gofiber/fiber/v2"
 )

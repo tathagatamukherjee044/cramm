@@ -9,9 +9,9 @@ package main
 // @BasePath /
 
 import (
-	"StraightAceServer/api/custommiddleware"
-	"StraightAceServer/api/route"
-	"StraightAceServer/internal/server"
+	"crammServer/api/custommiddleware"
+	"crammServer/api/route"
+	"crammServer/internal/server"
 	"fmt"
 	"log"
 	"os"

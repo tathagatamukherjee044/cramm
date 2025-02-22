@@ -1,11 +1,12 @@
 package tests
 
 import (
-	"StraightAceServer/internal/server"
-	"github.com/gofiber/fiber/v2"
+	"crammServer/internal/server"
 	"io"
 	"net/http"
 	"testing"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 func TestHandler(t *testing.T) {

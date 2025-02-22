@@ -1,9 +1,9 @@
 package handler
 
 import (
-	"StraightAceServer/internal/serverutils"
-	"StraightAceServer/model"
-	"StraightAceServer/service"
+	"crammServer/internal/serverutils"
+	"crammServer/model"
+	"crammServer/service"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"

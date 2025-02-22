@@ -1,8 +1,8 @@
 package service
 
 import (
-	model "StraightAceServer/model"
 	"context"
+	model "crammServer/model"
 	"encoding/json"
 	"fmt"
 	"log"

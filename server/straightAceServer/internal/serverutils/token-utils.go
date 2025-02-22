@@ -1,7 +1,7 @@
 package serverutils
 
 import (
-	"StraightAceServer/model"
+	"crammServer/model"
 	"fmt"
 	"time"
 

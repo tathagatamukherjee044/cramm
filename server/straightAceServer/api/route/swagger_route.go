@@ -4,7 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/swagger"
 
-	_ "StraightAceServer/docs"
+	_ "crammServer/docs"
 )
 
 func AddSwaggerRoutes(group fiber.Router) {

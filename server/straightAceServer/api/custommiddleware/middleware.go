@@ -1,7 +1,7 @@
 package custommiddleware
 
 import (
-	"StraightAceServer/internal/server"
+	"crammServer/internal/server"
 	"log"
 
 	"github.com/gofiber/fiber/v2/middleware/cors"
