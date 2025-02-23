@@ -25,6 +25,7 @@
     "@angular/router": "^18.2.13",
     "@capacitor/angular": "^2.0.3",
     "@capacitor/core": "latest",
+    "angular-cli-ghpages": "^2.0.3",
     "katex": "^0.16.21",
     "ngx-katex": "^18.0.0",
     "rxjs": "~7.8.0",

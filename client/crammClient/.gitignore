@@ -16,7 +16,10 @@ yarn-error.log*
 *.log
 
 # Angular environment files (if not managed through environment secrets)
-src/environments/*.ts
+# src/environments/*.ts
+
+#Build files
+www/
 
 # Generated files by Angular CLI
 .angular
@@ -27,7 +30,7 @@ yarn.lock
 
 # IDE files
 .idea/
-.vscode/
+# .vscode/
 *.suo
 *.ntvs*
 *.njsproj
