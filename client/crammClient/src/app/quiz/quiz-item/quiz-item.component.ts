@@ -4,11 +4,10 @@ import katex from 'katex';
 import { LatexDirective } from 'src/app/_shared/_directive/latex.directive';
 
 @Component({
-  selector: 'app-quiz-item',
-  templateUrl: './quiz-item.component.html',
-  standalone: true,
-  styleUrls: ['./quiz-item.component.scss'],
-  imports:[FormsModule,LatexDirective]
+    selector: 'app-quiz-item',
+    templateUrl: './quiz-item.component.html',
+    styleUrls: ['./quiz-item.component.scss'],
+    imports: [FormsModule, LatexDirective]
 })
 export class QuizItemComponent  implements OnInit {
 

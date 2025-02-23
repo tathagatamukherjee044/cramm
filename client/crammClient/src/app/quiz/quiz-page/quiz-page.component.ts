@@ -9,11 +9,10 @@ import { DialogService } from 'src/app/dialog/dialog.service';
 import { StorageService } from 'src/app/_services/storage.service';
 
 @Component({
-  selector: 'app-quiz-page',
-  templateUrl: './quiz-page.component.html',
-  standalone:true,
-  imports : [QuizItemComponent],
-  styleUrls: ['./quiz-page.component.scss'],
+    selector: 'app-quiz-page',
+    templateUrl: './quiz-page.component.html',
+    imports: [QuizItemComponent],
+    styleUrls: ['./quiz-page.component.scss']
 })
 export class QuizPageComponent  implements OnInit {
 

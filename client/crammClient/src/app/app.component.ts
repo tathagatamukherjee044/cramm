@@ -3,10 +3,9 @@ import { RouterOutlet } from '@angular/router';
 import { AuthService } from './_services/auth.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  standalone: true,
-  imports: [RouterOutlet],
+    selector: 'app-root',
+    templateUrl: 'app.component.html',
+    imports: [RouterOutlet]
 })
 export class AppComponent implements OnInit {
   constructor(
