@@ -49,7 +49,7 @@ coverage.out
 
 # Go module files (optional, if you want to exclude them)
 # Uncomment the following lines if you prefer not to commit them:
-go.sum
+# go.sum
 # go.mod
 
 # Miscellaneous
