@@ -2,17 +2,19 @@ import { Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { ProfilePage } from './user/profile/profile.page';
 import { UserModule } from './user/user.module';
+import { LandingComponent } from './landing/landing.component';
 
 export const routes: Routes = [
+
+  {
+    path: '',
+    component : LandingComponent,
+  },
+
   {
     path: '',
     component : HomePage,
     children: [
-      {
-        path: '',
-        redirectTo: 'learn',
-        pathMatch: 'full',
-      },
       {
         path: 'learn',
         // component: HomePage,
