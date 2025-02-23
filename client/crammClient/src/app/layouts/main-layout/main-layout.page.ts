@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-main-layout',
-  templateUrl: './main-layout.page.html',
-  styleUrls: ['./main-layout.page.scss'],
-  standalone: true,
-  imports: [CommonModule, FormsModule]
+    selector: 'app-main-layout',
+    templateUrl: './main-layout.page.html',
+    styleUrls: ['./main-layout.page.scss'],
+    imports: [CommonModule, FormsModule]
 })
 export class MainLayoutPage implements OnInit {
 

@@ -6,11 +6,10 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-learn',
-  templateUrl: './learn.page.html',
-  styleUrls: ['./learn.page.scss'],
-  standalone: true,
-  imports: [CommonModule, FormsModule]
+    selector: 'app-learn',
+    templateUrl: './learn.page.html',
+    styleUrls: ['./learn.page.scss'],
+    imports: [CommonModule, FormsModule]
 })
 export class LearnPage implements OnInit {
 

@@ -2,9 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-minimal-info-dialog',
-  templateUrl: './minimal-info-dialog.component.html',
-  styleUrls: ['./minimal-info-dialog.component.css'],
+    selector: 'app-minimal-info-dialog',
+    templateUrl: './minimal-info-dialog.component.html',
+    styleUrls: ['./minimal-info-dialog.component.css'],
+    standalone: false
 })
 export class MinimalInfoDialogComponent implements OnInit {
   constructor(

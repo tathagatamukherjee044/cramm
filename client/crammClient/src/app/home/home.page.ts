@@ -9,11 +9,10 @@ import { UserService } from '../_services/user.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-  standalone: true,
-  imports: [RouterOutlet,CommonModule],
+    selector: 'app-home',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss'],
+    imports: [RouterOutlet, CommonModule]
 })
 export class HomePage {
 
