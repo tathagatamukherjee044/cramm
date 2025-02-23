@@ -34,6 +34,8 @@ export class AuthService {
   }
 
   getData() {
+    console.error('heer');
+    
     return this.http.get(config.api.GET_USER,{}).pipe(map((res : any) =>{
       // return this.http.post('http://localhost:8080/auth/login',userModel).pipe(map(res =>{
         console.log(res);

@@ -1,5 +1,5 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core';
-import { bootstrapApplication } from '@angular/platform-browser';
+import { bootstrapApplication, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter } from '@angular/router';
 
 import { routes } from './app/app.routes';
@@ -20,6 +20,6 @@ if (environment.production) {
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor,errorInterceptor])), provideAnimationsAsync(),
+    provideHttpClient(withInterceptors([authInterceptor,errorInterceptor])), provideAnimationsAsync(), provideClientHydration(withEventReplay()),
   ],
 });
