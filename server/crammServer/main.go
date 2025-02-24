@@ -16,7 +16,6 @@ import (
 	"log"
 	"os"
 	"strconv"
-	"time"
 
 	"github.com/joho/godotenv"
 	_ "github.com/joho/godotenv/autoload"
@@ -36,16 +35,6 @@ func main() {
 
 	fmt.Printf("Original ObjectID: %s\n", objectID)
 	fmt.Printf("ObjectID as string: %s\n", objectIDString)
-
-	currentTime := time.Now()
-
-	// Add 2 hours
-	newTime := currentTime.Add(2 * time.Hour)
-	fmt.Println("Time after adding 2 hours:", newTime)
-
-	// Subtract 30 minutes
-	newTime = currentTime.Add(-30 * time.Minute)
-	fmt.Println("Time after subtracting 30 minutes:", newTime)
 
 	custommiddleware.SetupMiddlewares(server)
 	route.RegisterFiberRoutes(server)
