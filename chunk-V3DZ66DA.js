@@ -1,2 +1,0 @@
-import{k as m}from"./chunk-MSRDUID7.js";import{Rb as a,ca as n,kb as r,rb as i}from"./chunk-XIUA2BWT.js";var l=(()=>{let e=class e{constructor(){}ngOnInit(){}};e.\u0275fac=function(o){return new(o||e)},e.\u0275cmp=n({type:e,selectors:[["app-learn-more"]],standalone:!0,features:[i],decls:1,vars:0,template:function(o,p){o&1&&r(0,`LEARN MORE
-`)},dependencies:[a,m]});let t=e;return t})();export{l as a};
