@@ -12,6 +12,7 @@ export class DialogService {
 
   showInfoDialog(heading: string, message: string): MatDialogRef<InfoDialogComponent> {
     return this.dialog.open(InfoDialogComponent, {
+      backdropClass : "blurBackdrop",
       data: { 
         heading, 
         message 

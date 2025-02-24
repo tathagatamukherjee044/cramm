@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, NgModule, OnInit, Output, SimpleChanges
 import { FormsModule } from '@angular/forms';
 import katex from 'katex';
 import { LatexDirective } from 'src/app/_shared/_directive/latex.directive';
+import { DialogService } from 'src/app/dialog/dialog.service';
 
 @Component({
     selector: 'app-quiz-item',
@@ -28,6 +29,7 @@ export class QuizItemComponent  implements OnInit {
   answer : any = "";
 
   constructor(
+    private dialogService : DialogService
   ) { }
 
   ngOnInit() {
@@ -59,11 +61,19 @@ export class QuizItemComponent  implements OnInit {
     } else {
       console.log("wrong");
       //console.log("Moye Moye")
-      this.questionComplete.emit(false);
+      this.showInfoDailog("Wrong Answer","The correct answer is " + this.question().answer)
       console.log("Moye Moye")
     }
     this.answer = ''
     
+  }
+
+  showInfoDailog(header : string ,message : string ){
+
+    this.dialogService.showInfoDialog(header,message).afterClosed().subscribe( data =>{
+      console.log("hello World");
+      this.questionComplete.emit(false);
+    })
   }
 
 }

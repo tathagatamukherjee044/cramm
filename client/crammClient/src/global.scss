@@ -363,106 +363,40 @@ img {
 }
 
 
-.list {
-	margin-top: 1rem;
-	& + .summary {
-		margin-top: 2.5rem;
-	}
+.blurBackdrop {
+	background-color:rgba(255,255,255,.3);
+	backdrop-filter: blur(10px);
 }
 
-.list-item {
-	border-top: 1px solid #dedede;
-	padding-top: 1.25rem;
-	padding-bottom: 1.25rem;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	.list &:last-child {
-		border-bottom: 1px solid #dedede;
-	}
-}
+.message-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border :2px solid var(--c-text-primary);
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: var(--c-bg-primary);
+    border-radius: 8px;
+    box-shadow: 4px 4px var(--c-box-shadow);
+    z-index: 1000;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .message-dialog-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  
 
-.list-item-company {
-	display: flex;
-	align-items: center;
-}
 
-.list-item-company-logo {
-	width: 3.5rem;
-	height: 3.5rem;
-	border-radius: 50%;
-	overflow: hidden;
-	position: relative;
-	img {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-	
-	&--square {
-		border-radius: 12px;
-		box-shadow: 0 0 4px 0 #dedede;
-	}
-}
-
-.list-item-company-info {
-	margin-left: 1.25rem;
-}
-
-.list-item-company-name {
-	font-weight: 600;
-}
-
-.list-item-company-hashtag {
-	display: inline-block;
-	text-decoration: none;
-	color: var(--c-text-secondary);
-	margin-top: .125rem;
-	& + & {
-		margin-left: .25rem;
-	}
-}
-
-.list-item-transaction {
-	display: flex;
-	align-items: center;
-}
-
-.list-item-transaction-values {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-}
-
-.list-item-transaction-value {
-	font-weight: 600;
-	font-family: "Space Mono", monospace;
-	display: inline-flex;
-	align-items: center;
-	i {
-		margin-right: .5rem;
-	}
-	
-	&--positive {
-		color: var(--c-action-secondary);
-	}
-}
-
-.list-item-transaction-time {
-	color: var(--c-text-secondary);
-	font-size: .875rem;
-}
-
-.list-item-transaction-action {
-	border: none;
-	background-color: var(--c-bg-search);
-	border-radius: 8px;
-	margin-left: 1rem;
-	width: 2.25rem;
-	height: 2.25rem;
-	color: var(--c-text-secondary);
-}
 
 .overview-footer {
 	display: flex;
