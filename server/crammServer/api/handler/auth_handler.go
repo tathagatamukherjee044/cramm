@@ -109,6 +109,21 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 	uiURL := os.Getenv("UI_URL")
 
 	redirectURL := fmt.Sprintf("%s/auth/oauth?data=%s", uiURL, encodedData)
+	c.Cookie(&fiber.Cookie{
+		Name:     "myCookie",
+		Value:    "cookieValue",
+		HTTPOnly: true,     // Recommended for security
+		Secure:   true,     // Recommended for HTTPS
+		SameSite: "Strict", // Recommended for security
+	})
+
+	c.Cookie(&fiber.Cookie{
+		Name:     "anotherCookie",
+		Value:    "anotherValue",
+		HTTPOnly: false,
+		Secure:   true,
+		SameSite: "Lax",
+	})
 	return c.Redirect(redirectURL)
 
 }
