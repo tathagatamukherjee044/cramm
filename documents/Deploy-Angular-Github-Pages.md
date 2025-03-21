@@ -42,8 +42,12 @@ This guide outlines the steps to deploy your Angular or Ionic project to GitHub 
     Example:
 
     ```bash
-    ng build --configuration production --base-href [https://tathagatamukherjee044.github.io/cramm/](https://tathagatamukherjee044.github.io/cramm/)
+    ng build --configuration production --base-href [https://tathagatamukherjee044.github.io/cramm/](https://tathagatamukherjee044.github.io/cramm/) // dont use as having a href blocks CORS
     ```
+
+    Instead use:
+
+    ng build --configuration production
 
     For Ionic projects, the build directory might be `www/browser`:
 

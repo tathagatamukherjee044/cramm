@@ -483,6 +483,10 @@ background-color:  var(--c-color-danger);; /* Bootstrap danger red */
 background-color: var(--c-color-warning); /* Bootstrap warning yellow */
 }
 
+.colourPrimary {
+	color: var(--c-action-primary);
+}
+
 
 @media (max-width: 768px) {
   .main {

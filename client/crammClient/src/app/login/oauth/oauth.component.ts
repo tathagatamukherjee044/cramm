@@ -24,10 +24,10 @@ export class OauthComponent {
       if(params['data']){
         this.userDataEncoded = params['data']
         const userData = JSON.parse(atob(this.userDataEncoded as string))
+        userData.loggedIn = true
         console.log(userData);
-        
         this.authService.setUserSensitiveData(userData)
-        this.router.navigate(["/quiz"])
+        this.router.navigate(["/learn"])
       }
     })
     console.log();

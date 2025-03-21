@@ -10,4 +10,5 @@ export  interface User {
     name: string;
     email: string;
     streak : number;
+    loggedIn : boolean;
   }

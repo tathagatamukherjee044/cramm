@@ -23,11 +23,14 @@ export class AuthService {
       _id: "",
       name: "",
       email: "",
-      streak: 0
+      streak: 0,
+      loggedIn: false
   });
 
   authenticateUser(userModel: any): Observable<any> {
     return this.http.post(config.api.LOGIN,userModel).pipe(map(res =>{
+      res.loggedIn = true
+      this.userService.setUser(res)
     // return this.http.post('http://localhost:8080/auth/login',userModel).pipe(map(res =>{
       return res;
     }))
@@ -37,7 +40,6 @@ export class AuthService {
     console.error('heer');
     
     return this.http.get(config.api.GET_USER,{}).pipe(map((res : any) =>{
-      // return this.http.post('http://localhost:8080/auth/login',userModel).pipe(map(res =>{
         console.log(res);
         const user : User = this.userService.userValue
         user.streak = res.streak

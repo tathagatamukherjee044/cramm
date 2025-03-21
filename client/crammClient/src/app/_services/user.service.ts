@@ -13,7 +13,8 @@ export class UserService {
     _id: "",
     name: "",
     email: "",
-    streak: 0
+    streak: 0,
+    loggedIn: false
   });
 
 
@@ -26,7 +27,8 @@ export class UserService {
       name : userData.name,
       email : userData.email,
       _id : userData._id,
-      streak : userData.streak
+      streak : userData.streak,
+      loggedIn : userData.loggedIn
     }
     this.userSubject.next(user)
     this.storageService.setStorage('user',user)

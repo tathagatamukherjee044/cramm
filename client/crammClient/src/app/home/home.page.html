@@ -4,10 +4,13 @@
   <header class="header">
     <div style="display: flex;flex-direction: column;">
       <h1 class="header-logo">cramm.in</h1>
-      <a href="https://github.com/tathagatamukherjee044" style="font-size: 1em;"> <i class="ph-duotone ph-github-logo"></i>tathagata.mukherjee044</a>
     </div>
 		<div class="header-content">
-      <i class="ph-duotone ph-fire" style="color: rgb(255, 179, 0);font-size: 2em;"></i> {{userData.streak}}
+      @if (userData.loggedIn) {
+        <i class="ph-duotone ph-fire" style="color: rgb(255, 179, 0);font-size: 2em;"></i> {{userData.streak}}
+      } @else {
+        <i class="ph-duotone ph-sign-in colourPrimary" style="font-size: 2em;" (click)="route('/auth/login')"></i>
+      }
 		</div>
 	</header>
     <router-outlet></router-outlet>

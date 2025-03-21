@@ -21,6 +21,7 @@ export class HomePage {
     name: '',
     email: '',
     streak: 0,
+    loggedIn: false,
   }
 
   constructor(
