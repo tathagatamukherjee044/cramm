@@ -12,6 +12,7 @@ import (
 	"crammServer/api/custommiddleware"
 	"crammServer/api/route"
 	"crammServer/internal/server"
+	"crammServer/service"
 	"fmt"
 	"log"
 	"os"
@@ -35,6 +36,8 @@ func main() {
 
 	fmt.Printf("Original ObjectID: %s\n", objectID)
 	fmt.Printf("ObjectID as string: %s\n", objectIDString)
+
+	go service.StartCronSchedule() // start the cron schedule
 
 	custommiddleware.SetupMiddlewares(server)
 	route.RegisterFiberRoutes(server)
