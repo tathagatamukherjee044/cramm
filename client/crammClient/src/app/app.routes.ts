@@ -3,6 +3,7 @@ import { HomePage } from './home/home.page';
 import { ProfilePage } from './user/profile/profile.page';
 import { UserModule } from './user/user.module';
 import { LandingComponent } from './landing/landing.component';
+import { AddQuestionComponent } from './quiz/add-question/add-question.component';
 
 export const routes: Routes = [
 

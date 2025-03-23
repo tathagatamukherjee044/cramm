@@ -231,7 +231,7 @@ img {
     display: none;
 
     &:checked + label {
-      background-color: var(--c-action-primary);
+      background-color: var(--c-action-tertiary);
       color: #fff;
       border-color: var(--c-text-primary);
     }
@@ -364,8 +364,16 @@ img {
 
 
 .blurBackdrop {
-	background-color:rgba(255,255,255,.3);
-	backdrop-filter: blur(10px);
+	--s: 1000px; /* control the size */
+
+	--_g: #0000 90deg, #366 0;
+	background: conic-gradient(from 90deg at 2px 2px, var(--_g)),
+	  conic-gradient(from 90deg at 1px 1px, var(--_g));
+	background-size: var(--s) var(--s), calc(var(--s) / 5) calc(var(--s) / 5);
+  
+	background-color:var(--c-bg-primary);
+	// backdrop-filter: blur(20px);
+	// backdrop-filter: blur(5px);
 }
 
 .message-dialog {
@@ -467,24 +475,48 @@ img {
 }
 
 .actionButton {
-	background-color: var(--c-action-tertiary);
+	background-color: var(--c-action-tertiary)!important;
+}
+
+.actionButtonSecondary {
+	background-color: var(--c-action-secondary)!important;
+}
+
+.actionButtonDanger {
+	background-color: var(--c-color-danger) !important;
 }
 
 //styles
-.success {
+.backgroundSuccess {
 	background-color: var(--c-color-success); /* Bootstrap success green */
 }
   
-.danger {
+.backgroundDanger {
 background-color:  var(--c-color-danger);; /* Bootstrap danger red */
 }
   
-.warning {
+.backgroundWarning {
 background-color: var(--c-color-warning); /* Bootstrap warning yellow */
+}
+
+.colorSuccess {
+	color: var(--c-color-success); /* Bootstrap success green */
+}
+
+.colorDanger {
+	color: var(--c-color-danger); /* Bootstrap danger red */
+}
+
+.colorWarning {
+	color: var(--c-color-warning); /* Bootstrap warning yellow */
 }
 
 .colourPrimary {
 	color: var(--c-action-primary);
+}
+
+.borderPrimary {
+	border: 2px solid var(--c-action-primary);
 }
 
 

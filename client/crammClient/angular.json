@@ -92,6 +92,7 @@
               "progress": false
             }
           },
+          "liveReload": true,
           "defaultConfiguration": "development"
         },
         "extract-i18n": {

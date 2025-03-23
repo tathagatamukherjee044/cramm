@@ -1,5 +1,8 @@
 <div class="main-container">
-  <div class="question" [innerHTML]="question().prompt"></div>
+  <div [innerHTML]="question().prompt"></div>
+  @if (question().userSubmitted) {
+    <p class="colourPrimary" style="font-size: small;"><i class="ph ph-info"></i>This is a User Submitted Question</p>
+  }
   <form>
       <div class="radio-highlight">
         @for (choice of question()?.choices; track index; let index = $index) {
@@ -15,7 +18,7 @@
       </div>
   </form>
   <div >
-    <button   class="mediumButton customInput centerHorizontal margin1UnitVertical" (click)="checkAnswer()">Check</button>
+    <button   class="mediumButton customInput centerHorizontal margin1UnitVertical borderPrimary" (click)="checkAnswer()">Check</button>
   </div>
 </div>
 

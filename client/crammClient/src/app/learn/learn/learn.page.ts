@@ -36,5 +36,11 @@ export class LearnPage implements OnInit {
     this.router.navigate(['/quiz'])
   }
 
+  onAddQuestion(){
+    console.log('Add Question');
+    
+    this.router.navigate(['/quiz/add'])
+  }
+
 
 }

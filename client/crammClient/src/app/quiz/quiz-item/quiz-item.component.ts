@@ -54,24 +54,17 @@ export class QuizItemComponent  implements OnInit {
     console.log(this.question());
     console.log(this.answer);
     if(this.answer == this.question().answer){
-      console.log("correct");
       this.questionComplete.emit(true);
-      console.log("Yaay")
-      //console.log("Yaay")
     } else {
-      console.log("wrong");
-      //console.log("Moye Moye")
-      this.showInfoDailog("Wrong Answer","The correct answer is " + this.question().answer)
-      console.log("Moye Moye")
+      this.showCorrectAnswerDialog("Wrong Answer","The correct answer is " + this.question().answer)
     }
     this.answer = ''
     
   }
 
-  showInfoDailog(header : string ,message : string ){
+  showCorrectAnswerDialog(header : string ,message : string ){
 
     this.dialogService.showInfoDialog(header,message).afterClosed().subscribe( data =>{
-      console.log("hello World");
       this.questionComplete.emit(false);
     })
   }

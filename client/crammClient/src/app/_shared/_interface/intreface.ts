@@ -11,4 +11,18 @@ export  interface User {
     email: string;
     streak : number;
     loggedIn : boolean;
-  }
+}
+
+export interface Question {
+    prompt: string;
+    choices: Choice[];
+    answer: number;
+    solution: string;
+    userSubmited?: boolean;
+}
+
+export interface Choice {
+    text: string;
+    index: number;
+    type?: string | null;
+}

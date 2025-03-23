@@ -13,12 +13,12 @@ export class InfoDialogComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { heading: string; message: string },
-    private matDialogRef: MatDialogRef<InfoDialogComponent>,
+    private dialogRef: MatDialogRef<InfoDialogComponent>,
   ) {
   }
 
   close() {
-    this.matDialogRef.close();
+    this.dialogRef.close();
   }
 
 }

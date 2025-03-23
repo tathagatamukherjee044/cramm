@@ -16,5 +16,9 @@ export const  config = {
         GET_QUIZ:  `${environment.apiUrl}/quiz`,
         QUIZ_COMPLETED:  `${environment.apiUrl}/quiz/completed`,
         UPDATE_TIME_EXP:  `${environment.apiUrl}/quiz/updateTime`,
+        ADD_QUIZ:  `${environment.apiUrl}/quiz/add`,
+
+        //subject
+        GET_SUBJECTS: `${environment.apiUrl}/subject/list`,
     }
 }

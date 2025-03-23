@@ -95,10 +95,14 @@ export class QuizPageComponent  implements OnInit {
       this.currentQuiz['correct'] = true
 
     }
+    console.log(this.currentQuiz);
+    
+    if(this.currentQuiz.userSubmitted){
+      this.showQuestionAcceptanceModal();  
+    }
     if (this.currentIndex == this.quizList.length-1) {
 
       if(this.score == this.fullScore) {
-        this.showQuizCompleteModal();
         this.quizComplete();
       } else if(this.mistakeList.length>0){
         this.quizList = this.mistakeList;
@@ -134,11 +138,18 @@ export class QuizPageComponent  implements OnInit {
     
   }
 
+  showQuestionAcceptanceModal() {
+    this.dialogService.showQuestionAcceptanceModal().afterClosed().subscribe( data =>{
+      console.log(data);
+      
+    });
+  }
+
   quizComplete() {
     this.quizService.quizComplete().subscribe((data) =>{
       console.log(data);
     })
-    this.router.navigate(["/"]);
+    this.router.navigate(["/learn"]);
   }
 
   updateTime() {

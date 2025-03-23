@@ -1,0 +1,69 @@
+<form #loginForm="ngForm"  (ngSubmit)="onSubmit()">
+
+    <label style="justify-content: left;">Question</label>
+    <input type="text" class="customInput" [(ngModel)]="questionDetails.prompt" name="prompt" #prompt="ngModel">
+    <span [hidden]="prompt.valid">
+         Error
+    </span>
+    <br>
+    <label>Options</label>
+    @for (item of questionDetails.choices; track index; let index = $index) {
+        <input type="text" class="customInput" [(ngModel)]="questionDetails.choices[index].text" [name]="index.toString()" #index="ngModel">
+    }
+    <input type="text" class="customInput" [(ngModel)]="choiceInput" name="choice" #choice="ngModel" placeholder="Enter a choice">
+    <span [hidden]="choice.valid">
+            Error
+    </span>
+    <button class="customInput margin1UnitVertical actionButton" style="width: fit-content;" (click)="onAddChoice();$event.preventDefault()">Add Choice</button>
+
+    
+    <br>
+    <label>Answer (Enter the correct index ie. option number)</label>
+
+    <select class="customInput" [(ngModel)]="questionDetails.answer" name="answer" #answer="ngModel">
+        @for (choice of questionDetails.choices; track $index) {
+            <option [ngValue]="choice.index">{{choice.index}}</option>
+        }
+    </select>
+
+    <!-- <input type="text" class="customInput" [(ngModel)]="questionDetails.answer" name="answer" #answer="ngModel"> -->
+    <span [hidden]="answer.valid">
+         Error
+    </span>
+
+    <br>
+    <label>Explanation</label>
+
+    <input type="text" class="customInput" [(ngModel)]="questionDetails.solution" name="solution" #solution="ngModel">
+    <span [hidden]="solution.valid">
+         Error
+    </span>
+
+    <br>
+
+    <label>Course</label>
+    {{questionCourseDetails.questionCourse}}
+    <select class="customInput" [(ngModel)]="questionCourseDetails.questionCourse" name="course" #course="ngModel" (ngModelChange)="onCourseChange($event)">
+        @for (item of courseList; track $index) {
+            <option [value]="item.key">{{item.courseName}}</option>
+        }
+    </select>
+    <span [hidden]="course.valid">
+         Error
+    </span>
+
+    <label>Subject</label>
+    {{questionCourseDetails.questionSubject}}
+    <select class="customInput" [(ngModel)]="questionCourseDetails.questionSubject" name="subject" #subject="ngModel">
+        @for (subject of subjectList; track $index) {
+            <option [value]="subject">{{subject}}</option>
+        }
+    </select>
+    <span [hidden]="subject.valid">
+         Error
+    </span>
+
+
+    <button class="customInput margin1UnitVertical actionButton">Submit</button>
+</form>
+
