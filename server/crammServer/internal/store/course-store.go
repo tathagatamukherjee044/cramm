@@ -2,25 +2,17 @@ package store
 
 import "crammServer/model"
 
-var School = model.Course{
-	Subjects: []string{"english", "maths"},
-}
-
-var College = model.Course{
-	Subjects: []string{"fax", "weed"},
-}
-
 var Test = model.Course{
-	Subjects: []string{"sample"},
+	Subjects:   []string{"sample"},
+	CourseName: "Test",
 }
 
 var NEET = model.Course{
-	Subjects: []string{"neetPhysics", "neetChemistry", "neetBiology"},
+	Subjects:   []string{"neetPhysics", "neetChemistry", "neetBiology"},
+	CourseName: "NEET",
 }
 
 var CoursesMap = map[string]model.Course{
-	"college": College,
-	"school":  School,
-	"test":    Test,
-	"neet":    NEET,
+	"test": Test,
+	"neet": NEET,
 }

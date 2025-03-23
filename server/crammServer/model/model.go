@@ -36,10 +36,11 @@ type User struct {
 }
 
 type Quiz struct {
-	Prompt   string   `json:"prompt"`
-	Choices  []Choice `json:"choices"`
-	Answer   int      `json:"answer,omitempty"`
-	Solution string   `json:"solution,omitempty"`
+	Prompt        string   `json:"prompt"`
+	Choices       []Choice `json:"choices"`
+	Answer        int      `json:"answer,omitempty"`
+	Solution      string   `json:"solution,omitempty"`
+	UserSubmitted bool     `json:"userSubmitted,omitempty"`
 }
 
 type Choice struct {
@@ -49,5 +50,6 @@ type Choice struct {
 }
 
 type Course struct {
-	Subjects []string
+	Subjects   []string `json:"subjects"`
+	CourseName string   `json:"courseName"`
 }

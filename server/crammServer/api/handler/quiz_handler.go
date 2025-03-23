@@ -22,25 +22,12 @@ type Question struct {
 
 func GetQuiz(c *fiber.Ctx) error {
 
-	// var userClaims serverutils.JWTClaims
-
-	// localClaims := c.Locals("user")
-	// user, err := serverutils.DecodeJWT(localClaims)
-	// if err != nil {
-
-	// 	fmt.Println(err)
-	// 	return c.Status(400).JSON(fiber.Map{
-	// 		"error": "cant decode accessToken",
-	// 	})
-	// }
-
-	// fmt.Println(user.Role)
-
 	course := c.Params("course")
 	subject := c.Params("sub")
 	seed := c.Params("seed")
 	totalQuestions := 10
 	fmt.Println(course, subject, seed)
+	log.Println(store.CoursesMap)
 	courseStructure := store.CoursesMap[course]
 	fmt.Println(courseStructure.Subjects)
 	var result []model.Quiz
@@ -89,16 +76,20 @@ func GetAllQuiz(c *fiber.Ctx) error {
 }
 
 func CreateQuiz(c *fiber.Ctx) error {
+	course := c.Params("course")
+	// subject := c.Params("sub")
 	log.Println("here in handelr")
 	quiz := new(model.Quiz)
-	if err := c.BodyParser(quiz); err != nil {
+	log.Println(quiz)
+	if err := c.BodyParser(&quiz); err != nil {
+		log.Println(err)
 		return c.Status(400).JSON(fiber.Map{
 			"error": "Invalid body",
 		})
 	}
 
-	// create the book
-	id, err := service.CreateQuiz(quiz)
+	quiz.UserSubmitted = true
+	id, err := service.CreateQuiz(quiz, course)
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{
 			"error":   "Failed to create book",
@@ -106,7 +97,6 @@ func CreateQuiz(c *fiber.Ctx) error {
 		})
 	}
 
-	// return the book
 	return c.Status(201).JSON(fiber.Map{
 		"result": id,
 	})

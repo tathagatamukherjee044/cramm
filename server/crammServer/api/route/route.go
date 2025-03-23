@@ -8,6 +8,7 @@ func RegisterFiberRoutes(s *server.FiberServer) {
 	AddAuthRouter(publicRouter)
 	AddQuizRouter(publicRouter)
 	AddUserRouter(publicRouter)
+	AddSubjectRouter(publicRouter)
 	AddSwaggerRoutes(publicRouter)
 
 }

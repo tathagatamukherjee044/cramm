@@ -65,9 +65,9 @@ func GetQuiz(subject string, limit int) ([]model.Quiz, error) {
 	return results, nil
 }
 
-func CreateQuiz(quiz *model.Quiz) (interface{}, error) {
+func CreateQuiz(quiz *model.Quiz, subject string) (interface{}, error) {
 
-	coll := database.GetDBCollection("quiz")
+	coll := database.GetDBCollection(subject)
 	result, err := coll.InsertOne(context.TODO(), quiz)
 	if err != nil {
 		return nil, errors.New("cannot insert quiz")
