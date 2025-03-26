@@ -1,7 +1,8 @@
 <div style="flex-direction: column; align-content: center; height: 60vh; max-width: 300px;" class="centerHorizontal">
     <select class="centerHorizontal customInput"   [(ngModel)]="subject" (ngModelChange)="onSubjectChanged($event)">
-        <option value="neet">NEET</option>
-        <option value="test">Test</option>
+        @for (item of courseList; track $index) {
+            <option [value]="item.key">{{item.courseName}}</option>
+        }
     </select>
     <button class="centerHorizontal customInput margin1UnitVertical actionButton"  (click)="onStart()">Start</button>
 </div>

@@ -61,10 +61,7 @@ export class AddQuestionComponent implements OnInit {
   }
 
    objectToArray(obj : any) {
-    console.log(obj);
-    
     const result = [];
-
     for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
       result.push({
@@ -72,8 +69,8 @@ export class AddQuestionComponent implements OnInit {
         ...obj[key], // Spread the nested object's properties
       });
     }
-  }
-  return result;
+    }
+    return result;
   }
 
   onCourseChange($event : Event) {
