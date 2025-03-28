@@ -122,6 +122,7 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 			Name:     "refreshToken",
 			Value:    refreshToken,
 			SameSite: "Lax",
+			Path:     "/api/auth/refresh",
 		})
 
 	} else {
@@ -139,6 +140,7 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 			HTTPOnly: true,
 			Secure:   true,
 			SameSite: "Lax",
+			Path:     "/api/auth/refresh",
 		})
 	}
 	return c.Redirect(redirectURL)
@@ -223,6 +225,7 @@ func Refresh(c *fiber.Ctx) error {
 
 	// Generate a new access accessToken
 	newAccessToken, err := serverutils.GenerateJWT(userPtr, 1)
+	newRefreshToken, err := serverutils.GenerateJWT(userPtr, 365)
 	if err != nil {
 		return err
 	}
@@ -235,6 +238,12 @@ func Refresh(c *fiber.Ctx) error {
 			Value:    newAccessToken,
 			SameSite: "Lax",
 		})
+		c.Cookie(&fiber.Cookie{
+			Name:     "refreshToken",
+			Value:    newRefreshToken,
+			SameSite: "Lax",
+			Path:     "/api/auth/refresh",
+		})
 
 	} else {
 		c.Cookie(&fiber.Cookie{
@@ -243,6 +252,14 @@ func Refresh(c *fiber.Ctx) error {
 			HTTPOnly: true,     // Recommended for security
 			Secure:   true,     // Recommended for HTTPS
 			SameSite: "Strict", // Recommended for security
+		})
+		c.Cookie(&fiber.Cookie{
+			Name:     "refreshToken",
+			Value:    newRefreshToken,
+			HTTPOnly: true,     // Recommended for security
+			Secure:   true,     // Recommended for HTTPS
+			SameSite: "Strict", // Recommended for security
+			Path:     "/api/auth/refresh",
 		})
 	}
 
