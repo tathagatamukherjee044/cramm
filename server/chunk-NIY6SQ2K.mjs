@@ -1,2 +1,0 @@
-import './polyfills.server.mjs';
-import{a as n}from"./chunk-J63DBCWN.mjs";import"./chunk-5S4QCVXA.mjs";import{q as m}from"./chunk-VWO4Y4VS.mjs";import"./chunk-ARSAQLWS.mjs";import"./chunk-3QOWA7HF.mjs";import{Ma as r,P as i,gc as e}from"./chunk-Z75QX7R2.mjs";import"./chunk-XQK4YSSM.mjs";var c=[{path:"",component:n}],l=(()=>{let t=class t{};t.\u0275fac=function(f){return new(f||t)},t.\u0275mod=r({type:t}),t.\u0275inj=i({imports:[e,m.forChild(c)]});let o=t;return o})();export{l as UserModule};
