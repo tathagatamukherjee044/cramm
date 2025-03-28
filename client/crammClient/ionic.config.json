@@ -1,7 +1,0 @@
-{
-  "name": "cramm",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}

@@ -57,7 +57,7 @@ func ValidateRefresh(c *fiber.Ctx) error {
 	// Extract JWT accessToken from Authorization header
 	refreshCookie := c.Cookies("refreshToken")
 	if refreshCookie == "" {
-		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "Missing Authorization header"})
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "invalidRefresh"})
 	}
 
 	jwtToken := refreshCookie
