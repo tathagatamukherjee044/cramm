@@ -51,9 +51,7 @@ export class AuthService {
   }
 
   refreshToken(){
-    const headers = new HttpHeaders()
-    .set('Authorization', `Bearer ${this.getRefreshToken()}`)
-    return this.http.post(config.api.REFRESH, {}, {headers}).pipe(map ((data : any) =>{
+    return this.http.post(config.api.REFRESH, {}, {}).pipe(map ((data : any) =>{
       const accessToken = data?.accessToken
       console.log("nor showing acc token");
       
@@ -73,17 +71,8 @@ export class AuthService {
     })
   }
 
-  getAccessToken(){
-    return this.storageService.getStorage('accessToken')
-  }
-
-  getRefreshToken(){
-    return this.storageService.getStorage('refreshToken')
-  }
 
   setUserSensitiveData(userData : any){
-    this.storageService.setStorage('accessToken',userData.accessToken);
-    this.storageService.setStorage('refreshToken',userData.refreshToken);
     this.setUser(userData)
   }
 

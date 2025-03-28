@@ -227,10 +227,27 @@ func Refresh(c *fiber.Ctx) error {
 		return err
 	}
 
+	isLocal := os.Getenv("IS_LOCAL")
+	if isLocal == "true" {
+		log.Println("isLocal")
+		c.Cookie(&fiber.Cookie{
+			Name:     "accessToken",
+			Value:    newAccessToken,
+			SameSite: "Lax",
+		})
+
+	} else {
+		c.Cookie(&fiber.Cookie{
+			Name:     "accessToken",
+			Value:    newAccessToken,
+			HTTPOnly: true,     // Recommended for security
+			Secure:   true,     // Recommended for HTTPS
+			SameSite: "Strict", // Recommended for security
+		})
+	}
+
 	// Return the new access accessToken
-	return c.JSON(fiber.Map{
-		"accessToken": newAccessToken,
-	})
+	return c.JSON(fiber.Map{})
 
 	// Invalid refresh accessToken
 }

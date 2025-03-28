@@ -17,7 +17,7 @@ export interface Question {
     prompt: string;
     choices: Choice[];
     answer: number;
-    solution: string;
+    explanation: string;
     userSubmited?: boolean;
 }
 

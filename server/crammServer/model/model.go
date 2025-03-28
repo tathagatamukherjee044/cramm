@@ -39,7 +39,7 @@ type Quiz struct {
 	Prompt        string   `json:"prompt"`
 	Choices       []Choice `json:"choices"`
 	Answer        int      `json:"answer,omitempty"`
-	Solution      string   `json:"solution,omitempty"`
+	Explanation   string   `json:"explanation,omitempty"`
 	UserSubmitted bool     `json:"userSubmitted,omitempty"`
 }
 

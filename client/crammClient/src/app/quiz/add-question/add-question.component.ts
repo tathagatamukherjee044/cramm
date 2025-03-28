@@ -25,7 +25,7 @@ export class AddQuestionComponent implements OnInit {
     prompt: '',
     choices: [],
     answer: 0,
-    solution: ''
+    explanation: ''
   }
 
   choiceInput : string = ''

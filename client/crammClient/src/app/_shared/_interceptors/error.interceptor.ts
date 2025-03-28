@@ -27,13 +27,14 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           console.log(error.error.message);
 
           if (error.error.message !== "invalidRefresh") {
+            console.log("trying refresh token");
+            
             // Try to refresh the token
             return authService.refreshToken().pipe(
               switchMap((ref) => {
                 if (ref) {
                   // Clone and retry the request with the new token
                   const reqClone = req.clone({
-                    headers: req.headers.set('Authorization', `Bearer ${authService.getAccessToken()}`)
                   });
                   return next(reqClone);
                 } else {

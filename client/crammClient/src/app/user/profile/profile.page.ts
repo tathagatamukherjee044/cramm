@@ -29,4 +29,10 @@ export class ProfilePage implements OnInit {
     
   }
 
+  logout() {
+    console.log("logout");
+    
+    // this.userService.logout()
+  }
+
 }
