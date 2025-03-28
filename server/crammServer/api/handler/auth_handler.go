@@ -7,6 +7,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 
@@ -109,21 +110,37 @@ func GoogleOAuthHandler(c *fiber.Ctx) error {
 	uiURL := os.Getenv("UI_URL")
 
 	redirectURL := fmt.Sprintf("%s/auth/oauth?data=%s", uiURL, encodedData)
-	c.Cookie(&fiber.Cookie{
-		Name:     "myCookie",
-		Value:    "cookieValue",
-		HTTPOnly: true,     // Recommended for security
-		Secure:   true,     // Recommended for HTTPS
-		SameSite: "Strict", // Recommended for security
-	})
+	isLocal := os.Getenv("IS_LOCAL")
+	if isLocal == "true" {
+		log.Println("isLocal")
+		c.Cookie(&fiber.Cookie{
+			Name:     "accessToken",
+			Value:    accessToken,
+			SameSite: "Lax",
+		})
+		c.Cookie(&fiber.Cookie{
+			Name:     "refreshToken",
+			Value:    refreshToken,
+			SameSite: "Lax",
+		})
 
-	c.Cookie(&fiber.Cookie{
-		Name:     "anotherCookie",
-		Value:    "anotherValue",
-		HTTPOnly: false,
-		Secure:   true,
-		SameSite: "Lax",
-	})
+	} else {
+		c.Cookie(&fiber.Cookie{
+			Name:     "accessToken",
+			Value:    accessToken,
+			HTTPOnly: true,     // Recommended for security
+			Secure:   true,     // Recommended for HTTPS
+			SameSite: "Strict", // Recommended for security
+		})
+
+		c.Cookie(&fiber.Cookie{
+			Name:     "refreshToken",
+			Value:    refreshToken,
+			HTTPOnly: true,
+			Secure:   true,
+			SameSite: "Lax",
+		})
+	}
 	return c.Redirect(redirectURL)
 
 }

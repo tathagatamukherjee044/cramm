@@ -1,4 +1,4 @@
 export const environment = {
-    production: true,
+    local: false,
     apiUrl : 'https://api.cramm.in'
   };
