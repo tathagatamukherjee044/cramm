@@ -42,6 +42,19 @@ func main() {
 	custommiddleware.SetupMiddlewares(server)
 	route.RegisterFiberRoutes(server)
 	port, _ := strconv.Atoi(os.Getenv("PORT"))
+	// proxyPort, _ := strconv.Atoi(os.Getenv("PROXY_PORT"))
+	// if os.Getenv("APP_ENV") == "local" {
+	// 	fmt.Println("Running proxy for local development")
+	// 	server.Use("/api", proxy.Forward(fmt.Sprintf("http://localhost:%d", proxyPort))) // Proxy to Angular
+	// } else {
+	// 	fmt.Println("Not running proxy (production or other environment)")
+	// }
+
+	// server.Get("/", func(c *fiber.Ctx) error {
+	// 	return c.SendString("Hello from Angular proxy!")
+	// })
+
+	fmt.Printf("Server listening on %d\n", port)
 	err := server.Listen(fmt.Sprintf("0.0.0.0:%d", port))
 	if err != nil {
 		panic(fmt.Sprintf("cannot start server: %s", err))
