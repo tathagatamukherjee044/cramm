@@ -1,34 +1,152 @@
+<head>
+    <style>
+        body {
+            font-family: 'Urbanist', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--c-bg-primary);
+            color: var(--c-text-primary);
+        }
+
+        :root {
+            --c-text-primary: #1E293B;
+            --c-text-secondary: #64748B;
+            --c-action-primary: #12764B;
+            --c-action-secondary: #288C5A;
+            --c-action-tertiary: #50B482;
+            --c-bg-primary: #F9F9F6;
+            --c-bg-secondary: #dafdf5;
+            --c-box-shadow: #B9C2D1;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: transparent; /* Removed header background */
+            border-bottom: 2px solid var(--c-text-primary);
+            font-family: 'Lora', serif; /* Lora font for header */
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: var(--c-action-primary);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: var(--c-text-secondary);
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px; /* Added border-radius */
+            box-shadow: 4px 4px var(--c-box-shadow);
+            border: 2px solid var(--c-text-primary); /* Added border */
+            background-color: transparent; /* Removed main background */
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        section h2 {
+            color: var(--c-action-primary);
+            border-bottom: 2px solid var(--c-text-primary);
+            padding-bottom: 10px;
+        }
+
+        section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        section li {
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--c-text-secondary);
+        }
+
+        .cta-button {
+            border-radius: 5px;
+            border: 2px solid var(--c-text-primary);
+            background-color: var(--c-action-primary);
+            box-shadow: 4px 4px var(--c-box-shadow);
+            font-size: 17px;
+            font-weight: 600;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--c-action-secondary);
+            border-color: var(--c-action-secondary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid var(--c-text-primary);
+        }
+
+        footer a {
+            color: var(--c-action-primary);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .ph-duotone {
+            font-size: 1.2em;
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&family=Lora&display=swap">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/css/phosphor.css">
+
+</head>
+<body>
+
 <header>
-    <h1>Free NEET Practice Tests</h1>
-    <p>Prepare for the National Eligibility cum Entrance Test with our comprehensive and free practice tests.</p>
+    <h1><i class="ph-fill ph-rocket-launch" style="color: orange;"></i> Ace Your NEET with Free Practice Tests!</h1>
+    <p>Dive into targeted practice and conquer the exam with our comprehensive, free resources. No stress, just success!</p>
 </header>
 
 <main>
     <section id="features">
-        <h2>Why Choose Our NEET Practice Tests?</h2>
+        <h2><i class="ph-fill ph-fire" style="color: #FFB347;"></i> Why Our NEET Practice Tests Rock:</h2>
         <ul>
-            <li>Completely Free: No hidden charges or subscriptions.</li>
-            <li>Comprehensive Coverage: Tests covering all NEET syllabus topics.</li>
-            <li>Detailed Analysis: Get insights into your performance and identify weak areas.</li>
-            <li>Realistic Exam Simulation: Practice with tests designed to mimic the actual NEET exam.</li>
-            <li>Instant Results: Receive immediate feedback after completing each test.</li>
+            <li><i class="ph-bold ph-money" style="color: var(--c-action-primary)"></i> <strong>Totally Free:</strong> Zero hidden fees, just pure learning!</li>
+            <li><i class="ph-bold ph-books" style="color: #D81B60;"></i> <strong>Syllabus Supercharged:</strong> Covers every topic, so you're always prepared.</li>
+            <li><i class="ph-bold ph-chart-bar" style="color: #FFC107;"></i> <strong>Performance Power-Up:</strong> Get detailed insights and crush your weak spots.</li>
+            <li><i class="ph-bold ph-target" style="color: red"></i> <strong>Exam Simulation Pro:</strong> Feel the real exam vibes and boost your confidence.</li>
+            <li><i class="ph-bold ph-lightning" style="color: #9C27B0;"></i> <strong>Instant Results:</strong> Get feedback ASAP and learn faster.</li>
         </ul>
     </section>
 
     <section id="get-started">
-        <h2>Start Your Practice Now!</h2>
-        <p>Begin your NEET preparation journey with our free practice tests. Simply click the button below to get started.</p>
-        <a href="/learn" class="cta-button">Access Free Tests</a>
+        <h2>Ready to Level Up? <i class="ph ph-chart-line-up" style="color: var(--c-action-primary);"></i> Start Practicing Now!</h2>
+        <p>Your NEET adventure begins here! Click below and unlock your potential with our free practice tests.</p>
+        <a href="/learn" class="cta-button">Start Practicing! <i class="ph-fill ph-rocket-launch" style="color: white;"></i> </a>
     </section>
 
     <section id="about">
-        <h2>About NEET Preparation</h2>
-        <p>The National Eligibility cum Entrance Test (NEET) is a crucial exam for aspiring medical students in India. Our platform provides free practice tests to help you prepare effectively and achieve your goals.</p>
+        <h2>About NEET: Your Gateway to Medicine <i class="ph-fill ph-stethoscope" style="color: var(--c-action-primary);"></i></h2>
+        <p>NEET is your first step to becoming a doctor in India. We're here to support you with free, effective practice tests to help you achieve your medical dreams.</p>
     </section>
 </main>
 
 <footer>
     <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
-      
     <p>An Open Source project by <a href="https://github.com/tathagatamukherjee044"> <i class="ph-duotone ph-github-logo"></i>tathagata.mukherjee044</a> </p>
 </footer>
+
+</body>

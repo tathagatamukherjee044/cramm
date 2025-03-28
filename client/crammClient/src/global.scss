@@ -9,10 +9,6 @@
 :root {
     --c-text-primary: #1E293B; /* Darker text for white background */
     --c-text-secondary: #64748B; /* Slightly lighter secondary text */
-	// blue
-    // --c-action-primary: #2D8CF0; /* A nice, vibrant blue */
-    // --c-action-secondary: #3B82F6; /* Slightly different blue for variety */
-    // --c-action-tertiary: #60A5FA; /* Another blue option */
 
 	//green
 	--c-action-primary: #12764B; /* Your primary green */
@@ -40,6 +36,13 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+a, a:visited, a:active {
+	color: var(--c-action-tertiary);
+	:hover {
+		color: var(--c--primary);
+	}
+  }
 
 .earmark-app {
   padding: 1.5rem;
