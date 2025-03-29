@@ -1,0 +1,96 @@
+
+body {
+    font-family: 'Urbanist', sans-serif;;
+    background: var(--c-bg-primary);
+    color: var(--c-text-primary);
+}
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: transparent; /* Removed header background */
+    border-bottom: 2px solid var(--c-text-primary);
+    font-family: 'Lora', serif; /* Lora font for header */
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: var(--c-action-primary);
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1em;
+    color: var(--c-text-secondary);
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px; /* Added border-radius */
+    box-shadow: 4px 4px var(--c-box-shadow);
+    border: 2px solid var(--c-text-primary); /* Added border */
+    background-color: transparent; /* Removed main background */
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+section h2 {
+    color: var(--c-action-primary);
+    border-bottom: 2px solid var(--c-text-primary);
+    padding-bottom: 10px;
+}
+
+section ul {
+    list-style: none;
+    padding: 0;
+}
+
+section li {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--c-text-secondary);
+}
+
+.cta-button {
+    border-radius: 5px;
+    border: 2px solid var(--c-text-primary);
+    background-color: var(--c-action-primary);
+    box-shadow: 4px 4px var(--c-box-shadow);
+    font-size: 17px;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--c-action-secondary);
+    border-color: var(--c-action-secondary);
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid var(--c-text-primary);
+}
+
+footer a {
+    color: var(--c-action-primary);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.ph-duotone {
+    font-size: 1.2em;
+}
