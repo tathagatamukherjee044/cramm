@@ -16,7 +16,8 @@ yarn-error.log*
 *.log
 
 # Angular environment files (if not managed through environment secrets)
-# src/environments/*.ts
+src/environments/*
+!src/environments/environment.example.ts
 
 #Build files
 www/
