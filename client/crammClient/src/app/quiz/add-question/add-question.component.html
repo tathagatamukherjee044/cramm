@@ -1,12 +1,12 @@
-<form #loginForm="ngForm"  (ngSubmit)="onSubmit()">
+<form #loginForm="ngForm"  style="font-size: 1em;" (ngSubmit)="onSubmit()">
 
-    <label style="justify-content: left;">Question</label>
+    <label style="justify-content: left; font-size: 0.75em;" >Question</label>
     <input type="text" class="customInput" [(ngModel)]="questionDetails.prompt" name="prompt" #prompt="ngModel">
     <span [hidden]="prompt.valid">
          Error
     </span>
     <br>
-    <label>Options</label>
+    <label style="justify-content: left; font-size: 0.75em;">Options</label>
     @for (item of questionDetails.choices; track index; let index = $index) {
         <input type="text" class="customInput" [(ngModel)]="questionDetails.choices[index].text" [name]="index.toString()" #index="ngModel">
     }
@@ -16,12 +16,12 @@
     </span>
     <div style="width: 10em;">
 
-        <button class="customInput margin1UnitVertical actionButton" style="width: fit-content;" (click)="onAddChoice();$event.preventDefault()">Add Choice &nbsp;<i class="ph-bold ph-plus"></i></button>
+        <button class="customInput margin1UnitVertical actionButton" style="width: fit-content; font-size: 0.75em; height: 1.5em;" (click)="onAddChoice();$event.preventDefault()">Add Choice &nbsp;<i class="ph-bold ph-plus"></i></button>
     </div>
 
     
     <br>
-    <label>Answer (Enter the correct index ie. option number)</label>
+    <label style="justify-content: left; font-size: 0.75em;">Answer (Enter the correct index ie. option number)</label>
 
     <select class="customInput" [(ngModel)]="questionDetails.answer" name="answer" #answer="ngModel">
         @for (choice of questionDetails.choices; track $index) {
@@ -35,7 +35,7 @@
     </span>
 
     <br>
-    <label>Explanation</label>
+    <label style="justify-content: left; font-size: 0.75em;">Explanation</label>
 
     <input type="text" class="customInput" [(ngModel)]="questionDetails.explanation" name="explanation" #explanation="ngModel">
     <span [hidden]="explanation.valid">
@@ -44,7 +44,7 @@
 
     <br>
 
-    <label>Course</label>
+    <label style="justify-content: left; font-size: 0.75em;">Course</label>
     {{questionCourseDetails.questionCourse}}
     <select class="customInput" [(ngModel)]="questionCourseDetails.questionCourse" name="course" #course="ngModel" (ngModelChange)="onCourseChange($event)">
         @for (item of courseList; track $index) {
@@ -55,7 +55,7 @@
          Error
     </span>
 
-    <label>Subject</label>
+    <label style="justify-content: left; font-size: 0.75em;">Subject</label>
     {{questionCourseDetails.questionSubject}}
     <select class="customInput" [(ngModel)]="questionCourseDetails.questionSubject" name="subject" #subject="ngModel">
         @for (subject of subjectList; track $index) {

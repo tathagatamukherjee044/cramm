@@ -4,6 +4,8 @@ import { ProfilePage } from './user/profile/profile.page';
 import { UserModule } from './user/user.module';
 import { LandingComponent } from './landing/landing.component';
 import { AddQuestionComponent } from './quiz/add-question/add-question.component';
+import { PrivacyComponent } from './_static/privacy/privacy.component';
+import { TermsComponent } from './_static/terms/terms.component';
 
 export const routes: Routes = [
 
@@ -11,7 +13,17 @@ export const routes: Routes = [
     path: '',
     component : LandingComponent,
   },
+  {
+    path: 'privacy',
+    component : PrivacyComponent,
+  },
+  {
+    path : 'terms',
+    component : TermsComponent
+  },
 
+
+  // CSR
   {
     path: '',
     component : HomePage,
