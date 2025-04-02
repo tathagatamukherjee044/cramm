@@ -2,12 +2,6 @@ import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AuthService } from './_services/auth.service';
 import { isPlatformBrowser } from '@angular/common';
-import "@phosphor-icons/web/duotone";
-import "@phosphor-icons/web/fill";
-import "@phosphor-icons/web/regular";
-import "@phosphor-icons/web/bold";
-import "@phosphor-icons/web/light";
-import "@phosphor-icons/web/thin";
 
 
 @Component({
