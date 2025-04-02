@@ -367,16 +367,16 @@ img {
 
 
 .blurBackdrop {
-	--s: 1000px; /* control the size */
+	// --s: 100px; /* control the size */
 
-	--_g: #0000 90deg, #366 0;
-	background: conic-gradient(from 90deg at 2px 2px, var(--_g)),
-	  conic-gradient(from 90deg at 1px 1px, var(--_g));
-	background-size: var(--s) var(--s), calc(var(--s) / 5) calc(var(--s) / 5);
+	// --_g: #0000 90deg, #366 0;
+	// background: conic-gradient(from 90deg at 2px 2px, var(--_g)),
+	//   conic-gradient(from 90deg at 1px 1px, var(--_g));
+	// background-size: var(--s) var(--s), calc(var(--s) / 5) calc(var(--s) / 5);
   
-	background-color:var(--c-bg-primary);
+	background-color: rgba(255, 255, 255, 0.8);
 	// backdrop-filter: blur(20px);
-	// backdrop-filter: blur(5px);
+	// backdrop-filter: blur(2px);
 }
 
 .message-dialog {

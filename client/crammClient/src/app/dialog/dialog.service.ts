@@ -25,7 +25,6 @@ export class DialogService {
   showMinimalInfo(message: string): MatDialogRef<MinimalInfoDialogComponent> {
     return this.dialog.open(MinimalInfoDialogComponent, {
       data: { message },
-      panelClass: 'minimal-dialog-container',
       position: { top: '0', left: '0', right: '0' },
       hasBackdrop: false,
     });
