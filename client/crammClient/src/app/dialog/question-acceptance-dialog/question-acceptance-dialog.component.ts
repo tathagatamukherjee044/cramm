@@ -11,7 +11,7 @@ export class QuestionAcceptanceDialogComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { message: string },
-        private dialogRef: MatDialogRef<QuestionAcceptanceDialogComponent>
+    private dialogRef: MatDialogRef<QuestionAcceptanceDialogComponent>
   ) { }
 
   thumbsUp() {

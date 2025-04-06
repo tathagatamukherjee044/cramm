@@ -1,10 +1,10 @@
 <div class="message-dialog">
     <h2 class="message-dialog-header">Vote: Include this question?</h2>
     <div style="display: flex; justify-content: center;">
-        <button class="customInput " (click)="thumbsUp()" style="margin-right: 10px;">
+        <button class="customInput " (click)="thumbsUp()" style="margin-right: 10px; min-width: none;">
           <span class="colorSuccess"><i class="ph-duotone ph-thumbs-up"></i></span>
         </button>
-        <button class="customInput" (click)="thumbsDown()">
+        <button class="customInput" (click)="thumbsDown()" style="min-width: none;">
           <span class="colorDanger" ><i class="ph-duotone ph-thumbs-down"></i></span>
         </button>
       </div>

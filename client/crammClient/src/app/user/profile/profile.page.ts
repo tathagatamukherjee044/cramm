@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { StorageService } from 'src/app/_services/storage.service';
 import { UserService } from 'src/app/_services/user.service';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
     selector: 'app-profile',
@@ -15,7 +16,8 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private storageService : StorageService,
-    private userService : UserService
+    private userService : UserService,
+    private authService : AuthService,
   ) { }
 
   userDetail : any = {}
@@ -32,7 +34,12 @@ export class ProfilePage implements OnInit {
   logout() {
     console.log("logout");
     
-    // this.userService.logout()
+    this.authService.logout().subscribe((data) => {
+      console.log(data);
+      this.userService.unsetUser()
+      this.storageService.deleteStorage('accessToken')
+      this.storageService.deleteStorage('streak')
+    })
   }
 
 }

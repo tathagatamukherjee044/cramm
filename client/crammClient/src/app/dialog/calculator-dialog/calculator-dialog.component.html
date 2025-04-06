@@ -1,0 +1,75 @@
+<div class="message-dialog" style="max-width: 25em;" cdkDrag>
+
+    <input type="text" [ngModel]="formattedTokens" class="input-small text-right customInput" readonly >
+    
+    <input type="text" [ngModel]="input" class="input-large text-right customInput" readonly >
+    
+    <div style="display: flex;justify-content: space-around;  margin-top: 1rem;">
+      <div style="flex: 0 0 25%;">
+        <button class="customInput" (click)="reset()" >AC</button>
+      </div>
+      <div style="flex: 0 0 25%;">
+        <button class="customInput backgroundPrimary" (click)="execOperator('(')" >(</button>
+      </div>
+      <div style="flex: 0 0 25%;">
+        <button class="customInput backgroundPrimary" (click)="execOperator(')')" >)</button>
+      </div>
+      <div style="flex: 0 0 25%;">
+        <button class="customInput backgroundPrimary" (click)="execOperator('/')" >/</button>
+      </div>
+    </div>
+    <div style="display: flex;justify-content: space-around;  margin-top: 1rem;">
+      <div style="flex: 0 0 25%;">
+        <button class="customInput" (click)="insertChar('1')" >1</button>
+      </div>
+      <div style="flex: 0 0 25%;">
+        <button class="customInput" (click)="insertChar('2')" >2</button>
+      </div>
+      <div style="flex: 0 0 25%;">
+        <button class="customInput" (click)="insertChar('3')" >3</button>
+      </div>
+      <div style="flex: 0 0 25%;">
+        <button class="customInput backgroundPrimary" (click)="execOperator('*')" >x</button>
+      </div>
+    </div>
+    <div style="display: flex;justify-content: space-around;  margin-top: 1rem;">
+      <div style="flex: 0 0 25%;">
+        <button class="customInput" (click)="insertChar('4')" >4</button>
+      </div>
+      <div style="flex: 0 0 25%;">
+        <button class="customInput" (click)="insertChar('5')" >5</button>
+      </div>
+      <div style="flex: 0 0 25%;">
+        <button class="customInput" (click)="insertChar('6')" >6</button>
+      </div>
+      <div style="flex: 0 0 25%;">
+        <button class="customInput backgroundPrimary" (click)="execOperator('+')" >+</button>
+      </div>
+    </div>
+    <div style="display: flex;justify-content: space-around;  margin-top: 1rem;">
+      <div style="flex: 0 0 25%;">
+        <button class="customInput" (click)="insertChar('7')" >7</button>
+      </div>
+      <div style="flex: 0 0 25%;">
+        <button class="customInput" (click)="insertChar('8')" >8</button>
+      </div>
+      <div style="flex: 0 0 25%;">
+        <button class="customInput" (click)="insertChar('9')" >9</button>
+      </div>
+      <div style="flex: 0 0 25%;">
+        <button class="customInput backgroundPrimary" (click)="execOperator('-')" >-</button>
+      </div>
+    </div>
+    <div style="display: flex;justify-content: space-around;  margin-top: 1rem;">
+      <div style="flex: 0 0 50%;">
+        <button class="customInput" (click)="insertChar('0')" >0</button>
+      </div>
+      <div style="flex: 0 0 25%;">
+        <button class="customInput" (click)="insertChar('.')" >,</button>
+      </div>
+      <div style="flex: 0 0 25%;">
+        <button autofocus class="customInput backgroundPrimary" (click)="evaluate()" >=</button>
+      </div>
+    </div>
+</div>
+

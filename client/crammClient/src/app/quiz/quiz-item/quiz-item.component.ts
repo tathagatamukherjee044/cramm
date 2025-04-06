@@ -56,7 +56,11 @@ export class QuizItemComponent  implements OnInit {
     if(this.answer == this.question().answer){
       this.questionComplete.emit(true);
     } else {
-      this.showCorrectAnswerDialog("Wrong Answer","The correct answer is " + this.question().answer)
+      let message = ""
+      if(this.question().explanation){
+        message = this.question().explanation
+      }
+      this.showCorrectAnswerDialog("The correct answer is option " + this.question().answer,message)
     }
     this.answer = ''
     
@@ -66,6 +70,12 @@ export class QuizItemComponent  implements OnInit {
 
     this.dialogService.showInfoDialog(header,message).afterClosed().subscribe( data =>{
       this.questionComplete.emit(false);
+    })
+  }
+
+  showCalculator(){
+    this.dialogService.showCalculatorDialog().afterClosed().subscribe( data =>{
+      console.log(data);
     })
   }
 

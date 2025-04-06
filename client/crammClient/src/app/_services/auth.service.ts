@@ -65,6 +65,15 @@ export class AuthService {
     }))
   }
 
+  logout() {
+
+    return this.http.post(config.api.LOGOUT,{}).pipe(map(res =>{
+      // this.userService.unsetUser()
+    // return this.http.post('http://localhost:8080/auth/login',userModel).pipe(map(res =>{
+      return res;
+    }))
+  }
+
   createUser(userModel: any) {
     return this.http.post('http://localhost:8080/auth/signup',userModel).pipe(res =>{
       return res;

@@ -34,6 +34,19 @@ export class UserService {
     this.storageService.setStorage('user',user)
   }
 
+  unsetUser() {
+    this.userSubject.next({
+      _id: "",
+      name: "",
+      email: "",  
+      streak: 0,
+      loggedIn: false
+    })
+    this.storageService.deleteStorage('user')
+  }   
+
+
+
   public get userValue(): User {
     return this.userSubject.value;
   }

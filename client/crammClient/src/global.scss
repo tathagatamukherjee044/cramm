@@ -386,15 +386,11 @@ img {
     border :2px solid var(--c-text-primary);
     transform: translate(-50%, -50%);
     width: 90%;
-    max-width: 500px;
     background-color: var(--c-bg-primary);
     border-radius: 8px;
     box-shadow: 4px 4px var(--c-box-shadow);
     z-index: 1000;
     padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
   
   .message-dialog-header {
@@ -500,6 +496,10 @@ background-color:  var(--c-color-danger);; /* Bootstrap danger red */
   
 .backgroundWarning {
 background-color: var(--c-color-warning); /* Bootstrap warning yellow */
+}
+
+.backgroundPrimary {
+	background-color: var(--c-action-primary);
 }
 
 .colorSuccess {

@@ -1,0 +1,31 @@
+.input-small {
+    font-size: 0.875rem;
+    padding: 0.25rem;
+  }
+  .input-large {
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  .text-right {
+    text-align: right;
+  }
+  .button {
+    border: none;
+    padding: 0.75rem;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .button.primary {
+    background-color: #007bff;
+    color: white;
+  }
+  .button.secondary {
+    background-color: #6c757d;
+    color: white;
+  }

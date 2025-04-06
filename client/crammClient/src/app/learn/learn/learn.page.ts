@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { StorageService } from 'src/app/_services/storage.service';
 import { Router } from '@angular/router';
 import { SubjectService } from 'src/app/_services/subject.service';
+import { QuestionAcceptanceDialogComponent } from 'src/app/dialog/question-acceptance-dialog/question-acceptance-dialog.component';
 
 
 @Component({

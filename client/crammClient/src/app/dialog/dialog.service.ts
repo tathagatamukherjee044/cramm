@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 import { MinimalInfoDialogComponent } from './minimal-info-dialog/minimal-info-dialog.component';
 import { QuestionAcceptanceDialogComponent } from './question-acceptance-dialog/question-acceptance-dialog.component';
+import { CalculatorDialogComponent } from './calculator-dialog/calculator-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,13 @@ export class DialogService {
       data: { message },
       position: { top: '0', left: '0', right: '0' },
       hasBackdrop: false,
+    });
+  }
+
+  showCalculatorDialog(): MatDialogRef<CalculatorDialogComponent> {
+    return this.dialog.open(CalculatorDialogComponent, {
+      // backdropClass : "blurBackdrop",
+      // width: '400px',
     });
   }
 

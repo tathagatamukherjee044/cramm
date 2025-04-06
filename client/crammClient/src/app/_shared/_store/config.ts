@@ -9,6 +9,9 @@ export const  config = {
         LOGIN : `${environment.apiUrl}/auth/login`,
         REFRESH : `${environment.apiUrl}/auth/refresh`,
 
+        //logout
+        LOGOUT : `${environment.apiUrl}/auth/logout`,
+
         //user
         GET_USER : `${environment.apiUrl}/user/me`,
 
