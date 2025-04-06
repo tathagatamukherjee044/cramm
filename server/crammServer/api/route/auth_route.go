@@ -10,6 +10,7 @@ import (
 func AddAuthRouter(group fiber.Router) {
 	authRoute := group.Group("/auth")
 	authRoute.Post("/login", handler.Login)
+	authRoute.Post("/logout", custommiddleware.DecodeJWT, custommiddleware.ValidateJWT, handler.Logout)
 	authRoute.Post("/refresh", custommiddleware.ValidateRefresh, handler.Refresh)
 	authRoute.Post("/signup", handler.Signup)
 	authRoute.Get("/oauth/google", handler.GoogleOAuthHandler)

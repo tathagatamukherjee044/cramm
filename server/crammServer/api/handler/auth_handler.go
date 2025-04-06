@@ -10,6 +10,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -205,6 +206,48 @@ func Login(c *fiber.Ctx) error {
 	tokenUser.AccessToken = tokenString
 
 	return c.Status(http.StatusOK).JSON(tokenUser)
+}
+
+func Logout(c *fiber.Ctx) error {
+	isLocal := os.Getenv("IS_LOCAL")
+	if isLocal == "true" {
+		log.Println("isLocal")
+		c.Cookie(&fiber.Cookie{
+			Name:     "accessToken",
+			Value:    "tokenExpired",
+			SameSite: "Lax",
+			Expires:  time.Unix(0, 0),
+		})
+		c.Cookie(&fiber.Cookie{
+			Name:     "refreshToken",
+			Value:    "tokenExpired",
+			SameSite: "Lax",
+			Path:     "/api/auth/refresh",
+			Expires:  time.Unix(0, 0),
+		})
+
+	} else {
+		c.Cookie(&fiber.Cookie{
+			Name:     "accessToken",
+			Value:    "tokenExpired",
+			HTTPOnly: true,     // Recommended for security
+			Secure:   true,     // Recommended for HTTPS
+			SameSite: "Strict", // Recommended for security
+			Expires:  time.Unix(0, 0),
+		})
+		c.Cookie(&fiber.Cookie{
+			Name:     "refreshToken",
+			Value:    "tokenExpired",
+			HTTPOnly: true,     // Recommended for security
+			Secure:   true,     // Recommended for HTTPS
+			SameSite: "Strict", // Recommended for security
+			Path:     "/api/auth/refresh",
+			Expires:  time.Unix(0, 0),
+		})
+	}
+
+	// Return the new access accessToken
+	return c.JSON(fiber.Map{})
 }
 
 func Refresh(c *fiber.Ctx) error {

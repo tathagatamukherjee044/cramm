@@ -13,6 +13,7 @@ func ValidateJWT(c *fiber.Ctx) error {
 	authFailed := c.Locals("authFailed")
 	authFailReason := c.Locals("authFailReason")
 	if authFailed == true {
+		log.Println("auth failed")
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": authFailReason})
 	}
 
@@ -23,7 +24,10 @@ func DecodeJWT(c *fiber.Ctx) error {
 	c.Locals("user", false)
 	log.Println("in decode jwt")
 	authCookie := c.Cookies("accessToken")
-	if authCookie == "" {
+	log.Println("authCookie", authCookie)
+	log.Printf("Raw cookie value: [%q], Length: %d\n", authCookie, len(authCookie))
+	if len(authCookie) == 0 {
+		log.Println("Missing Authorization header")
 		c.Locals("authFailed", true)
 		c.Locals("authFailReason", "Missing Authorization header")
 		return c.Next()
