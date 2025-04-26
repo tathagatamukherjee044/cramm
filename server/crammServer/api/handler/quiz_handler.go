@@ -52,12 +52,12 @@ func GetQuiz(c *fiber.Ctx) error {
 	// 	Question: "When did India gain Independence",
 	// 	Options:  []string{"1947", "1950"},
 	// }
-	c.Cookie(&fiber.Cookie{
-		Name:  "anotherCookie",
-		Value: "anotherValue",
-		// HTTPOnly: false,
-		SameSite: "Lax",
-	})
+	// c.Cookie(&fiber.Cookie{
+	// 	Name:  "anotherCookie",
+	// 	Value: "anotherValue",
+	// 	// HTTPOnly: false,
+	// 	SameSite: "Lax",
+	// })
 	return c.Status(200).JSON(result)
 }
 

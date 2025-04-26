@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
@@ -43,15 +44,20 @@ func GetQuiz(subject string, limit int) ([]model.Quiz, error) {
 	fmt.Println(coll)
 	filter := bson.D{{}}
 	var results []model.Quiz
-	cursor, err := coll.Find(context.TODO(), filter, options.Find().SetLimit(int64(limit)))
+	cursor, err := getRandomEntries(coll, limit, filter)
 	if err != nil {
 		log.Println(err)
 		return results, err
 	}
 
-	if err = cursor.All(context.TODO(), &results); err != nil {
-		log.Println(err)
-		return results, err
+	for _, doc := range cursor {
+		var quiz model.Quiz
+		bsonBytes, _ := bson.Marshal(doc)
+		if err := bson.Unmarshal(bsonBytes, &quiz); err != nil {
+			log.Println(err)
+			return results, err
+		}
+		results = append(results, quiz)
 	}
 
 	// log.Println(results)
@@ -112,4 +118,39 @@ func ShuffleChoices(questions []model.Quiz) {
 		}
 		questions[i].Choices = choices
 	}
+}
+
+func getRandomEntries(coll *mongo.Collection, limit int, filter interface{}) ([]bson.M, error) {
+	// Create an aggregation pipeline with the $sample stage
+	pipeline := mongo.Pipeline{}
+
+	// Add the $match stage if a filter is provided
+	if filter != nil {
+		pipeline = append(pipeline, bson.D{{"$match", filter}})
+	}
+
+	// Add the $sample stage to get random documents
+	pipeline = append(pipeline, bson.D{
+		{"$sample", bson.D{{"size", int32(limit)}}},
+	})
+
+	// Set options for the aggregation (optional, but good practice)
+	aggOptions := options.Aggregate()
+
+	// Execute the aggregation pipeline
+	cursor, err := coll.Aggregate(context.TODO(), pipeline, aggOptions)
+	if err != nil {
+		log.Printf("Error executing aggregation: %v", err)
+		return nil, err
+	}
+	defer cursor.Close(context.TODO())
+
+	// Decode the results into a slice of bson.M (or your struct)
+	var results []bson.M
+	if err = cursor.All(context.TODO(), &results); err != nil {
+		log.Printf("Error decoding aggregation results: %v", err)
+		return nil, err
+	}
+
+	return results, nil
 }

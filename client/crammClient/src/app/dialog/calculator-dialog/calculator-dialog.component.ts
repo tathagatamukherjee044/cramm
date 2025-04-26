@@ -7,11 +7,11 @@ import { rpn } from './rpn';
 import { yard } from './yard';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {CdkDrag} from '@angular/cdk/drag-drop';
+import {CdkDrag, DragDropModule} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-calculator-dialog',
-  imports: [CommonModule,FormsModule,CdkDrag],
+  imports: [CommonModule,FormsModule,DragDropModule],
   templateUrl: './calculator-dialog.component.html',
   styleUrl: './calculator-dialog.component.scss'
 })

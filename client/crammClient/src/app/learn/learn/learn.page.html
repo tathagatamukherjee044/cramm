@@ -1,4 +1,4 @@
-<div style="flex-direction: column; align-content: center; height: 55vh; max-width: 300px;" class="centerHorizontal">
+<div style="flex-direction: column; align-content: center; height: 55dvh; max-width: 300px;" class="centerHorizontal">
     <select class="centerHorizontal customInput"   [(ngModel)]="subject" (ngModelChange)="onSubjectChanged($event)" placeholder="Select Subject">
         <option value="" disabled selected>Select subject</option>
         @for (item of courseList; track $index) {
@@ -7,7 +7,7 @@
     </select>
     <button class="centerHorizontal customInput margin1UnitVertical actionButton"  (click)="onStart()">Start</button>
 </div>
-<div style="display:flex; flex-direction:column; height:5vh; position:relative; max-width: 2.5em;">
+<div style="display:flex; flex-direction:column; height:5dvh; position:relative; max-width: 2.5em;">
     <button class="customInput actionButtonSecondary"  (click)="onAddQuestion()"><i class="ph ph-plus"></i></button>
 </div>
 <div style="display:flex; flex-direction:column; position:relative; width: 5em; max-height: 0.5em;">
